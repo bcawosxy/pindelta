@@ -1,4 +1,5 @@
 <?php 
+/*1021 github*/
 //用JS轉址
 function js_location($href){  
 	echo "<script>";
