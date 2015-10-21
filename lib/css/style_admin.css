@@ -1,0 +1,79 @@
+body{margin:0 auto; width: 100%; padding: 0; border: 0; font: inherit; font-size: 100%; vertical-align: baseline;  background: #f6f6f6; font-family: Arial, "微軟正黑體"; font-size: 14px; line-height: 20px; letter-spacing: 1px; -webkit-text-size-adjust: none; text-size-adjust: none;}
+#main{width:100%; margin:0 auto; background-color:#eeeeef; margin-top:0px;}
+
+/*------------------------------header + content 區域------------------------*/
+#container{width:1024px; margin:0 auto; background-color:#ffffff;}
+
+.content{width:100%; position:relative;}
+.content_title{width:100%; border:0px solid purple; height:20px; position:relative; }
+.content_main{width:100%; position:relative; }
+
+
+.admin_login_all{width:100%; height:auto; vertical-align:top; }
+.admin_login{margin:0 auto; width:50%; height:auto; font-family:Arial, "微軟正黑體"; font-size:18px;}
+.admin_navigate_title{font-family:Arial, "微軟正黑體"; color:blue; font-weight:bold; font-size:14px;}
+
+/*使用提示*/
+.admin_tips{font-family:Arial, "微軟正黑體"; width:100%; height:auto; border:1px solid #DADADA; margin-bottom:15px; border-radius:5px; padding:5px 40px; color:#108199; background-image:url("../img/tips.png"); background-repeat: no-repeat; background-position: 1% 0%; 	background-size: 30px 30px;}
+.login_err_msg{color:red; text-align:right; width:420px; font-size:14px;}
+
+/*頁面通用的title訊息*/
+.page_title{font-family:Arial, Microsoft JhengHei;font-size:28px;padding-left:15px;font-weight:bold;color:#108199;}
+
+/*模板二樣式*/
+.model_all{width:100%; margin-top:-20px; position:relative;}
+.model_navbar{display:inline-block; margin:20px 20px; height:auto; width:160px; position:relative; vertical-align:top;}
+.model_content{display:inline-block; margin:20px 0px; height:auto; width:780px; position:relative; vertical-align:top; padding-left:30px;}
+
+
+.model_navbar hr{border: 0; height: 1px; background: #333; background-image: -webkit-linear-gradient(left, #ccc, #333, #ccc);  background-image:    -moz-linear-gradient(left, #ccc, #333, #ccc);  background-image:     -ms-linear-gradient(left, #ccc, #333, #ccc);  background-image:      -o-linear-gradient(left, #ccc, #333, #ccc);}
+.model_navbar_title{width:100%;}
+.model_navbar_title span{width:110px; font-family:Arial, "微軟正黑體"; font-size:18px;text-align: justify; color: #F7931D; padding-left:10px; padding-top:10px;}
+.model_navbar_list {width:100%; margin:0; margin-top:-30px; list-style:none; overflow:none; position:relative; vertical-align:top;}
+.model_navbar_list>ul{width:100%; margin:0; list-style:none; overflow:none; position:relative; vertical-align:top;}
+.model_navbar_list>ul>li{width:100%; font-family:Arial; margin:20px 0px;}
+.model_navbar_list>ul>li>span{font-family:Arial; vertical-align:top; color:#108199; font-size:17px; text-decoration:none;font-family:Arial, "微軟正黑體";}
+
+/**/
+.nav_headlink{color:#F7931D;}
+.nav_headlink:hover{color:#F7931D;}
+
+/*左邊欄位樣式*/
+.model_navbar_list_link{list-style:none; font-family:Arial, "微軟正黑體"; padding:0px; margin-left:10px;}
+.model_navbar_list_link li{margin:5px;}
+.model_navbar_list_link li a{list-style:none;color:#9d9d9d; font-size:15px; text-decoration:none; font-weight:bold;}
+.model_navbar_list_link li a:hover{color:#108199;}
+
+.product_table{font-family:Arial, "微軟正黑體"; color:black; font-size:16px; }
+.product_add_table_td{font-family:Arial, "微軟正黑體"; color:#9A9A9A; width:15%; font-weight:bold; font-size:16px; }
+
+/*Tags*/
+#tag_area ul{ list-style:none;padding:0px;}
+#tag_area ul li{padding:5px;}
+
+/*Description*/
+.des_id{max-width: 20px; min-width: 20px; width: 20px;}
+
+/*---Menu頂部樣式---*/
+.header_banner_img{padding-left:33%;}
+
+/*system*/
+.system_table{margin-top:5px; border:0px red solid;}
+.system_title{font-weight:bold; color:#9A9A9A; font-size:22px;}
+.system_text{border:none; background-color:#EBEBEB; padding:0px 10px;width:300px; height:30px; border-radius:10px; letter-spacing:1px;font-family:Arial, "微軟正黑體";}
+ 
+/*呈現contact清單的data*/
+.contact_data{ font-size:16px; color:#1081BF; font-family:Arial, "微軟正黑體";}
+
+/*IMG_SHOW 背景*/
+.img_show{background-image:url(../img/Plus-orange.png); background-repeat:no-repeat; background-position: 20% center; }
+
+
+
+/*------------------------------footer 區域------------------------*/
+#footer {width: 100%; background-color: #6d6e72; padding: 15px 0px; position:relative; margin-top:10px; }
+
+.footer_content{ width:1024px; margin:0 auto; background-color:#6d6e72; padding:3px 0px; color:#fff;}
+
+/*------------共用樣式------------------*/
+.modify_info{font-family:Arial, "微軟正黑體"; color:blue; font-weight:bold;}
