@@ -28,8 +28,8 @@
 		if($result) $row = mysql_fetch_assoc($result);
 		
 		$_this_name = (empty($row['product_name'])) ? null : $row['product_name'] ;
-		$_this_description = (empty($row['product_description'])) ? null : $row['product_description'].'.' ;
-		$_this_description .= (empty($row['product_memo'])) ? null : ' '.$row['product_memo'] ;
+		$_this_description = (empty($row['product_description'])) ? null : $row['product_description'] ;
+		$_this_description .= (empty($row['product_memo'])) ? null : '. '.$row['product_memo'] ;
 		$_this_cover = (empty($row['product_cover'])) ? null : $row['product_cover'] ;
 	}elseif(!empty($g_category)){
 		//第二層

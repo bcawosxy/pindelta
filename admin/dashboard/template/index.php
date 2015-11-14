@@ -6,21 +6,17 @@
     js_location(URL_ROOT."admin");
   }
 ?>
-<html>
+<html lang="en">
 <head>
-	<meta name="robots" content="noindex">
-	<meta name="robots" content="nofollow" />
-	<meta name="googlebot" content="noindex">
 	<meta charset="UTF-8">
 	<title>品利興國際有限公司 - 後台管理系統</title>
+	
 	<link rel="stylesheet" href="<?php echo URL_LIB_ROOT.'css/style_admin.css' ?>">
 	<link rel="stylesheet" href="<?php echo URL_LIB_ROOT.'css/bootstrap.css' ?>">
-    <link href="<?php echo URL_LIB_ROOT.'js/jbox/jbox.css' ?>" rel="stylesheet" type="text/css"/>
+   
+   <script type="text/javascript" src="<?php echo URL_LIB_ROOT.'js/jquery-1.11.2.min.js' ;?>"></script>	
+    <script type="text/javascript" src="<?php echo URL_LIB_ROOT.'js/javascript.js' ;?>"></script>	
 	
-	
-	<script type="text/javascript" src="<?php echo URL_LIB_ROOT.'js/jquery-1.11.2.min.js' ;?>"></script>	
-	<script type="text/javascript" src="<?php echo URL_LIB_ROOT.'js/javascript.js' ;?>"></script>	
-    <script src="<?php echo URL_LIB_ROOT.'js/jbox/jbox.js' ?>" type="text/javascript"></script>
 	
 </head>
 
@@ -49,7 +45,7 @@
 	
     <div id="footer">
       <div class="footer_content">
-	    Copyright @ 2015 Pindelta International Co., Ltd All Rights Reserved
+	    footer_content
 	  </div>
     </div>	
 	

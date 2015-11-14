@@ -1,4 +1,4 @@
-﻿<div class="header_menu_box">
+<div class="header_menu_box">
   <ul>
     <li>
       <a href="<?php echo URL_ROOT ?>"><p class="btn"><span class="header_menu_nav_text">Home</span></p></a>

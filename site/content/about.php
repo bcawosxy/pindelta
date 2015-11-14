@@ -1,4 +1,4 @@
-﻿<div class="model_all">
+<div class="model_all">
 <!-- 
 	0331因不需用到其他類別 先拿掉
   <div class="model_navbar">

@@ -1,5 +1,4 @@
 <?php 
-/*1021 github*/
 //用JS轉址
 function js_location($href){  
 	echo "<script>";
@@ -63,15 +62,15 @@ function get_settings($key, $menu = null){
 	//依不同Menu插入suffix
 	switch($menu){
 		case 'about':
-			$suffix = 'About us';
+			$suffix = ' | About us';
 		break;
 		
 		case 'product':
-			$suffix = 'Product';
+			$suffix = ' | Product';
 		break;
 		
 		case 'contact':
-			$suffix = 'Contact us';
+			$suffix = ' | Contact us';
 		break;
 		
 		default:
@@ -83,7 +82,7 @@ function get_settings($key, $menu = null){
 	$result = mysql_query($query);
 	if($result){
 		$row = mysql_fetch_assoc($result);
-		$return['web_title'] = !empty($row['web_title']) ? $row['web_title'].' | '.$suffix : null ;
+		$return['web_title'] = !empty($row['web_title']) ? $row['web_title'].$suffix : null ;
 		$return['web_description'] = !empty($row['web_description']) ? $row['web_description'] : null;
 		$return['social_look'] = !empty($row['social_look']) ? $row['social_look'] : null;
 		$return['social_skin'] = !empty($row['social_skin']) ? $row['social_skin'] : null;

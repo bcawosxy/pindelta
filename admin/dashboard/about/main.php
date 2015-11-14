@@ -15,7 +15,7 @@
   ?>
   <div class="model_content"><!-- 所見即所得編輯區 -->
 	<div class="page_title">關於公司</div><hr>
-	
+	<div class="admin_tips">建議上傳圖片格式: PNG / JPEG / JPG</div>
 	<form method="post" action="./">
       <textarea rows="10" cols="30" name="about_value" class="ckeditor"><?php echo $data['value']; ?></textarea>
       <script type="text/javascript">CKEDITOR.replace('about_value',

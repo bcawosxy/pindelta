@@ -63,10 +63,10 @@ body{margin:0 auto; width: 100%; padding: 0; border: 0; font: inherit; font-size
 /*首頁分類列表 (大圖)*/
 .category_all{width:100%; margin-top:-20px ; position:relative; border:0px red solid;}
 .category_show{width:100%; height:auto; margin:0; padding:0px 3px; position:relative; list-style:none; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;}
-.category_show li {border:4px white solid;border-radius:10px; padding:2px; width:248px; margin:0px 1px; height:510px; display:inline-block; overflow:hidden; position:relative; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; font-family:Arial, "微軟正黑體";}
+.category_show li {border:4px white solid;border-radius:10px; padding:2px; width:248px; margin:0px 1px; height:460px; display:inline-block; overflow:hidden; position:relative; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; font-family:Arial, "微軟正黑體";}
 .category_show li a{text-decoration:none; color:black; font-family:Arial, "微軟正黑體"; forn-weight:bold; font-size:16px; word-wrap: break-word; word-break: normal;}
 .category_show li hr{ border: 0; height: 1px; background: #333; background-image: -webkit-linear-gradient(left, #ccc, #333, #ccc);  background-image:    -moz-linear-gradient(left, #ccc, #333, #ccc);  background-image:     -ms-linear-gradient(left, #ccc, #333, #ccc);  background-image:      -o-linear-gradient(left, #ccc, #333, #ccc); }
-.category_show_img{height:324px;}
+.category_show_img{height:274px;}
 .category_show_title{font-family:Arial, "微軟正黑體"; font-size:16px; margin:0px;}
 .category_show_intro{color:#777; vertical-align: baseline; font-size:13px; margin:0px;padding:4px; text-align:left; letter-spacing:1px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; font-family:Arial, "微軟正黑體";}
 

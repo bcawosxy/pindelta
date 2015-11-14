@@ -1,4 +1,4 @@
-﻿<div class="model_all">
+<div class="model_all">
   <div class="model_navbar">
     <div class="model_navbar_title">
 	  <img src="<?php echo $URL_IMG_ROOT; ?>small_logo.png" width="40" height="40">

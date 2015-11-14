@@ -8,7 +8,7 @@ if($nav['show_type']=='category'){ ?>
 				echo '<a class="product_show" href="./?goods='.base64_encode($nav['categoryarea_id']).'&category='.base64_encode($v['id']).'">
 					<div class="product_area">
 						<div class="product_show_img">
-							<img width="170px" height="220px" src="'.$v['category_cover'].'">
+							<img width="170px" height="180px" src="'.$v['category_cover'].'">
 						</div>
 						<hr>
 						<div class="product_show_title">
@@ -44,7 +44,7 @@ if($nav['show_type']=='category'){ ?>
 				}
 					echo '<div class="product_area">
 						<div class="product_show_img">
-							<img width="170px" height="220px" src="'.$v['cover'].'">
+							<img width="170px" height="180px" src="'.$v['cover'].'">
 						</div>
 						<hr>
 						<div class="product_show_title">
@@ -82,7 +82,7 @@ if($nav['show_type']=='category'){ ?>
 		<div class="items_head">
 			<div class="items_img"> 
 				<a href="<?php echo ADMIN_IMG_UPLOAD.'product/'.$product['product_cover']; ?>" title="<?php echo $product['product_name'] ?>" data-jbox-image="gallery2">
-					<img width="250px" height="300px" src="<?php echo ADMIN_IMG_UPLOAD.'product/'.$product['product_cover']; ?>"> 
+					<img width="250px" height="280px" src="<?php echo ADMIN_IMG_UPLOAD.'product/'.$product['product_cover']; ?>"> 
 				</a>
 			</div>
 			

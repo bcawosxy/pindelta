@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 $page = (!empty($_GET['p'])) ? $_GET['p'] : null;
 
 if(!empty($page) && $page == 'about' ){

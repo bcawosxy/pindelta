@@ -29,7 +29,7 @@ while($row = mysql_fetch_array($result)){
 		<?php
 		foreach($categoryarea as $k => $v){
 			echo '<li class="item"> 
-				  <a href="product?goods='.base64_encode($v['categoryarea_id']).'"><p class="category_show_img"><img src="'.ADMIN_IMG_UPLOAD.'categoryarea/'.$v['categoryarea_cover'].'" width="240" height="320"></p></a><hr>
+				  <a href="product?goods='.base64_encode($v['categoryarea_id']).'"><p class="category_show_img"><img src="'.ADMIN_IMG_UPLOAD.'categoryarea/'.$v['categoryarea_cover'].'" width="240" height="270"></p></a><hr>
 				  <a href="product?goods='.base64_encode($v['categoryarea_id']).'"><p class="category_show_title">'.$v['categoryarea_name'].'</a> </p> 
 				  <p class="category_show_intro">'.$v['categoryarea_description'].'</p> 
 				</li>';

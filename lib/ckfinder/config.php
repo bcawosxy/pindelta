@@ -60,8 +60,8 @@ Examples:
 
 ATTENTION: The trailing slash is required.
 */
-$baseUrl = 'http://pindelta.net/upload/ckfinder/';
-// $baseUrl = 'http://ccckaass.tk/upload/ckfinder/';
+// $baseUrl = 'http://pindelta.net/upload/ckfinder/'; 
+$baseUrl = 'http://'.$_SERVER['SERVER_NAME'].'/upload/ckfinder/';
 
 /*
 $baseDir : the path to the local directory (in the server) which points to the
