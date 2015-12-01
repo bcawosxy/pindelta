@@ -2,7 +2,7 @@ body{margin:0 auto; width: 100%; padding: 0; border: 0; font: inherit; font-size
 #main{width:100%; margin:0 auto; background-color:white; margin-top:0px;}
 
 /*------------------------------header + content 區域------------------------*/
-#container{width:1024px; margin:0 auto; background-color:#ffffff;}
+#container{width:1280px; margin:0 auto; background-color:#ffffff;}
 
 /*---Menu頂部樣式---*/
 .header_banner_box{border-bottom:1px #999 solid; width:100%;}
@@ -47,8 +47,8 @@ body{margin:0 auto; width: 100%; padding: 0; border: 0; font: inherit; font-size
 
 /*模板二樣式*/
 .model_all{width:100%; margin-top:-20px; position:relative;}
-.model_navbar{display:inline-block; margin:20px 10px; height:auto; width:200px; position:relative; vertical-align:top;}
-.model_content{display:inline-block; margin:20px 0px; height:auto; width:780px; position:relative; vertical-align:top; border:0px blue solid;}
+.model_navbar{display:inline-block; margin:20px 4px; height:auto; width:250px; position:relative; vertical-align:top;}
+.model_content{display:inline-block; margin:20px 0px; height:auto; width:1000px; position:relative; vertical-align:top; border:0px blue solid;}
 .model_navbar hr{border: 0; height: 1px; background: #333; background-image: -webkit-linear-gradient(left, #ccc, #333, #ccc);  background-image:    -moz-linear-gradient(left, #ccc, #333, #ccc);  background-image:     -ms-linear-gradient(left, #ccc, #333, #ccc);  background-image:      -o-linear-gradient(left, #ccc, #333, #ccc);}
 .model_navbar_title{width:100%;}
 .model_navbar_title span{width:110px; font-family:Arial, "微軟正黑體"; font-size:18px;text-align: justify; color: #F7931D; padding-left:10px; padding-top:10px;}
@@ -66,9 +66,11 @@ body{margin:0 auto; width: 100%; padding: 0; border: 0; font: inherit; font-size
 .category_show li {border:4px white solid;border-radius:10px; padding:2px; width:248px; margin:0px 1px; height:460px; display:inline-block; overflow:hidden; position:relative; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; font-family:Arial, "微軟正黑體";}
 .category_show li a{text-decoration:none; color:black; font-family:Arial, "微軟正黑體"; forn-weight:bold; font-size:16px; word-wrap: break-word; word-break: normal;}
 .category_show li hr{ border: 0; height: 1px; background: #333; background-image: -webkit-linear-gradient(left, #ccc, #333, #ccc);  background-image:    -moz-linear-gradient(left, #ccc, #333, #ccc);  background-image:     -ms-linear-gradient(left, #ccc, #333, #ccc);  background-image:      -o-linear-gradient(left, #ccc, #333, #ccc); }
-.category_show_img{height:274px;}
+.category_show_img{height:265px;}
+.category_show_img img.item_big{width:240px; height:260px;}
 .category_show_title{font-family:Arial, "微軟正黑體"; font-size:16px; margin:0px;}
 .category_show_intro{color:#777; vertical-align: baseline; font-size:13px; margin:0px;padding:4px; text-align:left; letter-spacing:1px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; font-family:Arial, "微軟正黑體";}
+
 
 /*nab_bar的分類樣式*/
 .category_list{margin:0 auto; padding:4px; font-size:15px; font-weight:bold; list-style:none; font-family:Arial, "微軟正黑體"; }
@@ -86,18 +88,18 @@ body{margin:0 auto; width: 100%; padding: 0; border: 0; font: inherit; font-size
 
 /*項目及產品列表頁面*/
 #product_content{border:0px red solid;}
-.product_show {width:188px; text-decoration:none;display:inline-block;margin:10px 1px; padding:1px;vertical-align:top;}
+.product_show {width:195px; text-decoration:none;display:inline-block;margin:10px 1px; padding:1px; vertical-align:top;}
 .product_show:hover{text-decoration:none;}
-.product_show .product_area{font-family:Arial, "微軟正黑體"; Min-height:400px; width:185px;margin:0 auto; border:4px solid; border-color:white; border-radius:10px;}
+.product_show .product_area{font-family:Arial, "微軟正黑體"; Min-height:400px; width:190px; margin:0 4px; border:4px solid; border-color:white; border-radius:10px;}
 .product_show_img{margin:5px;}
-.product_area hr{border: 0; height: 1px; background: #333; background-image: -webkit-linear-gradient(left, #ccc, #333, #ccc);  background-image:    -moz-linear-gradient(left, #ccc, #333, #ccc);  background-image:     -ms-linear-gradient(left, #ccc, #333, #ccc);  background-image:      -o-linear-gradient(left, #ccc, #333, #ccc);}
-
+.product_show_img img.item_normal{width:175px; height:175px;}
+.product_area hr{margin:10px 0; border: 0; height: 1px; background: #333; background-image: -webkit-linear-gradient(left, #ccc, #333, #ccc);  background-image:-moz-linear-gradient(left, #ccc, #333, #ccc);  background-image:-ms-linear-gradient(left, #ccc, #333, #ccc);  background-image:-o-linear-gradient(left, #ccc, #333, #ccc);}
 .product_show_title{font-size:16px; color:#108188; margin-bottom:5px; padding-left:5px; font-weight: bold; word-wrap: break-word; word-break: normal;   letter-spacing: 0.1px;}
 .product_show_intro{font-size:13px; color:#9A9A9A; letter-spacing:0.8px; padding:5px; overflow:hidden; font-weight: bold; word-wrap: break-word; word-break: normal;}
 
 
 /*產品內容詳細頁*/
-#items{border:0px red solid;margin:0 auto; width:700px; height:auto; }
+#items{border:0px red solid;margin:0 30px; width:1000px; height:auto; }
 .items_title{width:100%; border-bottom:1px dashed #9d9d9d; }
 .items_title>div{display:inline-block;}
 .items_title>.title_name{width:68%;font-size:20px; font-family:Arial, "微軟正黑體"; font-weight:bold; padding-left:8px; padding-bottom:5px; display:inline-block; letter-spacing: 0.5px;}
@@ -106,7 +108,8 @@ body{margin:0 auto; width: 100%; padding: 0; border: 0; font: inherit; font-size
 .items_title>.social_link>ul>li{display:inline-block;} */
 .items_head{border-bottom:1px dashed #9d9d9d;}
 .items_img{border:0px yellow solid; display:inline-block; vertical-align:top; margin:10px 10px;}
-.itmes_info{border:0px blue solid; display:inline-block; margin:25px 10px 25px 30px; width:370px;}
+.items_img img.item_content{width:300px; height:300px;}
+.itmes_info{border:0px blue solid; display:inline-block; margin:25px 15px 25px 15px; width:370px;}
 
 .itmes_info>ul{list-style:none; margin-left:0; padding:0;}
 .itmes_info>ul>li{font-family:Arial, "微軟正黑體"; margin-top:15px; font-size: 16px; line-height: 17px; color:#5b5b5b; font-weight: bold;}
