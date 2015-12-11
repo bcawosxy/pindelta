@@ -2,7 +2,7 @@ body{margin:0 auto; width: 100%; padding: 0; border: 0; font: inherit; font-size
 #main{width:100%; margin:0 auto; background-color:#eeeeef; margin-top:0px;}
 
 /*------------------------------header + content 區域------------------------*/
-#container{width:1024px; margin:0 auto; background-color:#ffffff;}
+#container{width:1280px; margin:0 auto; background-color:#ffffff;}
 
 .content{width:100%; position:relative;}
 .content_title{width:100%; border:0px solid purple; height:20px; position:relative; }
@@ -23,7 +23,7 @@ body{margin:0 auto; width: 100%; padding: 0; border: 0; font: inherit; font-size
 /*模板二樣式*/
 .model_all{width:100%; margin-top:-20px; position:relative;}
 .model_navbar{display:inline-block; margin:20px 20px; height:auto; width:160px; position:relative; vertical-align:top;}
-.model_content{display:inline-block; margin:20px 0px; height:auto; width:780px; position:relative; vertical-align:top; padding-left:30px;}
+.model_content{display:inline-block; margin:20px 20px; height:auto; width:980px; position:relative; vertical-align:top;}
 
 
 .model_navbar hr{border: 0; height: 1px; background: #333; background-image: -webkit-linear-gradient(left, #ccc, #333, #ccc);  background-image:    -moz-linear-gradient(left, #ccc, #333, #ccc);  background-image:     -ms-linear-gradient(left, #ccc, #333, #ccc);  background-image:      -o-linear-gradient(left, #ccc, #333, #ccc);}

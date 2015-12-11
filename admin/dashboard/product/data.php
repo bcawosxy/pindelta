@@ -905,8 +905,7 @@
 	
   }
   //edit end
-  
-  
+ 
   //編輯標籤的view
   if($act == 'tags'){
 	echo '<div class="page_title">產品標籤管理</div><hr>';

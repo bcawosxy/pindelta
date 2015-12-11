@@ -3,7 +3,7 @@
   include('./../../../config/global.php');
   include('./../../../config/function.php');
   if( (empty($_SESSION['admin']['id']))){
-    js_location(URL_ROOT."admin");
+    js_location(URL_ROOT.'admin');
   }
 ?>
 <html>
@@ -61,7 +61,7 @@
 	</div>	
     <div id="footer">
       <div class="footer_content">
-	    Copyright @ 2015 Pindelta International Co., Ltd All Rights Reserved
+	    Copyright @ 2015 Memorable Supplier. All Rights Reserved
 	  </div>
     </div>		
   </div>

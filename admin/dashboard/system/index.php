@@ -49,7 +49,7 @@
 	
     <div id="footer">
       <div class="footer_content">
-	    Copyright @ 2015 Pindelta International Co., Ltd All Rights Reserved
+	    Copyright @ 2015 Memorable Supplier. All Rights Reserved
 	  </div>
     </div>	
 	

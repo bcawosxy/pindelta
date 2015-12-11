@@ -14,7 +14,8 @@
 	$g_goods = (!empty($_GET['goods'])) ? base64_decode($_GET['goods']) : redirect_php($URL_ROOT);
 	$g_category = (!empty($_GET['category'])) ? base64_decode($_GET['category']) : null ;
 	$g_items = (!empty($_GET['items'])) ? base64_decode($_GET['items']) : null ;
-	$g_pages = (!empty($_GET['pages'])) ? $_GET['pages'] : 0 ;
+	$g_pages = (!empty($_GET['pages'])) ? $_GET['pages'] : 1 ;
+
 	$g_ajax = (!empty($_GET['ajax'])) ? $_GET['ajax'] : 'false';
 	if(empty($g_goods) && empty($g_category) && empty($g_items)) redirect_php($URL_ROOT);
 	
@@ -117,7 +118,7 @@ include('../site/content/product/data.php');
 	</div>
     <div id="footer">
       <div class="footer_content">
-	    Copyright @ 2015 Pindelta International Co., Ltd All Rights Reserved
+	    Copyright @ 2015 Memorable Supplier. All Rights Reserved
 	  </div>
     </div>	
 	

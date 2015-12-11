@@ -1,7 +1,7 @@
 <div class="header_banner_box">
 	<div class="header_banner_left">
 		<span class="header_banner_img">
-			<a href="<?php echo URL_ROOT; ?>"><img class="img"  src="<?php echo URL_IMG_ROOT; ?>banner.png" height="100%" width="55%"></a>
+			<a href="<?php echo URL_ROOT; ?>"><img class="img"  src="<?php echo URL_IMG_ROOT; ?>banner.png" height="100%" width="50%"></a>
 		</span>
 	</div>
 	<?php 
@@ -25,7 +25,7 @@
 			<?php 
 			if(!empty($social)){
 				foreach($social as $k => $v){
-					echo '<li style="padding-left:5px;float:right"><a target="_blank" href="'.$v['url'].'"> <img  src="'.URL_IMG_ROOT.'social_icon/rounded/'.$v['name'].'.png'.'"></a></li>';
+					echo '<li style="padding-left:5px;float:right"><a target="_blank" href="'.$v['url'].'"> <img src="'.URL_IMG_ROOT.'social_icon/rounded/'.$v['name'].'.png'.'"></a></li>';
 				}
 			
 			}

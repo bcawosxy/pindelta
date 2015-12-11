@@ -66,7 +66,7 @@
 	<div class="back_top"></div>
     <div id="footer">
       <div class="footer_content">
-	    Copyright @ 2015 Pindelta International Co., Ltd All Rights Reserved
+	    Copyright @ 2015 Memorable Supplier. All Rights Reserved
 	  </div>
     </div>	
 	
@@ -111,9 +111,13 @@ var ias = $.ias({
 
 ias.extension(new IASSpinnerExtension());
 ias.extension(new IASTriggerExtension({
-	offset : 1 ,
-	text : '<div style="lear:both;font-weight:bold;">more...</div>',
+	offset : 3 ,
+	html : '<div class="ias_next">More... </div>',
 }));
+ias.extension(new IASNoneLeftExtension({
+    html : '<div class="ias-noneleft ias_end">- End -</div>',
+}));
+
 
 ias.on('loaded', function(data, items) {
    	$(items).hover(function(){

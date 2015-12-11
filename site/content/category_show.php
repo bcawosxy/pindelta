@@ -1,13 +1,26 @@
 <?php 
-$num = (!empty($_GET['num'])) ? $_GET['num'] : 0 ;
+$page = (!empty($_GET['page'])) ? $_GET['page'] : 1 ;
+$num = 10;
+$start_page = ($page-1)*$num;
+
 //只取有`category`的area且ID不重複
 $query = 'select DISTINCT `categoryarea`.`categoryarea_id` AS id , `categoryarea`.`categoryarea_name` AS name, `categoryarea`.`categoryarea_description` AS description ,`categoryarea`.`categoryarea_cover` AS cover
 			from category inner join `categoryarea` on `categoryarea`.`categoryarea_id` = `category`.`categoryarea_id` 
 			where `categoryarea_status` = "open" and `category`.`category_id` != "" and `category`.`category_status` = "open" 
 			order by `categoryarea_priority` 
-			asc limit '.($num*4).',4;';
+			asc limit '.$start_page.','.$num.';';
 $query = query_despace($query);
 $result = mysql_query($query);
+
+$n_query = $query = 'select DISTINCT `categoryarea`.`categoryarea_id` AS id , `categoryarea`.`categoryarea_name` AS name, `categoryarea`.`categoryarea_description` AS description ,`categoryarea`.`categoryarea_cover` AS cover
+			from category inner join `categoryarea` on `categoryarea`.`categoryarea_id` = `category`.`categoryarea_id` 
+			where `categoryarea_status` = "open" and `category`.`category_id` != "" and `category`.`category_status` = "open" 
+			order by `categoryarea_priority` 
+			asc ;';
+$n_query = query_despace($n_query);
+$n_result = mysql_query($n_query);
+$num_rows = mysql_num_rows($n_result);
+
 if(!$result) {
 	echo 'Error!';
 	exit;
@@ -45,7 +58,11 @@ while($row = mysql_fetch_array($result)){
 		
 		?>
 
-	<?php $num++ ;?>
-  <div id="next"><a href="<?php echo '?page=product&num='.$num; ?>"></a></div>	
+	<?php 
+		$page++ ;
+		if( $page < ceil(($num_rows/$num)+1) ) echo '<div id="next"><a href="?p=product&page='.$page.'"></a></div>';
+	?>
+  
+  
   </ul>
 </div>

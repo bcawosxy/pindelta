@@ -1,8 +1,7 @@
 <?php 
 //項目的方塊
-if($nav['show_type']=='category'){ ?>
-	<div id="product_content">
-	<?php 
+if($nav['show_type']=='category'){ 
+	echo '<div id="product_content">';
 		if(is_array($category)){
 			foreach($category as $k => $v){
 				echo '<a class="product_show" href="./?goods='.base64_encode($nav['categoryarea_id']).'&category='.base64_encode($v['id']).'">
@@ -22,51 +21,47 @@ if($nav['show_type']=='category'){ ?>
 				</a>';
 			}
 		}
-	++$g_pages;
-	?>
 	
-	<div id="next"><a href="<?php echo '?goods='.base64_encode($nav['categoryarea_id']).'&pages='.$g_pages ;?>"></a></div>			
-	</div>
-<?php }?>
-
+		$g_pages = $g_pages+1;
+		if( $g_pages < ceil(($num_rows/$num)+1) ) echo '<div id="next"><a href="'.URL_ROOT.'product/?goods='.base64_encode($nav['categoryarea_id']).'&pages='.$g_pages.'"></a></div></div>';
+	
+	}
+?>
 
 <?php 
 	//產品的方塊
-	if($nav['show_type'] == 'items'){ ?>
-	<div id="product_content">
-		<?php 
-		if($product == null || !empty($product) || $product != ''){
-			foreach($product as $k => $v){
-				if($v['id'] === null) {
-					echo '<a class="product_show" href="javascript:void(0)">';
-				}else{
-					echo '<a class="product_show" href="./?goods='.base64_encode($nav['categoryarea_id']).'&category='.base64_encode($nav['category_id']).'&items='.base64_encode($v['id']).'">';
+	if($nav['show_type'] == 'items'){ 
+		echo '<div id="product_content">';
+			if($product == null || !empty($product) || $product != ''){
+				foreach($product as $k => $v){
+					if($v['id'] === null) {
+						echo '<a class="product_show" href="javascript:void(0)">';
+					}else{
+						echo '<a class="product_show" href="./?goods='.base64_encode($nav['categoryarea_id']).'&category='.base64_encode($nav['category_id']).'&items='.base64_encode($v['id']).'">';
+					}
+						echo '<div class="product_area">
+							<div class="product_show_img">
+								<img class="item_normal" src="'.$v['cover'].'">
+							</div>
+							<hr>
+							<div class="product_show_title">
+								'.$v['name'].'
+							</div>
+							<div class="product_show_intro">
+								'.$v['description'].'
+							</div>
+						
+						</div>
+					</a>';
 				}
-					echo '<div class="product_area">
-						<div class="product_show_img">
-							<img class="item_normal" src="'.$v['cover'].'">
-						</div>
-						<hr>
-						<div class="product_show_title">
-							'.$v['name'].'
-						</div>
-						<div class="product_show_intro">
-							'.$v['description'].'
-						</div>
-					
-					</div>
-				</a>';
 			}
-		}
-		++$g_pages;
-		?>
+			++$g_pages;
 
-	<div id="next"><a href="<?php echo '?goods='.base64_encode($nav['categoryarea_id']).'&category='.base64_encode($nav['category_id']).'&ajax=true&pages='.$g_pages; ?>"></a></div>	
-	</div>
-	<?php } ?>
+		if( $g_pages < ceil(($num_rows/$num)+1) ) echo '<div id="next"><a href="?goods='.base64_encode($nav['categoryarea_id']).'&category='.base64_encode($nav['category_id']).'&ajax=true&pages='.$g_pages.'"></a></div></div>';
+	} ?>
 	
 <?php if($nav['show_type'] == 'items_content'){ ?>
-	
+
 	<div id="items">
 		<div class="items_title">
 			<div class="title_name"><?php echo $product['product_name'] ?></div><br>
@@ -198,7 +193,6 @@ if($nav['show_type']=='category'){ ?>
 	
 <?php } ?>
 
-
 <script>
 
 new jBox('Image');
@@ -218,13 +212,16 @@ var ias = $.ias({
 	container:  ('#product_content'),
 	item:       '.product_show',
 	pagination: '#next',
-	next:       '#next a'
+	next:       '#next a',
 });
 
 ias.extension(new IASSpinnerExtension());
 ias.extension(new IASTriggerExtension({
-	offset : 1 ,
-	text : 'more...',
+	offset : 3 ,
+	html : '<div class="ias_next">More... </div>',
+}));
+ias.extension(new IASNoneLeftExtension({
+    html : '<div class="ias-noneleft ias_end">- End -</div>',
 }));
 
 ias.on('loaded', function(data, items) {
@@ -235,7 +232,6 @@ ias.on('loaded', function(data, items) {
 	});
 
 });
-
 
 $('.items_return').hide();
 $('.product_area').hover(function(){
@@ -270,7 +266,6 @@ function send_contact(){
 	}, function(r) {
 		r = JSON.parse(r);
 		if(r.result == 1){
-			// jbox_success('', '<?php echo URL_ROOT.'product/?goods='.base64_encode($nav['categoryarea_id']).'&category='.base64_encode($nav['category_id']).'&items='.base64_encode($nav['product_id']) ?>');
 			var modal = new jBox('Modal', {
 					delayOpen : 300,
 					content : '<img width="30" height="30" src="<?php echo $URL_IMG_ROOT.'success.png' ?>"><span style="color:#108199; font-size:18px; font-family:微軟正黑體; font-weight:bold;">You have sent Request Quote, Thank you!</span>',
@@ -292,9 +287,7 @@ function send_contact(){
 		$('.loading_bar').css('display', 'none');
 		$('#send_btn').css('display', 'block');
 	});
-	
 	return false;
-
 }
 
 </script>

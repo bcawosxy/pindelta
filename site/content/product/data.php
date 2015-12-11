@@ -41,34 +41,59 @@ while($row=mysql_fetch_array($result)){
 
 //顯示"項目"的列表
 if(!empty($nav['categoryarea_id']) && (empty($nav['category_id'])) && empty($g_items)){	
+	$num = 15;
 	$__category = get_nav_category($nav['categoryarea_id']);
-	$query = 'select * from category where `categoryarea_id` = '.$nav['categoryarea_id'].' AND `category_status` = "open" order by `category_priority` asc limit '.($g_pages*4).',4 ;';
+	$start_page = (int)($g_pages-1) * $num;
+	$query = 'select * from category where `categoryarea_id` = '.$nav['categoryarea_id'].' AND `category_status` = "open" order by `category_priority` asc limit '.$start_page.','.$num.';';
 	$query = query_despace($query);
 	$result = mysql_query($query);
-	
+	$n_query = 'select * from category where `categoryarea_id` = '.$nav['categoryarea_id'].' AND `category_status` = "open" order by `category_priority` asc;';
+	$n_query = query_despace($n_query);
+	$n_result = mysql_query($n_query);
+	$num_rows = mysql_num_rows($n_result);
+
 	//有'項目'才填充資料 組出項目方塊圖
 	if(mysql_num_rows($result) > 0){
 		$category = array();
 		while($row=mysql_fetch_array($result)){
 		  $d_category['id'] = $row['category_id'];
 		  $d_category['name'] = $row['category_name'];
+		  $d_category['categoryarea_id'] = $row['categoryarea_id'];
 		  $d_category['category_description'] = $row['category_description'];
 		  $d_category['category_cover'] = ADMIN_IMG_UPLOAD.'category/'.$row['category_cover'];
 		  $category[] = $d_category;
 		}
 	}
 	
+	/**
+	 * 1206 若項目僅有一項且與類別同名稱，視為可直接跳轉進入項目顯示區塊
+	 */
 	$nav['show_type'] = 'category';
+	if(count($category) == 1) {
+		$query = 'select * from `categoryarea` where `categoryarea_id` = '.$d_category['categoryarea_id'].';';
+		$result = mysql_query($query);
+		while($row=mysql_fetch_assoc($result)){$chech_categoryare = $row;}
+		if($d_category['name'] == $chech_categoryare['categoryarea_name']) {
+			js_location(URL_ROOT.'product/?goods='.base64_encode($chech_categoryare['categoryarea_id']).'&category='.base64_encode($d_category['id']));
+		}
+	}
 }
 
 //顯示"產品"的列表
 if(!empty($nav['categoryarea_id']) && (!empty($g_category)) && empty($g_items)){
-	$__category = get_nav_category($nav['categoryarea_id']);
-	
 	//組出產品
-	$query = 'select * from `product` where `product_category_id` = '.$nav['category_id'].' and `product_status` = "open" order by `product_priority` asc limit '.($g_pages*4).',4 ;';
+	$num = 15;
+	$__category = get_nav_category($nav['categoryarea_id']);
+	$start_page = (int)($g_pages-1) * $num;
+	$query = 'select * from `product` where `product_category_id` = '.$nav['category_id'].' and `product_status` = "open" order by `product_priority` asc limit '.$start_page.','.$num.' ;';
 	$query = query_despace($query);
 	$result = mysql_query($query);
+	
+	$n_query = 'select * from `product` where `product_category_id` = '.$nav['category_id'].' and `product_status` = "open" order by `product_priority` asc ;';
+	$n_query = query_despace($n_query);
+	$n_result = mysql_query($n_query);
+	$num_rows = mysql_num_rows($n_result);
+	
 	$d_product = array();
 	if(mysql_num_rows($result) > 0){
 		while($row=mysql_fetch_array($result)){
@@ -87,14 +112,12 @@ if(!empty($nav['categoryarea_id']) && (!empty($g_category)) && empty($g_items)){
 			$product[] = $d_product;
 		}
   }
-	
 	$nav['show_type'] = 'items';
 }
 
-
+//顯示"產品介紹頁"
 if(!empty($nav['categoryarea_id']) && (!empty($nav['category_id'])) && (!empty($g_items))){
 	$__category = get_nav_category($nav['categoryarea_id']);
-	
 	$query = 'select * from product where `product_id` = '.$nav['product_id'].' and `product_status` = "open" ;';
 	$query = query_despace($query);
 	$result = mysql_query($query);
