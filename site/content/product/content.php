@@ -66,11 +66,11 @@ if($nav['show_type']=='category'){
 		<div class="items_title">
 			<div class="title_name"><?php echo $product['product_name'] ?></div><br>
 			<div <?php echo $social_class ;?> >
-				<div class="social-likes" data-url="<?php echo 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; ?>" data-title="<?php echo $_this_name; ?>" >
+				<div class="social-likes" data-url="<?php echo URL_ROOT_ALIAS.$_SERVER['REQUEST_URI']; ?>" data-title="<?php echo $_this_name; ?>" >
 					<div class="facebook" title="Share link on Facebook">Facebook</div>
 					<div class="twitter" title="Share link on Twitter">Twitter</div>
 					<div class="plusone" title="Share link on Google+">Google+</div>
-					<div class="pinterest" title="Share image on Pinterest" data-media="">Pinterest</div>
+					<div class="pinterest" title="Share image on Pinterest" data-media="<?php echo ADMIN_IMG_UPLOAD.'product/'.$_this_cover; ?>">Pinterest</div>
 				</div>
 			</div>
 		</div>

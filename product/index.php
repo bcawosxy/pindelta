@@ -67,18 +67,18 @@
 <head>	
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title><?php echo $meta['web_title'].'Product | '.$_this_name; ?></title>
-	<meta property="og:title" content="<?php echo $meta['web_title'].'Product | '.$_this_name; ?>">
-	<meta property="og:description" content="<?php echo $_this_description; ?>">
-	<meta property="og:image" content="<?php echo ADMIN_IMG_UPLOAD.'product/'.$_this_cover; ?>">
 	<meta property="og:type" content="website">
+	<meta property="og:url" content="<?php echo URL_ROOT_ALIAS ;?>">
+	<meta property="og:title" content="<?php echo $meta['web_title'].'Product | '.$_this_name; ?>">
+	<meta property="og:image" content="<?php echo ADMIN_IMG_UPLOAD.'product/'.$_this_cover; ?>">
+	<meta property="og:description" content="<?php echo $_this_description; ?>">
+	<title><?php echo $meta['web_title'].'Product | '.$_this_name; ?></title>
 	<meta name="description" content="<?php echo $_this_description; ?>" />
 	<link rel="stylesheet" href="<?php echo URL_LIB_ROOT.'css/style.css' ?>">
 	<link rel="stylesheet" href="<?php echo URL_LIB_ROOT.'css/bootstrap.css' ?>">
 	<link rel="stylesheet" href="<?php echo URL_LIB_ROOT.'js/jquery.ias/css/jquery.ias.css' ?>">
 	<link rel="stylesheet" href="<?php echo URL_LIB_ROOT.'js/jbox/jbox.css' ?>">
 	<link rel="stylesheet" href="<?php echo URL_LIB_ROOT.'js/social-like/social-likes_'.$social['social_skin'].'.css' ?>">
-	
     <script type="text/javascript" src="<?php echo URL_LIB_ROOT.'js/jquery-1.11.2.min.js' ;?>"></script>	
     <script type="text/javascript" src="<?php echo URL_LIB_ROOT.'js/javascript.js' ;?>"></script>	
     <script type="text/javascript" src="<?php echo URL_LIB_ROOT.'js/jquery.ias/js/jquery-ias.min.js' ;?>"></script>	

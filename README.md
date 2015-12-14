@@ -27,3 +27,5 @@ fixed的header bar 樣式調整<br>
 1211<br>
 ias 預設讀取滿版(外層10 內層15)<br>
 
+1214<br>
+調整社群分享因網址造成的誤判(.com / .net 皆使用.net)
