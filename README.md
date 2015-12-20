@@ -1,18 +1,18 @@
 #Pindelta 
- <h3>10/21</h3><br>
+<h3>10/21</h3>
 v1.0.0 pindelta 品利興<br>
 v1.1.0 push files<br>
 v1.1.1 delete Custom folder<br>
  <h3>11/14</h3><br>
 v1.2.0 updata, fix cover size<br>
 
- <h3>12/01</h3><br>
+<h3>12/01</h3>
 v1.3.0 <br>
 1.update<br>
 2.add class for img item list <br>
 3.resize container 1024 => 1280<br>
 
- <h3>12/11</h3><br>
+<h3>12/11</h3>
 v2.0.0<br>
 
 <h3>1206</h3>
