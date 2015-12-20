@@ -3,7 +3,7 @@
   include('./../../../config/global.php');
   include('./../../../config/function.php');
   if( (empty($_SESSION['admin']['id']))){
-    js_location(URL_ROOT."admin");
+    js_location(URL_ROOT.'admin');
   }
 ?>
 <html>
@@ -17,11 +17,10 @@
 	<link rel="stylesheet" href="<?php echo URL_LIB_ROOT.'css/bootstrap.css' ?>">
     <link href="<?php echo URL_LIB_ROOT.'js/jbox/jbox.css' ?>" rel="stylesheet" type="text/css"/>
 	
-	
 	<script type="text/javascript" src="<?php echo URL_LIB_ROOT.'js/jquery-1.11.2.min.js' ;?>"></script>	
 	<script type="text/javascript" src="<?php echo URL_LIB_ROOT.'js/javascript.js' ;?>"></script>	
     <script src="<?php echo URL_LIB_ROOT.'js/jbox/jbox.js' ?>" type="text/javascript"></script>
-	
+	<?php include('../admin_function.php') ?>
 </head>
 
 <body>

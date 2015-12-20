@@ -1,17 +1,7 @@
 <?php 
+  $key_act = ['show', 'edit', 'add', 'tags', 'description'];
+  $key_type = ['categoryarea', 'category', 'product'];
 
-  $key_act = array();
-  $key_act[] = 'show';
-  $key_act[] = 'edit';
-  $key_act[] = 'add';
-  $key_act[] = 'tags';
-  $key_act[] = 'description';
-  
-  $key_type = array();
-  $key_type[] = 'categoryarea';
-  $key_type[] = 'category';
-  $key_type[] = 'product';
-  
   ((empty($_GET['act']) || $_GET['act'] == "" || (!in_array($_GET['act'],$key_act)))) ? $act = 'show' : $act = $_GET['act'];
   
   //新增資料的view

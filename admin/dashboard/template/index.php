@@ -10,14 +10,13 @@
 <head>
 	<meta charset="UTF-8">
 	<title>品利興國際有限公司 - 後台管理系統</title>
-	
+
 	<link rel="stylesheet" href="<?php echo URL_LIB_ROOT.'css/style_admin.css' ?>">
 	<link rel="stylesheet" href="<?php echo URL_LIB_ROOT.'css/bootstrap.css' ?>">
-   
-   <script type="text/javascript" src="<?php echo URL_LIB_ROOT.'js/jquery-1.11.2.min.js' ;?>"></script>	
-    <script type="text/javascript" src="<?php echo URL_LIB_ROOT.'js/javascript.js' ;?>"></script>	
-	
-	
+
+	<script type="text/javascript" src="<?php echo URL_LIB_ROOT.'js/jquery-1.11.2.min.js' ;?>"></script>	
+	<script type="text/javascript" src="<?php echo URL_LIB_ROOT.'js/javascript.js' ;?>"></script>	
+	<?php include('../admin_function.php') ?>
 </head>
 
 <body>

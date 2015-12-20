@@ -24,7 +24,7 @@
 	  <div class="header">
 	    <div class="header_banner">
 		      <span class="header_banner_img">
-	            <a href="<?php echo URL_ROOT; ?>"><img src="<?php echo URL_IMG_ROOT."banner.png"; ?>" height="70%" width="35%"></a>
+	            <a href="<?php echo URL_ROOT; ?>"><img src="<?php echo URL_IMG_ROOT.'banner.png'; ?>" height="70%" width="35%"></a>
 	          </span>
 		</div>	
 	  </div>

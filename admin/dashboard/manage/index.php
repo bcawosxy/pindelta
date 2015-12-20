@@ -30,6 +30,7 @@
     <script src="<?php echo URL_LIB_ROOT.'footable/js/bootstrap-tab.js' ?>" type="text/javascript"></script>
     <script src="<?php echo URL_LIB_ROOT.'footable/js/demos.js' ?>" type="text/javascript"></script>
     <script src="<?php echo URL_LIB_ROOT.'js/jbox/jbox.js' ?>" type="text/javascript"></script>
+	<?php include('../admin_function.php') ?>
 </head>
 
 <body>

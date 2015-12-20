@@ -28,7 +28,7 @@
     <script src="<?php echo URL_LIB_ROOT.'footable/js/footable.filter.js' ?>" type="text/javascript"></script>
     <script src="<?php echo URL_LIB_ROOT.'footable/js/footable.paginate.js' ?>" type="text/javascript"></script>
     <script src="<?php echo URL_LIB_ROOT.'js/jbox/jbox.js' ?>" type="text/javascript"></script>
-	
+	<?php include('../admin_function.php') ?>
 </head>
 
 <body>

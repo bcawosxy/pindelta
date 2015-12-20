@@ -37,6 +37,7 @@
 	<script src="<?php echo URL_LIB_ROOT.'js/jquery_file_upload/jquery.fileupload.js' ;?>"></script>
     <script type="text/javascript" src="<?php echo $URL_LIB_ROOT.'ckeditor/ckeditor.js' ;?>"></script>  
     <script type="text/javascript" src="<?php echo $URL_LIB_ROOT.'ckeditor/adapters/jquery.js' ;?>"></script>	
+	<?php include('../admin_function.php') ?>
 	
 </head>
 

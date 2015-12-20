@@ -40,13 +40,14 @@
 	<link rel="stylesheet" href="<?php echo $URL_LIB_ROOT.'css/bootstrap.css' ?>">
 	<link href="<?php echo $URL_LIB_ROOT.'js/jbox/jbox.css' ?>" rel="stylesheet" type="text/css"/>
 
-	
     <script type="text/javascript" src="<?php echo $URL_LIB_ROOT.'js/jquery-1.11.2.min.js' ;?>"></script>	
     <script type="text/javascript" src="<?php echo $URL_LIB_ROOT.'js/javascript.js' ;?>"></script>	
     <script type="text/javascript" src="<?php echo $URL_LIB_ROOT.'js/bootstrap.js' ;?>"></script>	
     <script type="text/javascript" src="<?php echo $URL_LIB_ROOT.'ckeditor/ckeditor.js' ;?>"></script>  
     <script type="text/javascript" src="<?php echo $URL_LIB_ROOT.'ckeditor/adapters/jquery.js' ;?>"></script>	
+    <script type="text/javascript" src="<?php echo $URL_LIB_ROOT.'ckeditor/adapters/jquery.js' ;?>"></script>	
 	<script src="<?php echo $URL_LIB_ROOT.'js/jbox/jbox.js' ?>" type="text/javascript"></script>
+	<?php include('../admin_function.php') ?>
 </head>
 <body>
   <div id="main">
@@ -76,6 +77,7 @@
 	    Copyright @ 2015 Memorable Supplier. All Rights Reserved
 	  </div>
     </div>	
-	
   </div>
 </body>
+
+</html>
