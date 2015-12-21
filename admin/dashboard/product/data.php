@@ -1,15 +1,14 @@
 <?php 
-  $key_act = ['show', 'edit', 'add', 'tags', 'description'];
-  $key_type = ['categoryarea', 'category', 'product'];
+	//1221 - server PHP版本關係，以下不可改為 ['a','b',....]的格式
+	$key_act = array('show', 'edit', 'add', 'tags', 'description');
+	$key_type = array('categoryarea', 'category', 'product');
 
-  ((empty($_GET['act']) || $_GET['act'] == "" || (!in_array($_GET['act'],$key_act)))) ? $act = 'show' : $act = $_GET['act'];
+	((empty($_GET['act']) || $_GET['act'] == '' || (!in_array($_GET['act'],$key_act)))) ? redirect_php(URL_ROOT) : $act = $_GET['act'];
   
   //新增資料的view
   if($act == 'add'){
 	//type不在範圍內
-	if(!in_array($_GET['type'],$key_type)){
-		js_location(URL_ADMIN_ROOT.'/product');
-	}
+	if(!in_array($_GET['type'],$key_type)){js_location(URL_ADMIN_ROOT.'/product');}
 	
 	//新增類別
 	if($_GET['type'] == 'categoryarea'){

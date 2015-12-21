@@ -138,17 +138,11 @@ $(document).ready(function(){
 	// $( "#select1" ).selectmenu();
 });
 
-	$('#add_categoryarea').click(function(){
-		location.href = './?act=add&type=categoryarea';
-	});
+	$('#add_categoryarea').click(function(){location.href = './?act=add&type=categoryarea';});
 
-	$('#add_category').click(function(){
-		location.href = './?act=add&type=category';
-	});
+	$('#add_category').click(function(){location.href = './?act=add&type=category';	});
 
-	$('#add_product').click(function(){
-		location.href = './?act=add&type=product';
-	});
+	$('#add_product').click(function(){	location.href = './?act=add&type=product';});
 
     $(function () {
 		$('table').footable().bind('footable_filtering', function (e) {
