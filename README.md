@@ -34,4 +34,7 @@ ias 預設讀取滿版(外層10 內層15)<br>
 <h3>1220</h3>
 v2.1.0<br>
 調整後台設定及引入JS方式
-v
+
+<h3>1221</h3>
+v2.1.1<br>
+調整admin/product/data.php Array格式
