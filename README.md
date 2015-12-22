@@ -38,3 +38,8 @@ v2.1.0<br>
 <h3>1221</h3>
 v2.1.1<br>
 調整admin/product/data.php Array格式
+
+<h3>1222</h3>
+v2.1.2<br>
+修正login_check.php
+

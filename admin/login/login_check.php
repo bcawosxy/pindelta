@@ -15,19 +15,18 @@
 	<script type="text/javascript" src="<?php echo URL_LIB_ROOT.'js/jquery-1.11.2.min.js' ;?>"></script>	
 	<script type="text/javascript" src="<?php echo URL_LIB_ROOT.'js/javascript.js' ;?>"></script>	
 	<script src="<?php echo URL_LIB_ROOT.'js/jbox/jbox.js' ?>" type="text/javascript"></script>
+	<?php include('../dashboard/admin_function.php') ?>
 </head>
 
 <body>
 <?php 
-
 if($_POST['login_submit']){ 
-	
 	$login_account = $_POST['login_account'];
 	$login_passwd = $_POST['login_passwd'];
 
 	if(empty($login_account) || empty($login_passwd)){
-	  js_location('?act=login');
-	  exit;
+		js_location('?act=login');
+		exit;
 	}else{
 		unset($_SESSION['admin']);
 
@@ -42,25 +41,21 @@ if($_POST['login_submit']){
 				$_SESSION['admin']['passwd'] = $row['admin_password'];   //將密碼丟進去
 				$_SESSION['admin']['name'] = $row['admin_name'];
 				$_SESSION['admin']['email'] = $row['admin_email'];
-
 			}
 			
-			if (!empty($_SERVER["HTTP_CLIENT_IP"])){
-				$ip = $_SERVER["HTTP_CLIENT_IP"];
-			}elseif(!empty($_SERVER["HTTP_X_FORWARDED_FOR"])){
-				$ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+			if (!empty($_SERVER['HTTP_CLIENT_IP'])){
+				$ip = $_SERVER['HTTP_CLIENT_IP'];
+			}elseif(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
+				$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
 			}else{
-				$ip = $_SERVER["REMOTE_ADDR"];
+				$ip = $_SERVER['REMOTE_ADDR'];
 			}
 			
 			$query = 'update `admin` set last_login_time = NOW() , 
 				last_login_ip = "'.$ip.'"
 				where id = "'.$_SESSION['admin']['id'].'" limit 1;';
 			$query = query_despace($query);
-			if($result = mysql_query($query)){
-				js_location(''.URL_ADMIN_ROOT.'');
-			}
-			
+			if($result = mysql_query($query)){ js_location(URL_ADMIN_ROOT);	}
 		}else{
 			php_call_jbox('error', '帳號或密碼錯誤', URL_ROOT.'admin');
 			exit;
@@ -71,34 +66,4 @@ if($_POST['login_submit']){
 }
 ?>
 </body>
-<script>
-//Error的提示Jbox
-function jbox_error(text, url){
-	if(url == undefined) url = 'javascript:void(0)';
-	var modal = new jBox('Modal', {
-			attach: $('#myModal'),
-			delayOpen : 300,
-			content: '<img width="20" height="20" src="<?php echo $URL_IMG_ROOT.'error.png' ?>"><span style="color:red; font-size:18px; font-family:微軟正黑體; font-weight:bold;">'+text+'</span>',
-			onCloseComplete : function(){
-				js_location(url);
-			}
-		});
-	modal.open();	
-}
-
-//Success的提示Jbox
-function jbox_success(text, url){
-	if(url == undefined) url = 'javascript:void(0)';
-	var modal = new jBox('Modal', {
-			attach : $('#myModal'),
-			delayOpen : 300,
-			content : '<img width="30" height="30" src="<?php echo $URL_IMG_ROOT.'success.png' ?>"><span style="color:#108199; font-size:18px; font-family:微軟正黑體; font-weight:bold;">'+text+'</span>',
-			onCloseComplete : function(){
-				js_location(url);
-			}
-		});
-	modal.open();	
-}
-</script>
-
 </html>
