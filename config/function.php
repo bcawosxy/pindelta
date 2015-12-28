@@ -1,4 +1,5 @@
 <?php 
+
 //用JS轉址
 function js_location($href){  
 	echo "<script>";
@@ -116,6 +117,32 @@ function remade_str($str, $length=25){
 	return $str ;
 }
   
+/**
+ * 1228 admin後台head區塊引入CSS檔案的處理
+ */
+function admin_set_css($file) {
+	$return = null;
+	if( is_array($file)) {
+		foreach($file as $k => $v){
+			$return .=  '<link rel="stylesheet" href="'.URL_ADMIN2_STATIC_FILE.$v.'">';
+		}
+	}
+	echo $return;
+}
+
+/**
+ * 1228 admin後台head區塊引入JS檔案的處理
+ */
+function admin_set_js($file) {
+	$return = null;
+	if( is_array($file)) {
+		foreach($file as $k => $v){
+			$return .=  '<script src="'.URL_ADMIN2_STATIC_FILE.$v.'"></script>';
+		}
+	}
+	echo $return;
+}
+  
 class info_bar{
 	function update_result_show($statu,$code){
 
@@ -137,4 +164,6 @@ class info_bar{
 		echo  '<h4><div class="label label-default">最後修改人員:&nbsp;<span class="modify_info">'.$name.'</span>&nbsp;&nbsp;&nbsp;&nbsp;最後修改時間:&nbsp;<span class="modify_info">'.$time.'</span></div></h4>';
 	}
 }
+
+
 ?>
