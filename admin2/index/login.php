@@ -8,18 +8,18 @@
 </div>
 <div class="login-box-body">
 	<p class="login-box-msg">Sign in to start your work!</p>
-	<form action="" method="post">
+	<form action="javascript:void(0)" method="post">
 		<div class="form-group has-feedback">
-			<input type="email" class="form-control" placeholder="Email">
+			<input type="text" class="form-control" id="account" placeholder="Account">
 			<span class="glyphicon glyphicon-user form-control-feedback"></span>
 		</div>
 		<div class="form-group has-feedback">
-			<input type="password" class="form-control" placeholder="Password">
+			<input type="password" class="form-control" id="password" placeholder="Password">
 			<span class="glyphicon glyphicon-lock form-control-feedback"></span>
 		</div>
 		<div class="row">
 			<div class="">
-				<button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+				<button type="submit" id="login" class="btn btn-primary btn-block btn-flat">Sign In</button>
 			</div>
 		</div>
 	</form>
@@ -28,6 +28,21 @@
 <!-- iCheck -->
 <script>
 $(function () {
+	$('#login').on('click', function(){
+		$.post('<?php echo ajax_url(URL_ADMIN2_AJAX,P_CLASS,P_FUNCTION) ?>' , {
+			account : $('#account').val() ,
+			password : $('#password').val(),
+		},function(r){
+			r = $.parseJSON(r);
+			if(r.result == 1) {
+				_jbox(r, 'success');
+			}else{
+				_jbox(r, 'error');			
+			}
+		});
+		
+	});
+
 	$('input').iCheck({
 		checkboxClass: 'icheckbox_square-blue',
 		radioClass: 'iradio_square-blue',
@@ -37,3 +52,4 @@ $(function () {
 </script>
 </body>
 </html>
+<?php include('../foot.php') ?>

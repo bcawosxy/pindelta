@@ -8,20 +8,30 @@
 		/**
 		 * 1228 不同CLASS及FUNCTION 載入不同靜態檔案，避免影響速度
 		 */
-		$p_class = P_CLASS;	$p_function = P_FUNCTION; $obj = new $p_class;
+		$p_class = P_CLASS;
+		$p_function = P_FUNCTION;
+		$obj = new $p_class;
+		
+		//驗證用字串
+		echo 'P_CLASS:['.$p_class.'] P_FUNCTION:['.$p_function.']<br>';
+		
+		if (P_CLASS != 'index' && P_FUNCTION != 'login' && !isset($_SESSION['admin'])) redirect_php(URL_ADMIN2_ROOT.'index/login.php');
+		
 		$common_css = array(
 			'bootstrap/css/bootstrap.min.css',
 			'adminlte/css/AdminLTE.min.css',
-			
+			'adminlte/css/_all-skins.min.css',
+			'../../lib/jbox/jBox.css',
 		);
 		
 		$common_js = array(
 			'js/jquery_2.1.4.min.js',
 			'bootstrap/js/bootstrap.min.js',
+			'adminlte/js/app.min.js',
+			'adminlte/js/demo.js',
+			'../../lib/jbox/jBox.js',
 		);		
-		
-		
-		
+
 		//display css&js html tag
 		list($css_file, $js_file) = $obj::$p_function($common_css, $common_js);
 		admin_set_css($css_file);
@@ -46,12 +56,23 @@ class index{
 		$js[] = 'plugins/iCheck/icheck.min.js';
 		return array($css, $js);
 	}
+	
+	function logout($common_css, $common_js){
+		$css = $common_css; $js = $common_js;
+		return array($css, $js);
+	}
 
+	
 }
 
 class about{
 	function index($common_css, $common_js){
 		$css = $common_css; $js = $common_js;
+		
+		$js[] = 'plugins/slimscroll/jquery.slimscroll.min.js';
+		$js[] = 'plugins/fastclick/fastclick.min.js';
+		$js[] = '../../lib/ckeditor/ckeditor.js';
+		$js[] = '../../lib/ckeditor/adapters/jquery.js';
 		return array($css, $js);
 	}
 
