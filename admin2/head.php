@@ -2,7 +2,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>AdminLTE 2 | Log in</title>
+	<title>品利興 - Pindelta.com | Admin System</title>
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<?php 
 		/**
@@ -10,11 +10,11 @@
 		 */
 		$p_class = P_CLASS;
 		$p_function = P_FUNCTION;
-		$obj = new $p_class;
+		$obj = (!class_exists($p_class)) ? redirect_php(URL_ADMIN2_ROOT) : new $p_class;
 		
 		//驗證用字串
 		echo 'P_CLASS:['.$p_class.'] P_FUNCTION:['.$p_function.']<br>';
-		
+
 		if (P_CLASS != 'index' && P_FUNCTION != 'login' && !isset($_SESSION['admin'])) redirect_php(URL_ADMIN2_ROOT.'index/login.php');
 		
 		$common_css = array(
@@ -73,6 +73,15 @@ class about{
 		$js[] = 'plugins/fastclick/fastclick.min.js';
 		$js[] = '../../lib/ckeditor/ckeditor.js';
 		$js[] = '../../lib/ckeditor/adapters/jquery.js';
+		return array($css, $js);
+	}
+
+}
+
+class system{
+	function index($common_css, $common_js){
+		$css = $common_css; $js = $common_js;
+
 		return array($css, $js);
 	}
 

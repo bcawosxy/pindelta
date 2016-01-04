@@ -144,7 +144,7 @@ function admin_set_js($file) {
 }
  
 /**
- *  
+ *  0102 admin再要求ajax處理時的路徑函式
  */
 function ajax_url($root, $class = null, $function=null) {
 	$return = null;
@@ -168,6 +168,22 @@ function json_encode_return($result, $message=null, $redirect=null, $data=null) 
 	exit;
 }
  
+/**
+ * 0104 admin 顯示修改資訊
+ */
+function edit_info($param = array()) {
+	$return = null;
+	if(!empty($param) && is_array($param)) {
+		foreach($param as $k => $v) {
+			$return .= $k.'<p class="text-light-blue">'.$v.'</p>';
+		}
+	}
+	echo $return ;
+}
+ 
+ 
+ 
+
 class info_bar{
 	function update_result_show($statu,$code){
 

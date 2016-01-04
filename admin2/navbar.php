@@ -1,17 +1,16 @@
-<!-- Left side column. contains the sidebar -->
 <aside class="main-sidebar">
-	<!-- sidebar: style can be found in sidebar.less -->
 	<section class="sidebar">
-	<!-- sidebar menu: : style can be found in sidebar.less -->
 		<ul class="sidebar-menu">
-			<li class="header">MAIN NAVIGATION</li>
+			<li class="header">關於品利興</li>
 			<li>
-				<a href=""><i class="fa fa-book"></i> <span>關於品利興</span></a>
+				<a href="<?php echo URL_ADMIN2_ROOT; ?>"><i class="fa fa-book"></i> <span>關於品利興</span></a>
 			</li>
+		</ul>
+		<ul class="sidebar-menu">
+			<li class="header">系統</li>
 			<li>
-				<a href="../../documentation/index.html"><i class="fa fa-book"></i> <span>Documentation</span></a>
+				<a href="<?php echo URL_ADMIN2_ROOT.'system/' ?>"><i class="fa fa-gear"></i> <span>系統參數</span></a>
 			</li>
 		</ul>
 	</section>
-	<!-- /.sidebar -->
 </aside>

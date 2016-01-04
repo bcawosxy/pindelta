@@ -37,6 +37,9 @@
 					</form>
 					
 				</div>
+				<div class="box-footer">
+					<?php edit_info(['最後修改時間'=>$data['modify_time'],'修改人員'=>$data['modify_name']]); ?>
+				</div><!-- /.box-footer-->
 			</div>
 		</section>
 	</div>
@@ -46,7 +49,7 @@
 $(function () {
 	$('#save').on('click', function(){
 		$.post('<?php echo ajax_url(URL_ADMIN2_AJAX,P_CLASS,P_FUNCTION) ?>' , {
-			value : $('#about_value').find('body').html(),
+			value : CKEDITOR.instances['about_value'].getData(),
 		},function(r){
 			r = $.parseJSON(r);
 			if(r.result == 1) {
