@@ -82,7 +82,8 @@ class about{
 class system{
 	function index($common_css, $common_js){
 		$css = $common_css; $js = $common_js;
-		$css[] = 'plugins/select2/select2.min.css';
+		
+		$js[] = 'plugins/iCheck/icheck.min.js';
 		return array($css, $js);
 	}
 

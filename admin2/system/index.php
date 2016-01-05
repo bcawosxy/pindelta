@@ -36,7 +36,6 @@
 		}	?>
 	
 	<div class="content-wrapper">
-	
 		<section class="content-header">
 			<div class="box-body"><h2>系統參數設定</h2></div>
 			<ol class="breadcrumb">
@@ -77,7 +76,7 @@
 								<div class="input-group-addon">
 									<i class="fa fa-phone"></i>
 								</div>
-								<input type="text" class="form-control" style="max-width:465px;" value="<?php echo $row['office_info_phone'] ?>">
+								<input type="text" class="form-control" name="office_info_phone" style="max-width:465px;" value="<?php echo $row['office_info_phone'] ?>">
 							</div>
 						
 					<label>Email</label> : 
@@ -85,7 +84,7 @@
 								<div class="input-group-addon">
 									<i class="fa fa-envelope"></i>
 								</div>
-								<input type="text" class="form-control" style="max-width:465px;" value="<?php echo $row['office_info_email'] ?>">
+								<input type="text" class="form-control" name="office_info_email" style="max-width:465px;" value="<?php echo $row['office_info_email'] ?>">
 							</div>
 				</div>
 				<div class="box-footer">
@@ -102,20 +101,32 @@
 					</h4>
 				</div>
 				<div class="box-body">
-					<label>型態</label> : 
-						
+					<label>型態</label> : 	
 						<div class="form-group">
 							<label>
-								<input type="radio" name="r1" class="minimal" checked>
-							</label>
+								<input type="radio" name="r1" value="horizontal" class="minimal" <?php echo $horizontal_check; ?>>
+								展開
+							</label>&nbsp;&nbsp;&nbsp;
 							<label>
-								<input type="radio" name="r1" class="minimal">
+								<input type="radio" name="r1" value="single" class="minimal" <?php echo $single_check; ?>>
+								收合
 							</label>
 						</div>
-					
 					<label>樣式</label> : 
-						<input class="form-control" maxlength="30" name="web_title" style="max-width:500px;" type="text" placeholder="Text" value="<?php echo $row['office_info_email'] ?>"><br>
-						
+						<div class="form-group">
+							<label>
+								<input type="radio" name="r2" value="flat" class="minimal" <?php echo $flat_check; ?>>
+								A
+							</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<label>
+								<input type="radio" name="r2" value="birman" class="minimal" <?php echo $birman_check; ?>>
+								B
+							</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<label>
+								<input type="radio" name="r2" value="classic" class="minimal" <?php echo $classic_check; ?>>
+								C
+							</label>
+						</div>	
 				</div>
 				<div class="box-footer">
 					<?php edit_info([])?>
@@ -132,8 +143,13 @@
 
 $(function () {
 	$('#save').on('click', function(){
-		$.post('<?php echo ajax_url(URL_ADMIN2_AJAX,P_CLASS,P_FUNCTION) ?>' , {
-			value : CKEDITOR.instances['about_value'].getData(),
+		$.post('<?php echo ajax_url(URL_ADMIN2_AJAX, P_CLASS, P_FUNCTION) ?>' , {
+			web_title : $(':input[name="web_title"]').val(),
+			web_description : $(':input[name="web_description"]').val(),
+			office_info_phone : $(':input[name="office_info_phone"]').val(),
+			office_info_email : $(':input[name="office_info_email"]').val(),
+			r1 : $('input[name=r1]:checked').val(),
+			r2 : $('input[name=r2]:checked').val(),
 		},function(r){
 			r = $.parseJSON(r);
 			if(r.result == 1) {
@@ -144,7 +160,11 @@ $(function () {
 		});
 		
 	});
-
+    
+	$('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+      checkboxClass: 'icheckbox_minimal-blue',
+      radioClass: 'iradio_minimal-blue'
+    });
 });
 </script>
 </body>
