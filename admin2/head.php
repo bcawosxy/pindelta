@@ -21,6 +21,7 @@
 			'bootstrap/css/bootstrap.min.css',
 			'adminlte/css/AdminLTE.min.css',
 			'adminlte/css/_all-skins.min.css',
+			'plugins/icheck/all.css',
 			'../../lib/jbox/jBox.css',
 		);
 		
@@ -81,7 +82,7 @@ class about{
 class system{
 	function index($common_css, $common_js){
 		$css = $common_css; $js = $common_js;
-
+		$css[] = 'plugins/select2/select2.min.css';
 		return array($css, $js);
 	}
 

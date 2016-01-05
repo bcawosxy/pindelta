@@ -53,8 +53,10 @@
 					</h4>
 				</div>
 				<div class="box-body">
-					Title : <input class="form-control" maxlength="30" name="web_title" style="max-width:500px;" type="text" placeholder="Text" value="<?php echo $row['web_title'] ?>"><br>
-					Description : <input class="form-control" maxlength="50" name="web_description" style="max-width:500px;" type="text" placeholder="Description" value="<?php echo $row['web_description'] ?>">
+					<label>Title</label> : 
+						<input class="form-control" maxlength="30" name="web_title" style="max-width:500px;" type="text" placeholder="Text" value="<?php echo $row['web_title'] ?>"><br>
+					<label>Description</label> : 
+						<input class="form-control" maxlength="50" name="web_description" style="max-width:500px;" type="text" placeholder="Description" value="<?php echo $row['web_description'] ?>">
 				</div>
 				<div class="box-footer">
 					<?php edit_info([])?>
@@ -70,7 +72,21 @@
 					</h4>
 				</div>
 				<div class="box-body">
-					content
+					<label>Phone</label> : 
+							<div class="input-group">
+								<div class="input-group-addon">
+									<i class="fa fa-phone"></i>
+								</div>
+								<input type="text" class="form-control" style="max-width:465px;" value="<?php echo $row['office_info_phone'] ?>">
+							</div>
+						
+					<label>Email</label> : 
+							<div class="input-group">
+								<div class="input-group-addon">
+									<i class="fa fa-envelope"></i>
+								</div>
+								<input type="text" class="form-control" style="max-width:465px;" value="<?php echo $row['office_info_email'] ?>">
+							</div>
 				</div>
 				<div class="box-footer">
 					<?php edit_info([])?>
@@ -86,7 +102,20 @@
 					</h4>
 				</div>
 				<div class="box-body">
-					content
+					<label>型態</label> : 
+						
+						<div class="form-group">
+							<label>
+								<input type="radio" name="r1" class="minimal" checked>
+							</label>
+							<label>
+								<input type="radio" name="r1" class="minimal">
+							</label>
+						</div>
+					
+					<label>樣式</label> : 
+						<input class="form-control" maxlength="30" name="web_title" style="max-width:500px;" type="text" placeholder="Text" value="<?php echo $row['office_info_email'] ?>"><br>
+						
 				</div>
 				<div class="box-footer">
 					<?php edit_info([])?>
