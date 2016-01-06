@@ -1,17 +1,21 @@
 <?php 
 
 //用JS轉址
-function js_location($href){  
+function js_location($href, $text=null){  
 	echo "<script>";
+	if($text != null) {
+		echo 'alert('.$text.');';
+	}
     echo "location.href = \"$href\";";
     echo "</script>";
+	die();
 }
   
 //用PHP轉址
 function redirect_php($url) {
 	header('Content-type: text/html; charset=utf-8');
 	header('Location: '.$url);
-	die;
+	die();
 }
   
 function php_call_jbox($status='success', $text, $redirect){

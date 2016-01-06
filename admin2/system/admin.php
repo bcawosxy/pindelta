@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
-<?php include('../head.php'); ?>
+<?php 
+include('../head.php'); 
+?>
 <body class="hold-transition skin-blue sidebar-mini">
 <!-- Site wrapper -->
 <div class="wrapper">
@@ -15,14 +17,23 @@
 			$a_admin[] = $row;
 		}
 	?>
-	
 	<div class="content-wrapper">
+		<section class="content-header">
+			<div class="box-body"><h2>管理員設定</h2></div>
+			<h1>				
+				<small><p class="text-light-blue">(若不需修改密碼請將該欄位留空)</p></small>
+			</h1>
+			<ol class="breadcrumb">
+				<li><a href="<?php echo URL_ADMIN2_ROOT.'system/admin.php' ?>"><i class="fa fa-dashboard"></i> Home</a></li>
+				<li class="active">管理員設定</li>
+			</ol>
+		</section>
 		<section class="content">
 			<div class="row">
 				<div class="col-md-8">
 					<div class="box">
 						<div class="box-header with-border">
-							<h3 class="box-title">管理員設定</h3>
+							<h3 class="box-title">管理人員清單</h3>
 						</div>
 						<div class="box-body">
 							<table class="table table-bordered">
@@ -50,8 +61,6 @@
 									}
 								
 								?>
-
-							
 							</table>
 						</div>
 					</div>
@@ -59,7 +68,6 @@
 				</div>
 			</div>
 		</section>
-		
 		<a class="btn btn-app " id="save">
 			<i class="fa fa-save"></i> Save All
 		</a>
@@ -80,8 +88,6 @@ $(function () {
 			data.push(tmp);
 		});
 	
-		console.log(data);
-	
 		$.post('<?php echo ajax_url(URL_ADMIN2_AJAX, P_CLASS, P_FUNCTION) ?>' , {
 			data : JSON.stringify(data),
 		},function(r){
@@ -92,10 +98,7 @@ $(function () {
 				_jbox(r, 'error');			
 			}
 		});
-		
 	});
-    
-
 });
 </script>
 </body>
