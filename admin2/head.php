@@ -82,6 +82,20 @@ class about{
 
 }
 
+class contact {
+	function index($common_css, $common_js){
+		$css = $common_css; $js = $common_js;
+		$css[] = 'plugins/datatables/dataTables.bootstrap.css';
+		
+		$js[] = 'plugins/datatables/jquery.dataTables.min.js';
+		$js[] = 'plugins/slimscroll/jquery.slimscroll.min.js';
+		$js[] = 'plugins/datatables/dataTables.bootstrap.min.js';
+		$js[] = 'plugins/fastclick/fastclick.min.js';
+		return array($css, $js);
+	}
+
+}
+
 class system{
 	function index($common_css, $common_js){
 		$css = $common_css; $js = $common_js;

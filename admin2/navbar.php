@@ -18,7 +18,7 @@
 		<ul class="sidebar-menu">
 			<li class="header">聯繫我們 / 產品詢價</li>
 			<li>
-				<a href="<?php echo URL_ADMIN2_ROOT ?>"><i class="fa fa-reply"></i> <span>聯繫我們</span></a>
+				<a href="<?php echo URL_ADMIN2_ROOT.'contact' ?>"><i class="fa fa-reply"></i> <span>聯繫我們</span></a>
 			</li>
 			<li>
 				<a href="<?php echo URL_ADMIN2_ROOT ?>"><i class="fa fa-question"></i> <span>產品詢價</span></a>
