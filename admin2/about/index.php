@@ -39,7 +39,7 @@
 				</div>
 				<div class="box-footer">
 					<?php edit_info(['最後修改時間'=>$data['modify_time'],'修改人員'=>$data['modify_name']]); ?>
-				</div><!-- /.box-footer-->
+				</div>
 			</div>
 		</section>
 	</div>

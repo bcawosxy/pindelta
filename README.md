@@ -1,5 +1,8 @@
 #Pindelta 
 ###0106
+####v2.2.4
+1.後台 system::admin 完成
+
 ####v2.2.3
 後台system完成
 

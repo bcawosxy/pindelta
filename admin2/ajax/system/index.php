@@ -21,7 +21,9 @@ if( isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
 			`office_info_phone` = "'.$office_info_phone.'",
 			`office_info_email` = "'.$office_info_email.'",
 			`social_look` = "'.$r1.'",
-			`social_skin` = "'.$r2.'"
+			`social_skin` = "'.$r2.'",
+			`modify_name` = "'.$_SESSION['admin']['name'].'",
+			`modify_time` = NOW()
 			where id = 1;';
 
 	$result = mysql_query(query_despace($query));

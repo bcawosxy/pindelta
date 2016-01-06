@@ -11,6 +11,9 @@
 			<li>
 				<a href="<?php echo URL_ADMIN2_ROOT.'system/' ?>"><i class="fa fa-gear"></i> <span>系統參數</span></a>
 			</li>
+			<li>
+				<a href="<?php echo URL_ADMIN2_ROOT.'system/admin.php' ?>"><i class="fa fa-list-ul"></i> <span>管理員設定</span></a>
+			</li>
 		</ul>
 	</section>
 </aside>

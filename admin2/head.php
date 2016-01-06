@@ -2,7 +2,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>品利興 - Pindelta.com | Admin System</title>
+	<title>Pindelta.com | <?php echo strtoupper(P_CLASS).'-'.P_FUNCTION  ?> | Admin System</title>
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<?php 
 		/**
@@ -87,5 +87,11 @@ class system{
 		return array($css, $js);
 	}
 
+	function admin($common_css, $common_js){
+		$css = $common_css; $js = $common_js;
+		$js[] = 'plugins/fastclick/fastclick.min.js';
+		$js[] = 'plugins/slimscroll/jquery.slimscroll.min.js';
+		return array($css, $js);
+	}
 }
 ?>

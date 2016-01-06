@@ -128,11 +128,16 @@
 							</label>
 						</div>	
 				</div>
+			</div>
+		</section>
+		<section class="content" style="min-height:180px;">
+			<div class="box">
 				<div class="box-footer">
-					<?php edit_info([])?>
+					<?php edit_info(['最後修改時間'=>$row['modify_time'],'修改人員'=>$row['modify_name']]); ?>
 				</div>
 			</div>
 		</section>
+		
 		<a class="btn btn-app " id="save">
 			<i class="fa fa-save"></i> Save All
 		</a>
@@ -162,8 +167,8 @@ $(function () {
 	});
     
 	$('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
-      checkboxClass: 'icheckbox_minimal-blue',
-      radioClass: 'iradio_minimal-blue'
+		checkboxClass: 'icheckbox_minimal-blue',
+		radioClass: 'iradio_minimal-blue'
     });
 });
 </script>
