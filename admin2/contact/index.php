@@ -7,11 +7,19 @@
 	<?php include('../header.php'); ?>
 	<?php include('../navbar.php'); ?>
 	<?php 
-		$query = query_despace('select * from about where id = 3');
+		$query = query_despace('select * from `contact` where status != "delete" order by `inserttime` desc;');
 		$result = mysql_query($query);
-		while($row = mysql_fetch_assoc($result)){	$data = $row;	}
+		$data = array();$a_contact_open = array(); $a_contact_archive = array();
+		while($row = mysql_fetch_assoc($result)){ $data[] = $row;	}
+		foreach($data as $k => $v) {
+			$v['read'] = ($data[$k]['read'] == 'read') ? '<p class="text-green">Read</p>' : '<p class="text-yellow">Unread</p>' ;
+			if($v['status'] == 'open') {
+				$a_contact_open[] = $v;
+			} else {
+				$a_contact_archive[] = $v;
+			}
+		}
 	?>
-	
 	<div class="content-wrapper">
 		<section class="content-header">
 			<div class="box-body"><h2>聯繫我們</h2></div>
@@ -31,7 +39,7 @@
 							<div class="nav-tabs-custom">
 								<ul class="nav nav-tabs">
 									<li class="active"><a href="#tab_1" data-toggle="tab"><i class="fa fa-inbox"></i>&nbsp;&nbsp;Inbox</a></li>
-									<li><a href="#tab_2" data-toggle="tab"><i class="fa fa-folder-open-o"></i>&nbsp;&nbsp;archive</a></li>
+									<li><a href="#tab_2" data-toggle="tab"><i class="fa fa-folder-open-o"></i>&nbsp;&nbsp;Archive</a></li>
 								</ul>
 								<div class="tab-content">
 									<div class="tab-pane active" id="tab_1">
@@ -44,21 +52,29 @@
 											<table id="example1" class="table table-bordered table-striped">
 												<thead>
 													<tr>
-														<th>Rendering engine</th>
-														<th>Browser</th>
-														<th>Platform(s)</th>
-														<th>Engine version</th>
-														<th>CSS grade</th>
+														<th>#</th>
+														<th>Last Name</th>
+														<th>First Name</th>
+														<th>Email</th>
+														<th>Tel</th>
+														<th>Read</th>
+														<th>查看</th>
 													</tr>
 												</thead>
 												<tbody>
-													<tr>
-														<td>Trident</td>
-														<td></td>
-														<td>Win 95+</td>
-														<td> 4</td>
-														<td>X</td>
-													</tr>
+													<?php 
+													foreach($a_contact_open as $k0 => $v0) {
+														echo '<tr>
+																<td>'.$v0['id'].' </td>
+																<td>'.$v0['last_name'].' </td>
+																<td>'.$v0['first_name'].' </td>
+																<td>'.$v0['email'].' </td>
+																<td>'.$v0['tel'].' </td>
+																<td>'.$v0['read'].' </td>
+																<td><a href="'.URL_ADMIN2_ROOT.P_CLASS.'/content.php?contact_id='.$v0['id'].'">編輯</a></td>
+															</tr>';
+													}
+													?>
 												</tbody>
 											</table>
 										</div>
@@ -72,21 +88,29 @@
 											<table id="example2" class="table table-bordered table-striped">
 												<thead>
 													<tr>
-														<th>Rendering engine</th>
-														<th>Browser</th>
-														<th>Platform(s)</th>
-														<th>Engine version</th>
-														<th>CSS grade</th>
+														<th>#</th>
+														<th>Last Name</th>
+														<th>First Name</th>
+														<th>Email</th>
+														<th>Tel</th>
+														<th>Read</th>
+														<th>查看</th>
 													</tr>
 												</thead>
 												<tbody>
-													<tr>
-														<td>Trident</td>
-														<td></td>
-														<td>Win 95+</td>
-														<td> 4</td>
-														<td>X</td>
-													</tr>
+													<?php 
+													foreach($a_contact_archive as $k0 => $v0) {
+														echo '<tr>
+																<td>'.$v0['id'].' </td>
+																<td>'.$v0['last_name'].' </td>
+																<td>'.$v0['first_name'].' </td>
+																<td>'.$v0['email'].' </td>
+																<td>'.$v0['tel'].' </td>
+																<td>'.$v0['read'].' </td>
+																<td><a href="javascript:void(0)">編輯</a></td>
+															</tr>';
+													}
+													?>
 												</tbody>
 											</table>
 										</div>								
@@ -115,9 +139,23 @@ $(function () {
 			}
 		});
 	});
-	
-	$("#example1").DataTable();
-	$("#example2").DataTable();
+
+	$("#example1").DataTable({
+		"order": [[ 0, "desc" ]],
+		"columnDefs": [
+			{ "orderable": false, "targets": 6 }
+		]
+		
+	});
+
+	$("#example2").DataTable({
+		"order": [[ 0, "desc" ]],
+		"columnDefs": [
+			{ "orderable": false, "targets": 6 }
+		]
+		
+	});
+
 });
 </script>
 </body>

@@ -4,7 +4,7 @@
 function js_location($href, $text=null){  
 	echo "<script>";
 	if($text != null) {
-		echo 'alert('.$text.');';
+		echo 'alert("'.$text.'");';
 	}
     echo "location.href = \"$href\";";
     echo "</script>";
@@ -185,9 +185,34 @@ function edit_info($param = array()) {
 	echo $return ;
 }
  
- 
- 
+/**
+ * 0107 取得admin資料
+ */
+function get_admin($id = null) {
+	$return = null;
+	if($id != null){
+		$query = query_despace('SELECT * from `admin` where id = "'.$id.'"');
+		$result = mysql_query($query);
+		if($result) {
+			$return = mysql_fetch_assoc($result) ;
+		}
+	}
+	return $return;
+}	
 
+/**
+ * 0107 將 url 的 get urldecode 後 return 出 array
+ */
+function query_string_parse() {
+	$return = array();
+	$tmp1 = array();
+	parse_str($_SERVER['QUERY_STRING'], $tmp1);
+	foreach ($tmp1 as $k1 => $v1) {
+		$return[urldecode($k1)] = urldecode($v1);
+	}
+
+	return $return;
+}
 class info_bar{
 	function update_result_show($statu,$code){
 

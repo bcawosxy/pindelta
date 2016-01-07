@@ -17,7 +17,6 @@
 		//驗證用字串
 		echo 'P_CLASS:['.$p_class.'] P_FUNCTION:['.$p_function.']<br>';
 		
-		
 		if (P_CLASS != 'index' && P_FUNCTION != 'login' && !isset($_SESSION['admin'])) redirect_php(URL_ADMIN2_ROOT.'index/login.php');
 		
 		$common_css = array(
@@ -84,6 +83,17 @@ class about{
 
 class contact {
 	function index($common_css, $common_js){
+		$css = $common_css; $js = $common_js;
+		$css[] = 'plugins/datatables/dataTables.bootstrap.css';
+		
+		$js[] = 'plugins/datatables/jquery.dataTables.min.js';
+		$js[] = 'plugins/slimscroll/jquery.slimscroll.min.js';
+		$js[] = 'plugins/datatables/dataTables.bootstrap.min.js';
+		$js[] = 'plugins/fastclick/fastclick.min.js';
+		return array($css, $js);
+	}
+	
+	function content($common_css, $common_js){
 		$css = $common_css; $js = $common_js;
 		$css[] = 'plugins/datatables/dataTables.bootstrap.css';
 		
