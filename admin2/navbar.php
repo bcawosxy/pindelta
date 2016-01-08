@@ -7,6 +7,12 @@
 			</li>
 		</ul>
 		<ul class="sidebar-menu">
+			<li class="header">社群網站</li>
+			<li>
+				<a href="<?php echo URL_ADMIN2_ROOT.'sociallink'; ?>"><i class="fa fa-book"></i> <span>社群網站連結</span></a>
+			</li>
+		</ul>
+		<ul class="sidebar-menu">
 			<li class="header">系統</li>
 			<li>
 				<a href="<?php echo URL_ADMIN2_ROOT.'system/' ?>"><i class="fa fa-gear"></i> <span>系統參數</span></a>

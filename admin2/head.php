@@ -12,7 +12,7 @@
 		$p_function = P_FUNCTION;
 		$obj = (!class_exists($p_class)) ? redirect_php(URL_ADMIN2_ROOT) : new $p_class;
 		
-		if(P_CLASS == 'system' && P_FUNCTION == 'admin' && $_SESSION['admin']['id'] != 1) js_location(URL_ADMIN2_ROOT.'about/', '"您並非最高管理員，目前沒有訪問此頁面的權限"');
+		if(P_CLASS == 'system' && P_FUNCTION == 'admin' && $_SESSION['admin']['id'] != 1) js_location(URL_ADMIN2_ROOT.'about/', '您並非最高管理員，目前沒有訪問此頁面的權限');
 		
 		//驗證用字串
 		echo 'P_CLASS:['.$p_class.'] P_FUNCTION:['.$p_function.']<br>';
@@ -35,7 +35,7 @@
 			'../../lib/jbox/jBox.js',
 		);		
 
-		//display css&js html tag
+		//Display css&js html tag
 		list($css_file, $js_file) = $obj::$p_function($common_css, $common_js);
 		admin_set_css($css_file);
 		admin_set_js($js_file);
@@ -125,6 +125,15 @@ class inquiry {
 		return array($css, $js);
 	}
 
+}
+
+class sociallink{
+	function index($common_css, $common_js){
+		$css = $common_css; $js = $common_js;
+		$css[] = 'css/switch.css';
+		$js[] = 'plugins/iCheck/icheck.min.js';
+		return array($css, $js);
+	}
 }
 
 class system{

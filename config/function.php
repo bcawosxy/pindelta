@@ -162,7 +162,6 @@ function ajax_url($root, $class = null, $function=null) {
 /**
  * 0102 AJAX 的固定回應字串
  */ 
- 
 function json_encode_return($result, $message=null, $redirect=null, $data=null) {
 	echo json_encode(['result'=>$result,'message'=>$message,'redirect'=>$redirect, 'data'=>$data]);
 	exit;
