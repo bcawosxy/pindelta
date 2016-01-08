@@ -1,7 +1,11 @@
 #Pindelta 
 ###0108
+####v2.2.9
+1.完成 admin::inquiry
+2.加入 get_product_url();
+
 ####v2.2.8
-1.1.完成 admin::contact 
+1.完成 admin::contact 
 
 ###0107
 ####v2.2.6

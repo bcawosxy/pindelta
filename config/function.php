@@ -26,14 +26,10 @@ function php_call_jbox($status='success', $text, $redirect){
 }
   
 function show_msg($statu,$code){
-
 	$status = 'success';
 	$result_msg[$status]['msg_1'] = '資料修改完成!';
-
 	$status = 'error';
 	$result_msg[$status]['msg_1'] = '警告! 內容不可為空，請輸入內容!';
-
-
 	if($statu == 'success'){
 		echo '<div id="identifier" class="alert alert-success">';
 	}else{
@@ -213,6 +209,34 @@ function query_string_parse() {
 
 	return $return;
 }
+
+/**
+ * 0108 透過product_id取得前台產品的連結網址
+ */
+function get_product_url($id=null) {
+	$return = null;
+	if($id != null){
+		$query = query_despace('select * from `product` where `product_id` = '.$id.' ;');
+		$result = mysql_query($query);
+		$product = mysql_fetch_assoc($result) ;
+		if(empty($product)) return $return;
+		
+		$query = query_despace('select * from `category` where `category_status` = "open" and `category_id` = '.$product['product_category_id'].' ;');
+		$result = mysql_query($query);
+		$category = mysql_fetch_assoc($result) ;
+		if(empty($category)) return $return;
+		
+		$query = query_despace('select * from `categoryarea` where `categoryarea_status` = "open" and `categoryarea_id` = '.$category['categoryarea_id'].' ;');
+		$result = mysql_query($query);
+		$categoryarea = mysql_fetch_assoc($result) ;
+		if(empty($categoryarea)) return $return;
+		
+		$param = 'goods='.base64_encode($categoryarea['categoryarea_id']).'&category='.base64_encode($category['category_id']).'&items='.base64_encode($product['product_id']);
+		$return = '<a target="_blank" href="'.URL_ROOT.'product?'.$param.'">'.$product['product_name'].'</a>';
+	}
+	return $return;
+}
+
 class info_bar{
 	function update_result_show($statu,$code){
 

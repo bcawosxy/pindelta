@@ -13,8 +13,6 @@ if( isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
 		
 		case 'delete' :
 			$query = query_despace('UPDATE `contact` SET `status` = "delete" where `id` = "'.$contact_id.'" limit 1');
-			echo $query;
-			return;
 			$result = mysql_query($query);
 			(!$result) ? json_encode_return(0, '刪除資料失敗，請確認您輸入的資料是否有誤', URL_ADMIN2_ROOT.'contact') : json_encode_return(1, '刪除資料成功', URL_ADMIN2_ROOT.'contact');
 		break;	

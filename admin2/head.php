@@ -52,6 +52,42 @@
 </head>
 
 <?php 
+class about{
+	function index($common_css, $common_js){
+		$css = $common_css; $js = $common_js;
+		
+		$js[] = 'plugins/slimscroll/jquery.slimscroll.min.js';
+		$js[] = 'plugins/fastclick/fastclick.min.js';
+		$js[] = '../../lib/ckeditor/ckeditor.js';
+		$js[] = '../../lib/ckeditor/adapters/jquery.js';
+		return array($css, $js);
+	}
+}
+
+class contact {
+	function index($common_css, $common_js){
+		$css = $common_css; $js = $common_js;
+		$css[] = 'plugins/datatables/dataTables.bootstrap.css';
+		
+		$js[] = 'plugins/datatables/jquery.dataTables.min.js';
+		$js[] = 'plugins/slimscroll/jquery.slimscroll.min.js';
+		$js[] = 'plugins/datatables/dataTables.bootstrap.min.js';
+		$js[] = 'plugins/fastclick/fastclick.min.js';
+		return array($css, $js);
+	}
+	
+	function content($common_css, $common_js){
+		$css = $common_css; $js = $common_js;
+		$css[] = 'plugins/datatables/dataTables.bootstrap.css';
+		
+		$js[] = 'plugins/datatables/jquery.dataTables.min.js';
+		$js[] = 'plugins/slimscroll/jquery.slimscroll.min.js';
+		$js[] = 'plugins/datatables/dataTables.bootstrap.min.js';
+		$js[] = 'plugins/fastclick/fastclick.min.js';
+		return array($css, $js);
+	}
+}
+
 class index{
 	function login($common_css, $common_js){
 		$css = $common_css; $js = $common_js;
@@ -64,24 +100,9 @@ class index{
 		$css = $common_css; $js = $common_js;
 		return array($css, $js);
 	}
-
-	
 }
 
-class about{
-	function index($common_css, $common_js){
-		$css = $common_css; $js = $common_js;
-		
-		$js[] = 'plugins/slimscroll/jquery.slimscroll.min.js';
-		$js[] = 'plugins/fastclick/fastclick.min.js';
-		$js[] = '../../lib/ckeditor/ckeditor.js';
-		$js[] = '../../lib/ckeditor/adapters/jquery.js';
-		return array($css, $js);
-	}
-
-}
-
-class contact {
+class inquiry {
 	function index($common_css, $common_js){
 		$css = $common_css; $js = $common_js;
 		$css[] = 'plugins/datatables/dataTables.bootstrap.css';
@@ -121,4 +142,6 @@ class system{
 		return array($css, $js);
 	}
 }
+
+
 ?>
