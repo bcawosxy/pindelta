@@ -12,13 +12,17 @@
 		$data = array();$a_contact_open = array(); $a_contact_archive = array();
 		while($row = mysql_fetch_assoc($result)){ $data[] = $row;	}
 		foreach($data as $k => $v) {
-			$v['read'] = ($data[$k]['read'] == 'read') ? '<p class="text-green">Read</p>' : '<p class="text-yellow">Unread</p>' ;
+			$v['read'] = ($data[$k]['read'] == 'read') ? '<span class="label label-success">Read</span>' : '<span class="label label-warning">Unread</span>' ;
 			if($v['status'] == 'open') {
 				$a_contact_open[] = $v;
 			} else {
 				$a_contact_archive[] = $v;
 			}
 		}
+		
+		//預設開啟標籤
+		$tab1 = ($_GET['tab'] != 'tab2') ? 'active' : null;
+		$tab2 = (isset($_GET['tab']) && $_GET['tab'] == 'tab2') ? 'active' : null;
 	?>
 	<div class="content-wrapper">
 		<section class="content-header">
@@ -38,16 +42,16 @@
 						<div class="col-md-10">
 							<div class="nav-tabs-custom">
 								<ul class="nav nav-tabs">
-									<li class="active"><a href="#tab_1" data-toggle="tab"><i class="fa fa-inbox"></i>&nbsp;&nbsp;Inbox</a></li>
-									<li><a href="#tab_2" data-toggle="tab"><i class="fa fa-folder-open-o"></i>&nbsp;&nbsp;Archive</a></li>
+									<li class="<?php echo $tab1; ?>"><a href="#tab_1" data-toggle="tab"><i class="fa fa-inbox"></i>&nbsp;&nbsp;Inbox</a></li>
+									<li class="<?php echo $tab2; ?>"><a href="#tab_2" data-toggle="tab"><i class="fa fa-folder-open-o"></i>&nbsp;&nbsp;Archive</a></li>
 								</ul>
 								<div class="tab-content">
-									<div class="tab-pane active" id="tab_1">
-
+									<div class="tab-pane <?php echo $tab1; ?>" id="tab_1">
 										<div class="box-header">
-											<h2 class="box-title text-light-blue">聯繫我們 - 資料列表</h2>
+											<div class="callout callout-success">
+												<h4 style="font-family:微軟正黑體;">聯繫我們 - 資料列表</h4>
+											</div>
 										</div>
-
 										<div class="box-body">
 											<table id="example1" class="table table-bordered table-striped">
 												<thead>
@@ -80,9 +84,11 @@
 										</div>
 									</div>
 
-									<div class="tab-pane " id="tab_2">
+									<div class="tab-pane <?php echo $tab2; ?>" id="tab_2">
 										<div class="box-header">
-											<h2 class="box-title text-light-blue">聯繫我們 - 封存列表</h2>
+											<div class="callout callout-success" >
+												<h4 style="font-family:微軟正黑體;">聯繫我們 - 封存列表</h4>
+											</div>
 										</div>										
 										<div class="box-body">
 											<table id="example2" class="table table-bordered table-striped">
@@ -107,7 +113,7 @@
 																<td>'.$v0['email'].' </td>
 																<td>'.$v0['tel'].' </td>
 																<td>'.$v0['read'].' </td>
-																<td><a href="javascript:void(0)">編輯</a></td>
+																<td><a href="'.URL_ADMIN2_ROOT.P_CLASS.'/content.php?contact_id='.$v0['id'].'">編輯</a></td>
 															</tr>';
 													}
 													?>
