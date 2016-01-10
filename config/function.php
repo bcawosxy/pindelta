@@ -236,6 +236,16 @@ function get_product_url($id=null) {
 	return $return;
 }
 
+/**
+ * 判斷是否為 url
+ * <p>v1.0 2013-12-18</p>
+ * @param unknown $value
+ * @return mixed
+ */
+function is_url($value) {
+	return filter_var($value, FILTER_VALIDATE_URL);
+}
+
 class info_bar{
 	function update_result_show($statu,$code){
 

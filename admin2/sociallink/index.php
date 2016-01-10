@@ -15,14 +15,20 @@ include('../head.php');
 		$a_sociallink = array();
 		while($row = mysql_fetch_assoc($result)) { $a_sociallink[] = $row; }
 		foreach($a_sociallink as $k => $v) {
-			$a_sociallink[$k]['status'] = ($a_sociallink[$k]['status'] == 'open') ? '<span class="label label-success">Open</span>' : '<span class="label label-warning">Close</span>' ;
-		}		
+			$a_sociallink[$k]['status'] = ($a_sociallink[$k]['status'] == 'open') ? 'Off' : 'On' ;
+		}
+		
+		$a_icon = ['fa-google', 'fa-facebook', 'fa-flickr', 'fa-twitter', 'fa-google', 'fa-instagram', 'fa-linkedin', 'fa-pinterest', 'fa-tumblr'];
 	?>
 	<div class="content-wrapper">
 		<section class="content-header">
-			<div class="box-body"><h2>社群網站連結</h2></div>
+			<div class="box-body">
+				<h2 style="font-family: 'Source Sans Pro',sans-serif;font-size: 30px;margin-top: 20px; margin-bottom: 10px;font-weight: 500; line-height: 1.1;color: inherit;">
+					社群網站連結
+				</h2>
+			</div>	
 			<h1>				
-				<small><p class="text-light-blue">()</p></small>
+				<small><p class="text-light-blue"></p></small>
 			</h1>
 			<ol class="breadcrumb">
 				<li><a href="<?php echo URL_ADMIN2_ROOT ?>"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -41,35 +47,39 @@ include('../head.php');
 								<tr>
 									<th style="width: 10px">#</th>
 									<th style="width: 15%">名稱</th>
-									<th style="width: 25%">連結</th>
+									<th style="width: 30%">連結</th>
 									<th style="width: 8%">排序</th>
 									<th style="width: 10%">顯示狀態</th>
-									<th>上次登入時間</th>
+									<th>修改時間</th>
 								</tr>
 								<?php 
 									foreach($a_sociallink as $k => $v) {
 										echo '<tr class="data">
 												<td>'.$v['id'].'.</td>
-												<td>'.$v['name'].'</td>
-												<td><input type="text" name="url" class="form-control" value="'.urldecode($v['url']).'"></td>
+												<td><small class="label label-success">'.ucfirst ($v['name'] ).'</small></td>
+												<td><div class="input-group">
+														<div class="input-group-addon bg-light-blue color-palette">
+															<i class="fa '.$a_icon[$k].'"></i>
+														</div>
+														<input type="text" name="url" class="form-control" value="'.urldecode( $v['url']).'">
+													</div></td>
 												<td>
 													<div class="form-group">
-														<select class="form-control select2" style="width: 100%;">';
+														<select class="form-control select2" name="sort" style="width: 100%;">';
 														foreach($a_sociallink as $k1 => $v1) {
-															echo '<option>'.($k1+1).'</option>';
-															// echo (($k1+1) == $v['sort']) ? '<option select="selected">'.$v['sort'].'</option>' : '<option>'.($k1).'</option>';
+															echo (($k1+1) == $v['sort']) ? '<option selected="selected">'.($k1+1).'</option>' : '<option>'.($k1+1).'</option>';
 														}
-															
 														echo '</select>
 													</div>
 												</td>
 												<td>
-													<div class="Switch Off">
+													<div id="switch_'.$k.'" class="Switch '.$v['status'].'">
 														<div class="Toggle"></div>
 														<span class="On">ON</span>
 														<span class="Off">OFF</span>
 													</div>
 												</td>
+												<td>'.$v['modifytime'].'</td>
 											</tr>';
 									}
 								
@@ -93,11 +103,12 @@ $(function () {
 	$('#save').on('click', function(){
 		var data = new Array();
 		$('tr.data').each(function (k, v){
-			var tmp = new Array();
-			$($(this)).find(':input').each(function(k1, v1) {
-				var obj = $(v1);			
-				tmp.push(obj.val());
-			});
+			var obj = $(v);
+			var tmp = [
+				$(obj).find(':input[name="url"]').val(),
+				$(obj).find('[name="sort"] option:selected').val(),
+				$(obj).find('div[id^="switch_"]').attr('class'),
+			];
 			data.push(tmp);
 		});
 	
