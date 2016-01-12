@@ -7,18 +7,21 @@
 			</li>
 		</ul>
 		<ul class="sidebar-menu">
-			<li class="header">社群網站</li>
+			<li class="header">商品資訊</li>
 			<li>
-				<a href="<?php echo URL_ADMIN2_ROOT.'sociallink'; ?>"><i class="fa fa-book"></i> <span>社群網站連結</span></a>
+				<a href="<?php echo URL_ADMIN2_ROOT.'categoryarea'; ?>"><i class="fa fa-list"></i> <span>產品類別區域管理</span></a>
+			</li>
+			<li>
+				<a href="javascropt:void(0)"><i class="fa fa-list-ul"></i> <span>產品類別管理</span></a>
+			</li>
+			<li>
+				<a href="javascropt:void(0)"><i class="fa fa-heart"></i> <span>產品管理</span></a>
 			</li>
 		</ul>
 		<ul class="sidebar-menu">
-			<li class="header">系統</li>
+			<li class="header">社群網站</li>
 			<li>
-				<a href="<?php echo URL_ADMIN2_ROOT.'system/' ?>"><i class="fa fa-gear"></i> <span>系統參數</span></a>
-			</li>
-			<li>
-				<a href="<?php echo URL_ADMIN2_ROOT.'system/admin.php' ?>"><i class="fa fa-list-ul"></i> <span>管理員設定</span></a>
+				<a href="<?php echo URL_ADMIN2_ROOT.'sociallink'; ?>"><i class="fa fa-book"></i> <span>社群網站連結</span></a>
 			</li>
 		</ul>
 		<ul class="sidebar-menu">
@@ -28,6 +31,15 @@
 			</li>
 			<li>
 				<a href="<?php echo URL_ADMIN2_ROOT.'inquiry' ?>"><i class="fa fa-question"></i> <span>產品詢價</span></a>
+			</li>
+		</ul>
+		<ul class="sidebar-menu">
+			<li class="header">系統</li>
+			<li>
+				<a href="<?php echo URL_ADMIN2_ROOT.'system/' ?>"><i class="fa fa-gear"></i> <span>系統參數</span></a>
+			</li>
+			<li>
+				<a href="<?php echo URL_ADMIN2_ROOT.'system/admin.php' ?>"><i class="fa fa-list-ul"></i> <span>管理員設定</span></a>
 			</li>
 		</ul>
 		<ul class="sidebar-menu">

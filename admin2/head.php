@@ -64,6 +64,17 @@ class about{
 	}
 }
 
+class categoryarea{
+	function index($common_css, $common_js){
+		$css = $common_css; $js = $common_js;
+		$css[] = 'plugins/datatables/dataTables.bootstrap.css';
+		
+		$js[] = 'plugins/datatables/jquery.dataTables.min.js';
+		$js[] = 'plugins/datatables/dataTables.bootstrap.min.js';
+		return array($css, $js);
+	}
+}
+
 class contact {
 	function index($common_css, $common_js){
 		$css = $common_css; $js = $common_js;
