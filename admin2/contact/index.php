@@ -57,12 +57,13 @@
 												<thead>
 													<tr>
 														<th>#</th>
+														<th>編輯</th>
 														<th>Last Name</th>
 														<th>First Name</th>
 														<th>Email</th>
 														<th>Tel</th>
 														<th>Read</th>
-														<th>查看</th>
+														
 													</tr>
 												</thead>
 												<tbody>
@@ -70,12 +71,12 @@
 													foreach($a_contact_open as $k0 => $v0) {
 														echo '<tr>
 																<td>'.$v0['id'].' </td>
+																<td><a href="'.URL_ADMIN2_ROOT.P_CLASS.'/content.php?contact_id='.$v0['id'].'">編輯</a></td>
 																<td>'.$v0['last_name'].' </td>
 																<td>'.$v0['first_name'].' </td>
 																<td>'.$v0['email'].' </td>
 																<td>'.$v0['tel'].' </td>
-																<td>'.$v0['read'].' </td>
-																<td><a href="'.URL_ADMIN2_ROOT.P_CLASS.'/content.php?contact_id='.$v0['id'].'">編輯</a></td>
+																<td>'.$v0['read'].' </td>																
 															</tr>';
 													}
 													?>
@@ -95,12 +96,12 @@
 												<thead>
 													<tr>
 														<th>#</th>
+														<th>編輯</th>
 														<th>Last Name</th>
 														<th>First Name</th>
 														<th>Email</th>
 														<th>Tel</th>
 														<th>Read</th>
-														<th>查看</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -108,12 +109,12 @@
 													foreach($a_contact_archive as $k0 => $v0) {
 														echo '<tr>
 																<td>'.$v0['id'].' </td>
+																<td><a href="'.URL_ADMIN2_ROOT.P_CLASS.'/content.php?contact_id='.$v0['id'].'">編輯</a></td>
 																<td>'.$v0['last_name'].' </td>
 																<td>'.$v0['first_name'].' </td>
 																<td>'.$v0['email'].' </td>
 																<td>'.$v0['tel'].' </td>
 																<td>'.$v0['read'].' </td>
-																<td><a href="'.URL_ADMIN2_ROOT.P_CLASS.'/content.php?contact_id='.$v0['id'].'">編輯</a></td>
 															</tr>';
 													}
 													?>

@@ -44,6 +44,7 @@
 									<thead>
 										<tr>
 											<th>#</th>
+											<th>編輯</th>
 											<th>名稱</th>
 											<th>優先順序</th>
 											<th>描述</th>
@@ -57,6 +58,7 @@
 												echo '
 													<tr>
 														<td>'.$v0['categoryarea_id'].'</td>
+														<td><a href="'.URL_ADMIN2_ROOT.P_CLASS.'/content.php?categoryarea_id='.$v0['categoryarea_id'].'">編輯</a></td>
 														<td>'.$v0['categoryarea_name'].'</td>
 														<td>'.$v0['categoryarea_priority'].'</td>
 														<td>'.$v0['categoryarea_description'].'</td>
@@ -65,11 +67,13 @@
 													</tr>
 												';
 											}
-										
 										?>
 									</tbody>
 								</table>
 							</div>
+						<a class="btn btn-app " id="add">
+							<i class="fa fa-plus-square-o"></i> Add
+						</a>
 						</div>
 					</div>
 				</div>
