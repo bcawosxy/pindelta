@@ -1,14 +1,9 @@
 <?php 
-
 //用JS轉址
-function js_location($href, $text=null){  
+function js_location($href){  
 	echo "<script>";
-	if($text != null) {
-		echo 'alert("'.$text.'");';
-	}
     echo "location.href = \"$href\";";
     echo "</script>";
-	die();
 }
   
 //用PHP轉址
@@ -26,77 +21,55 @@ function php_call_jbox($status='success', $text, $redirect){
 }
   
 function show_msg($statu,$code){
-	$status = 'success';
-	$result_msg[$status]['msg_1'] = '資料修改完成!';
-	$status = 'error';
-	$result_msg[$status]['msg_1'] = '警告! 內容不可為空，請輸入內容!';
+
+	$status = "success";
+	$result_msg[$status]['msg_1'] = "資料修改完成!";
+
+	$status = "error";
+	$result_msg[$status]['msg_1'] = "警告! 內容不可為空，請輸入內容!";
+
+
 	if($statu == 'success'){
-		echo '<div id="identifier" class="alert alert-success">';
+		echo "<div id='identifier' class='alert alert-success'>";
 	}else{
-		echo '<div id="identifier" class="alert alert-danger">';
+		echo "<div id='identifier' class='alert alert-danger'>";
 	}
-	echo '<strong>'.$result_msg[$statu]['msg_'.$code].'</strong>'; 
-	echo '</div>';
+	echo "<strong>".$result_msg[$statu]["msg_".$code]."</strong>"; 
+	echo "</div>";
 }
   
 function get_remote_ip(){
-	if (!empty($_SERVER['HTTP_CLIENT_IP'])){
-		$ip = $_SERVER['HTTP_CLIENT_IP'];
-	}elseif(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
-		$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+	if (!empty($_SERVER["HTTP_CLIENT_IP"])){
+		$ip = $_SERVER["HTTP_CLIENT_IP"];
+	}elseif(!empty($_SERVER["HTTP_X_FORWARDED_FOR"])){
+		$ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
 	}else{
-		$ip = $_SERVER['REMOTE_ADDR'];
+		$ip = $_SERVER["REMOTE_ADDR"];
 	}
 	
 	return $ip;
 }  
 
 /**
- * 0524 拿資料庫中常用的系統參數
- * 0925 配合取出DB.system參數，title及contact資訊由此取出
+ * 0524 拿資料庫中常用的系統參數 
  */
-function get_settings($key, $menu = null){
-	$return = false;
-	$suffix = null;
+function get_settings($key){
 	$key = implode(',', $key);
- 
-	//依不同Menu插入suffix
-	switch($menu){
-		case 'about':
-			$suffix = ' | About us';
-		break;
-		
-		case 'product':
-			$suffix = ' | Product';
-		break;
-		
-		case 'contact':
-			$suffix = ' | Contact us';
-		break;
-		
-		default:
-			$suffix = '';
-	}
-	
-	//從DB撈出prefix以及contant 資訊
+
 	$query = 'select '.$key.' from `system` where `system`.`id` = 1 ;';
 	$result = mysql_query($query);
 	if($result){
 		$row = mysql_fetch_assoc($result);
-		$return['web_title'] = !empty($row['web_title']) ? $row['web_title'].$suffix : null ;
-		$return['web_description'] = !empty($row['web_description']) ? $row['web_description'] : null;
-		$return['social_look'] = !empty($row['social_look']) ? $row['social_look'] : null;
-		$return['social_skin'] = !empty($row['social_skin']) ? $row['social_skin'] : null;
-		$return['office_info_phone'] = !empty($row['office_info_phone']) ? $row['office_info_phone'] : null;
-		$return['office_info_email'] = !empty($row['office_info_email']) ? $row['office_info_email'] : null;
+		return $row;
 	}
-	return $return;
+	
 }  
   
 /**
  * 0524 對query作空白處理 
  */
 function query_despace($query = null){
+		
 		if($query !== null){
 			//去掉開始和結束的空白
 			$query = trim($query);
@@ -106,167 +79,148 @@ function query_despace($query = null){
 			$query = preg_replace('/[\n\r\t]/', ' ', $query);
 			return $query;
 		
+		}else{
+			return $query;
 		}
-		return $query;
 }  
-
+  
+  
 function remade_str($str, $length=25){
 	if(strlen($str) > $length){
 		$str = substr($str, 0 , $length).'...';
 	}
+	
 	return $str ;
 }
   
-/**
- * 1228 admin後台head區塊引入CSS檔案的處理
- */
-function admin_set_css($file) {
-	$return = null;
-	if( is_array($file)) {
-		foreach($file as $k => $v){
-			$return .=  '<link rel="stylesheet" href="'.URL_ADMIN2_STATIC_FILE.$v.'">';
-		}
-	}
-	echo $return;
-}
-
-/**
- * 1228 admin後台head區塊引入JS檔案的處理
- */
-function admin_set_js($file) {
-	$return = null;
-	if( is_array($file)) {
-		foreach($file as $k => $v){
-			$return .=  '<script src="'.URL_ADMIN2_STATIC_FILE.$v.'"></script>';
-		}
-	}
-	echo $return;
-}
- 
-/**
- *  0102 admin再要求ajax處理時的路徑函式
- */
-function ajax_url($root, $class = null, $function=null) {
-	$return = null;
-	if($class != null){
-		$return = $root.'?class='.$class;
-	}
-	
-	if($function != null){
-		$return .= '&function='.$function;
-	}
-	
-	return $return;
-}
-
-/**
- * 0102 AJAX 的固定回應字串
- */ 
-function json_encode_return($result, $message=null, $redirect=null, $data=null) {
-	echo json_encode(['result'=>$result,'message'=>$message,'redirect'=>$redirect, 'data'=>$data]);
-	exit;
-}
- 
-/**
- * 0104 admin 顯示修改資訊
- */
-function edit_info($param = array()) {
-	$return = null;
-	if(!empty($param) && is_array($param)) {
-		foreach($param as $k => $v) {
-			$return .= $k.'<p class="text-light-blue">'.$v.'</p>';
-		}
-	}
-	echo $return ;
-}
- 
-/**
- * 0107 取得admin資料
- */
-function get_admin($id = null) {
-	$return = null;
-	if($id != null){
-		$query = query_despace('SELECT * from `admin` where id = "'.$id.'"');
-		$result = mysql_query($query);
-		if($result) {
-			$return = mysql_fetch_assoc($result) ;
-		}
-	}
-	return $return;
-}	
-
-/**
- * 0107 將 url 的 get urldecode 後 return 出 array
- */
-function query_string_parse() {
-	$return = array();
-	$tmp1 = array();
-	parse_str($_SERVER['QUERY_STRING'], $tmp1);
-	foreach ($tmp1 as $k1 => $v1) {
-		$return[urldecode($k1)] = urldecode($v1);
-	}
-
-	return $return;
-}
-
-/**
- * 0108 透過product_id取得前台產品的連結網址
- */
-function get_product_url($id=null) {
-	$return = null;
-	if($id != null){
-		$query = query_despace('select * from `product` where `product_id` = '.$id.' ;');
-		$result = mysql_query($query);
-		$product = mysql_fetch_assoc($result) ;
-		if(empty($product)) return $return;
-		
-		$query = query_despace('select * from `category` where `category_status` = "open" and `category_id` = '.$product['product_category_id'].' ;');
-		$result = mysql_query($query);
-		$category = mysql_fetch_assoc($result) ;
-		if(empty($category)) return $return;
-		
-		$query = query_despace('select * from `categoryarea` where `categoryarea_status` = "open" and `categoryarea_id` = '.$category['categoryarea_id'].' ;');
-		$result = mysql_query($query);
-		$categoryarea = mysql_fetch_assoc($result) ;
-		if(empty($categoryarea)) return $return;
-		
-		$param = 'goods='.base64_encode($categoryarea['categoryarea_id']).'&category='.base64_encode($category['category_id']).'&items='.base64_encode($product['product_id']);
-		$return = '<a target="_blank" href="'.URL_ROOT.'product?'.$param.'">'.$product['product_name'].'</a>';
-	}
-	return $return;
-}
-
-/**
- * 判斷是否為 url
- * <p>v1.0 2013-12-18</p>
- * @param unknown $value
- * @return mixed
- */
-function is_url($value) {
-	return filter_var($value, FILTER_VALIDATE_URL);
-}
-
 class info_bar{
 	function update_result_show($statu,$code){
 
-		$status = 'success';
-		$result_msg[$status]['msg_1'] = '資料修改完成!';
+		$status = "success";
+		$result_msg[$status]['msg_1'] = "資料修改完成!";
 
-		$status = 'error';
-		$result_msg[$status]['msg_1'] = '警告! 內容不可為空，請輸入內容!'; 
+		$status = "error";
+		$result_msg[$status]['msg_1'] = "警告! 內容不可為空，請輸入內容!"; 
 
 		if($statu == 'success'){
-			echo '<div id="identifier" class="alert alert-success">';
+			echo "<div id='identifier' class='alert alert-success'>";
 		}else{
-			echo '<div id="identifier" class="alert alert-danger">';
+			echo "<div id='identifier' class='alert alert-danger'>";
 		}
-		echo '<strong>'.$result_msg[$statu]['msg_'.$code].'</strong>'; 
-		echo '</div>';
+		echo "<strong>".$result_msg[$statu]["msg_".$code]."</strong>"; 
+		echo "</div>";
 	}
+
+  
 	function modify_info_show($name=null,$time=null){
 		echo  '<h4><div class="label label-default">最後修改人員:&nbsp;<span class="modify_info">'.$name.'</span>&nbsp;&nbsp;&nbsp;&nbsp;最後修改時間:&nbsp;<span class="modify_info">'.$time.'</span></div></h4>';
 	}
 }
-
-
 ?>
+
+<script>
+//JS轉址 搭配Jbox OR 直接呼叫
+function js_location(url) {
+	location.href = url;
+}
+
+//Error的提示Jbox
+function jbox_error(text, url){
+	if(url == undefined) url = 'javascript:void(0)';
+	var modal = new jBox('Modal', {
+			attach: $('#myModal'),
+			delayOpen : 300,
+			content: '<img width="20" height="20" src="<?php echo $URL_IMG_ROOT.'error.png' ?>"><span style="color:red; font-size:18px; font-family:微軟正黑體; font-weight:bold;">'+text+'</span>',
+			onCloseComplete : function(){
+				js_location(url);
+			}
+		});
+	modal.open();	
+}
+
+//Success的提示Jbox
+function jbox_success(text, url){
+	if(url == undefined) url = 'javascript:void(0)';
+	var modal = new jBox('Modal', {
+			attach : $('#myModal'),
+			delayOpen : 300,
+			content : '<img width="30" height="30" src="<?php echo $URL_IMG_ROOT.'success.png' ?>"><span style="color:#108199; font-size:18px; font-family:微軟正黑體; font-weight:bold;">'+text+'</span>',
+			onCloseComplete : function(){
+				js_location(url);
+			}
+		});
+	modal.open();	
+}
+
+
+
+function check_form(v){
+	var reg = /^([a-zA-Z0-9_-{.}])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/; 
+	var reg2 =/^[0123456789]+$/;
+	var reg3 =/^[a-zA-Z0-9_-]+$/; 
+	var reg4 =/^([0])+([9])+([0123456789])+$/ ;
+	var reg5 =/^([0123456789])+$/ ;
+	var reg6 =/^([0])+([0123456789])+$/ ;
+	var reg7 =/^([a-zA-Z])+([a-zA-Z0-9_])+$/ ;
+	var reg8 =/\\/ ;
+	
+	
+	if(v == 'categoryarea_form'){
+		var name = $('input[name=categoryarea_name]').val();
+		var priority = $('input[name=categoryarea_priority]').val();	
+		var cover = $('input[name=categoryarea_cover]').val();
+		var description = $('input[name=categoryarea_description]').val();
+		
+		if(name.length<=0 || priority.length<=0 ||  cover.length<=0 || reg8.test(name)==true || reg5.test(priority)==false){
+			jbox_error("請輸入正確的資料!");
+			return false;
+		}
+		
+		return true;
+		
+	}	
+	
+	if(v == 'category_form'){
+		var name = $('input[name=category_name]').val();
+		var priority = $('input[name=category_priority]').val();
+		var categoryarea_id = $('#category_belong_categoryarea :selected').val();
+		var cover = $('input[name=category_cover]').val();
+		var description = $('input[name=category_description]').val();
+		
+		if(name.length<=0 || priority.length<=0 || categoryarea_id == "0" || cover.length<=0 ||  reg8.test(name)==true || reg5.test(priority)==false){
+			jbox_error("請輸入正確的資料!");
+			return false;
+		}
+		
+		return true;
+		
+	}
+	
+	if(v == 'product_form'){
+		var name = $('input[name=product_name]').val();
+		var priority = $('input[name=product_priority]').val();
+		var model = $('input[name=product_model]').val();
+		var standard = $('input[name=product_standard]').val();
+		var material = $('input[name=product_material]').val();
+		var produce_time = $('input[name=product_produce_time]').val();
+		var lowest = $('input[name=product_lowest]').val();
+		var category_id = $('#product_belong_category :selected').val();
+		var cover = $('input[name=product_cover]').val();
+		var description = $('input[name=product_description]').val();
+		
+		
+		if(name.length<=0 || priority.length<=0 || model.length<=0 || material.length<=0 || produce_time.length<=0 || lowest.length<=0 || category_id == "0" || cover.length<=0 || reg8.test(name)==true || reg5.test(priority)==false){
+			jbox_error("請輸入正確的資料!");
+			return false;
+		}
+		
+		return true;
+		
+	}
+	
+	
+	
+}
+
+</script>
+

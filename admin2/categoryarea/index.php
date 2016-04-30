@@ -102,8 +102,6 @@ $(function () {
 		
 	});
 
-
-
 });
 </script>
 </body>
