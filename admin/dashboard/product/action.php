@@ -176,9 +176,9 @@
 			"'.$_SESSION['admin']['name'].'","close")';
 			$query = query_despace($query);		
 			if(mysql_query($query)){
-				php_call_jbox('success', '新增資料完成', URL_ADMIN_ROOT.'product/?type='.$type);
+				php_call_jbox('success', '新增資料完成', URL_ADMIN_ROOT.'product/?act=show&type='.$type);
 			}else{
-				php_call_jbox('error','新增失敗，請確認您輸入的資料是否有誤', URL_ADMIN_ROOT.'product/?type='.$type);		
+				php_call_jbox('error','新增失敗，請確認您輸入的資料是否有誤', URL_ADMIN_ROOT.'product/?act=show&type='.$type);		
 			}
 			
 			js_location($URL_ROOT."admin/dashboard/product");
@@ -202,9 +202,9 @@
 			"close",NOW(),"'.$_SESSION['admin']['id'].'","'.$_SESSION['admin']['name'].'")';
 			$query = query_despace($query);
 			if(mysql_query($query)){
-				php_call_jbox('success', '新增資料完成', URL_ADMIN_ROOT.'product/?type='.$type);
+				php_call_jbox('success', '新增資料完成', URL_ADMIN_ROOT.'product/?act=show&type='.$type);
 			}else{
-				php_call_jbox('error','新增失敗，請確認您輸入的資料是否有誤', URL_ADMIN_ROOT.'product/?type='.$type);		
+				php_call_jbox('error','新增失敗，請確認您輸入的資料是否有誤', URL_ADMIN_ROOT.'product/?act=show&type='.$type);		
 			}
 			
 			js_location($URL_ROOT."admin/dashboard/product?act=show&type=category");
@@ -261,10 +261,10 @@
 				if(mysql_query($query2)){
 					php_call_jbox('success', '新增資料完成', URL_ADMIN_ROOT.'product/?type='.$type);
 				}else{
-					php_call_jbox('error','新增失敗，請確認您輸入的資料是否有誤(M)', URL_ADMIN_ROOT.'product/?type='.$type);		
+					php_call_jbox('error','新增失敗，請確認您輸入的資料是否有誤(M)', URL_ADMIN_ROOT.'product/?act=show&type='.$type);		
 				}
 			}else{
-				php_call_jbox('error','新增失敗，請確認您輸入的資料是否有誤(P)', URL_ADMIN_ROOT.'product/?type='.$type);		
+				php_call_jbox('error','新增失敗，請確認您輸入的資料是否有誤(P)', URL_ADMIN_ROOT.'product/?act=show&type='.$type);		
 			}
 			
 			js_location($URL_ROOT."admin/dashboard/product?act=show&type=product");
@@ -335,15 +335,15 @@
 				//取得項目下的產品ID及刪除產品
 				$product_id = get_product_id($category_id);
 				if($product_id != null){
-					if(!del_product($product_id)) php_call_jbox('error', '刪除產品時發生錯誤,請重新操作。', URL_ADMIN_ROOT.'product/?type='.$type);
-					if(!del_product_meta($product_id)) php_call_jbox('error', '刪除產品描述時發生錯誤,請重新操作。', URL_ADMIN_ROOT.'product/?type='.$type);
+					if(!del_product($product_id)) php_call_jbox('error', '刪除產品時發生錯誤,請重新操作。', URL_ADMIN_ROOT.'product/?act=show&type='.$type);
+					if(!del_product_meta($product_id)) php_call_jbox('error', '刪除產品描述時發生錯誤,請重新操作。', URL_ADMIN_ROOT.'product/?act=show&type='.$type);
 				}
 				//刪除項目
-				if(!del_category($category_id)) php_call_jbox('error', '刪除項目時發生錯誤,請重新操作。', URL_ADMIN_ROOT.'product/?type='.$type);
+				if(!del_category($category_id)) php_call_jbox('error', '刪除項目時發生錯誤,請重新操作。', URL_ADMIN_ROOT.'product/?act=show&type='.$type);
 			}
 			
 			//刪除類別
-			(del_categoryarea($id)) ? php_call_jbox('success', '刪除資料完成', URL_ADMIN_ROOT.'product/?type='.$type) : php_call_jbox('error', '刪除失敗', URL_ADMIN_ROOT.'product/?type='.$type);		
+			(del_categoryarea($id)) ? php_call_jbox('success', '刪除資料完成', URL_ADMIN_ROOT.'product/?act=show&type='.$type) : php_call_jbox('error', '刪除失敗', URL_ADMIN_ROOT.'product/?act=show&type='.$type);		
 
 		}
 		
@@ -353,16 +353,16 @@
 			//取得項目下的產品ID及刪除產品
 			$product_id = get_product_id($category_id);
 			if($product_id != null){
-				if(!del_product($product_id)) php_call_jbox('error', '刪除產品時發生錯誤,請重新操作。', URL_ADMIN_ROOT.'product/?type='.$type);
-				if(!del_product_meta($product_id)) php_call_jbox('error', '刪除產品描述時發生錯誤,請重新操作。', URL_ADMIN_ROOT.'product/?type='.$type);
+				if(!del_product($product_id)) php_call_jbox('error', '刪除產品時發生錯誤,請重新操作。', URL_ADMIN_ROOT.'product/?act=show&type='.$type);
+				if(!del_product_meta($product_id)) php_call_jbox('error', '刪除產品描述時發生錯誤,請重新操作。', URL_ADMIN_ROOT.'product/?act=show&type='.$type);
 			}
 			//刪除項目
-			(del_category($category_id)) ? php_call_jbox('success', '刪除資料完成', URL_ADMIN_ROOT.'product/?type='.$type) : php_call_jbox('error', '刪除失敗', URL_ADMIN_ROOT.'product/?type='.$type);
+			(del_category($category_id)) ? php_call_jbox('success', '刪除資料完成', URL_ADMIN_ROOT.'product/?act=show&type='.$type) : php_call_jbox('error', '刪除失敗', URL_ADMIN_ROOT.'product/?act=show&type='.$type);
 		}
 		
 		if($type == 'product'){
 			$product_id[] = $id;
-			(del_product($product_id) && del_product_meta($product_id)) ? php_call_jbox('success', '刪除資料完成', URL_ADMIN_ROOT.'product/?type='.$type) : php_call_jbox('error', '刪除失敗', URL_ADMIN_ROOT.'product/?type='.$type);
+			(del_product($product_id) && del_product_meta($product_id)) ? php_call_jbox('success', '刪除資料完成', URL_ADMIN_ROOT.'product/?act=show&type='.$type) : php_call_jbox('error', '刪除失敗', URL_ADMIN_ROOT.'product/?act=show&type='.$type);
 		}
 		
 		
