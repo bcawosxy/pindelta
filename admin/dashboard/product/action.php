@@ -66,10 +66,10 @@
 			$query = query_despace($query);
 
 			if(mysql_query($query)) {				
-				php_call_jbox('success', '修改成功', URL_ADMIN_ROOT.'product/?type='.$type);
+				php_call_jbox('success', '修改成功', URL_ADMIN_ROOT.'product/?act=edit&type='.$type.'&id='.$id);
 				
 			}else{
-				php_call_jbox('error','修改失敗，請確認您輸入的資料是否有誤', URL_ADMIN_ROOT.'product/?type='.$type);		
+				php_call_jbox('error','修改失敗，請確認您輸入的資料是否有誤', URL_ADMIN_ROOT.'product/?act=show&type='.$type);		
 			}
 			
 		}		
@@ -91,13 +91,13 @@
 			$query = query_despace($query);	
 			
 			if(mysql_query($query)) {
-				php_call_jbox('success', '修改成功', URL_ADMIN_ROOT.'product/?type='.$type);
+				php_call_jbox('success', '修改成功', URL_ADMIN_ROOT.'product/?act=edit&type='.$type.'&id='.$id);
 			}else{
-				php_call_jbox('error','修改失敗，請確認您輸入的資料是否有誤', URL_ADMIN_ROOT.'product/?type='.$type);		
+				php_call_jbox('error','修改失敗，請確認您輸入的資料是否有誤', URL_ADMIN_ROOT.'product/?act=show&type='.$type);		
 			}
 		}
 
-		if($_GET['type'] == 'product'){
+		if($_GET['type'] == 'product') {
 			$name = $_POST['product_name'];
 			$priority = $_POST['product_priority'];
 			$model = $_POST['product_model'];
@@ -136,9 +136,9 @@
 				where product_id = "'.$id.'" limit 1;';
 			$query = query_despace($query);	
 			if(mysql_query($query)){
-				php_call_jbox('success', '修改成功', URL_ADMIN_ROOT.'product/?type='.$type);
+				php_call_jbox('success', '修改成功', URL_ADMIN_ROOT.'product/?act=edit&type='.$type.'&id='.$id);
 			}else{
-				php_call_jbox('error','修改失敗，請確認您輸入的資料是否有誤', URL_ADMIN_ROOT.'product/?type='.$type);		
+				php_call_jbox('error','修改失敗，請確認您輸入的資料是否有誤', URL_ADMIN_ROOT.'product/?act=show&type='.$type);		
 			}
 		}	
 

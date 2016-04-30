@@ -59,7 +59,7 @@
 					<td colspan="2">
 						<input type="submit" onclick="return check_form(this.form.id)" name="key_btn"  class="btn btn-primary" style="width:200px" value="確定新增">  
 						<span id="loadbar" style="display:none;"><img src="<?php echo URL_IMG_ROOT.'loader.gif' ?>"> </span>
-						<button type="button" onclick="history.back()" class="btn btn-warning">取消</button>				
+						<button type="button" onclick="javascript:location.href='<?php echo URL_ADMIN_ROOT.'product?act=show&type=categoryarea' ; ?>'" class="btn btn-warning">取消</button>				
 					</td>
 				</tr>
 			</table>
@@ -138,7 +138,7 @@
 					<td colspan="2">
 						<input type="submit" onclick="return check_form(this.form.id)" name="key_btn" class="btn btn-primary" style="width:200px" value="確定新增">  
 						<span id="loadbar" style="display:none;"><img src="<?php echo URL_IMG_ROOT.'loader.gif' ?>"> </span>
-						<button type="button" onclick="history.back()" class="btn btn-warning">取消</button>				
+						<button type="button" onclick="javascript:location.href='<?php echo URL_ADMIN_ROOT.'product?act=show&type=category' ; ?>'" class="btn btn-warning">取消</button>				
 					</td>
 				</tr>
 			</table>
@@ -268,7 +268,7 @@
 					<td colspan="4">
 						<input type="submit" onclick="return check_form(this.form.id)" name="key_btn" class="btn btn-primary" style="width:200px" value="確定新增">  
 						<span id="loadbar" style="display:none;"><img src="<?php echo URL_IMG_ROOT.'loader.gif' ?>"> </span>
-						<button type="button" onclick="history.back()" class="btn btn-warning">取消</button>				
+						<button type="button" onclick="javascript:location.href='<?php echo URL_ADMIN_ROOT.'product?act=show&type=product' ; ?>'" class="btn btn-warning">取消</button>				
 					</td>
 				</tr>
 			</table>
@@ -624,7 +624,7 @@
 			  
 			<input type="submit" style="width:200px" onclick="return check_form(this.form.id)" class="btn btn-primary" name="key_btn" value="送出修改">
 			<span id="loadbar" style="display:none;"><img src="<?php echo URL_IMG_ROOT.'loader.gif' ?>"> </span>			
-			<button type="button" onclick="history.back()" class="btn btn-warning">取消</button>
+			<button type="button" onclick="javascript:location.href='<?php echo URL_ADMIN_ROOT.'product?act=show&type=categoryarea' ; ?>'" class="btn btn-warning">取消</button>
 		</form>
 		<div id="del_form"></div>
 	<?php
@@ -710,7 +710,7 @@
 			</table>
 			<input type="submit" style="width:200px" onclick="return check_form(this.form.id)"  class="btn btn-primary" name="key_btn" value="送出修改">
 			<span id="loadbar" style="display:none;"><img src="<?php echo URL_IMG_ROOT.'loader.gif' ?>"> </span>
-			<button type="button" onclick="history.back()" class="btn btn-warning">取消</button>
+			<button type="button" onclick="javascript:location.href='<?php echo URL_ADMIN_ROOT.'product?act=show&type=category' ; ?>'" class="btn btn-warning">取消</button>
 		</form>
 		<div id="del_form"></div>
 	
@@ -878,7 +878,7 @@
 					<td colspan="2">
 						<input type="submit"  onclick="return check_form(this.form.id)" name="key_btn"  class="btn btn-primary" style="width:200px" value="確定修改"> 
 						<span id="loadbar" style="display:none;"><img src="<?php echo URL_IMG_ROOT.'loader.gif' ?>"> </span>
-						<button type="button" onclick="history.back()" class="btn btn-warning">取消</button>				
+						<button type="button" onclick="javascript:location.href='<?php echo URL_ADMIN_ROOT.'product?act=show&type=product' ; ?>'" class="btn btn-warning">取消</button>				
 					</td>
 					<td style="text-align:right"> <button onclick="delete_item('<?php echo $type ;?>', <?php echo $id ; ?>)" type="button" class="btn btn-danger">刪除產品</button> </td>
 				</tr>
