@@ -1,4 +1,4 @@
-<?php $config =  dirname(dirname(__FILE__)); include( $config.'/config/global.php' ) ;include( $config.'/config/function.php' ) ;?>
+<?php $config =  dirname(dirname(__FILE__)); include( $config.'/config/global.php' ) ;include( $config.'/config/function_admin2.php' ) ;?>
 <!DOCTYPE html>
 <html>
 <body class="hold-transition login-page">

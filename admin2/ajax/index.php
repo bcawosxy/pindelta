@@ -1,5 +1,5 @@
 <?php
-$config =  dirname(dirname(dirname(__FILE__))) ; include( $config.'/config/global.php' ) ; include( $config.'/config/function.php' ) ;
+$config =  dirname(dirname(dirname(__FILE__))) ; include( $config.'/config/global.php' ) ; include( $config.'/config/function_admin2.php' ) ;
 $class = $_GET['class']; $function = $_GET['function'];
 $file = './'.$class.'/'.$function.'.php' ;
 

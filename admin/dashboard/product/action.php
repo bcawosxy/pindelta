@@ -259,7 +259,7 @@
 					"'.$max_id.'", "Pindelta - '.htmlspecialchars($name).'" , NOW(), "'.$_SESSION['admin']['id'].'")';
 				$query2 = query_despace($query2);
 				if(mysql_query($query2)){
-					php_call_jbox('success', '新增資料完成', URL_ADMIN_ROOT.'product/?type='.$type);
+					php_call_jbox('success', '新增資料完成', URL_ADMIN_ROOT.'product/?act=show&type='.$type);
 				}else{
 					php_call_jbox('error','新增失敗，請確認您輸入的資料是否有誤(M)', URL_ADMIN_ROOT.'product/?act=show&type='.$type);		
 				}

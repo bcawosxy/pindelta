@@ -1,4 +1,4 @@
-<?php $config =  dirname(dirname(__FILE__)) ; include( $config.'/config/global.php' ) ; include( $config.'/config/function.php' ) ;?>
+<?php $config =  dirname(dirname(__FILE__)) ; include( $config.'/config/global.php' ) ; include( $config.'/config/function_admin2.php' ) ;?>
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,6 +24,7 @@
 			'adminlte/css/AdminLTE.min.css',
 			'adminlte/css/_all-skins.min.css',
 			'plugins/icheck/all.css',
+			'plugins/font-awesome/css/font-awesome.css',
 			'../../lib/jbox/jBox.css',
 		);
 		
@@ -69,8 +70,21 @@ class categoryarea{
 		$css = $common_css; $js = $common_js;
 		$css[] = 'plugins/datatables/dataTables.bootstrap.css';
 		
+		
 		$js[] = 'plugins/datatables/jquery.dataTables.min.js';
 		$js[] = 'plugins/datatables/dataTables.bootstrap.min.js';
+		return array($css, $js);
+	}
+
+	function content($common_css, $common_js){
+		$css = $common_css; $js = $common_js;
+		$css[] = 'plugins/icheck/minimal/minimal.css';
+		$css[] = 'js/jquery-file-upload/css/jquery.fileupload.css';
+
+		$js[] = 'plugins/icheck/icheck.min.js';	
+		$js[] = 'js/jquery-file-upload/js/jquery.ui.widget.js';
+		$js[] = 'js/jquery-file-upload/js/jquery.iframe-transport.js';
+		$js[] = 'js/jquery-file-upload/js/jquery.fileupload.js';
 		return array($css, $js);
 	}
 }
