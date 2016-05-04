@@ -12,7 +12,7 @@
 			$query = query_despace('select * from `inquiry` where `status` != "delete" and `id` = '.$inquiry_id.' ;');
 			$result = mysql_query($query);
 			$data = mysql_fetch_assoc($result) ;
-			if(empty($data)) js_location(URL_ADMIN2_ROOT, '[Error]找不到資料');
+			if(empty($data)) js_location(URL_ADMIN2_ROOT.'inquiry', '[Error]找不到資料');
 			if($data['reader']) $data['reader'] = get_admin($data['reader'])['admin_name'];
 			
 			if($data['read'] == 'unread') {

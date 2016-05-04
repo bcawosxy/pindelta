@@ -7,24 +7,28 @@
 	<?php include('../header.php'); ?>
 	<?php include('../navbar.php'); ?>
 	<?php 
-		$query = query_despace('select * from `categoryarea` order by `categoryarea_insert_time` desc;');
+		$query = 'SELECT `category`.*, `categoryarea`.`categoryarea_name`
+			FROM `category`
+			LEFT JOIN `categoryarea` USING(`categoryarea_id`)
+			ORDER BY `category_insertime` DESC;';
+		$query = query_despace($query);
 		$result = mysql_query($query);
 		$data = array();
 		while($row = mysql_fetch_assoc($result)){ $data[] = $row;	}
 		foreach($data as $k => $v) {
-			$data[$k]['categoryarea_status'] = ($data[$k]['categoryarea_status'] == 'open') ? '<span class="label label-success">Open</span>' : '<span class="label label-warning">Close</span>' ;
+			$data[$k]['category_status'] = ($data[$k]['category_status'] == 'open') ? '<span class="label label-success">Open</span>' : '<span class="label label-warning">Close</span>' ;
 		}
 
 	?>
 	<div class="content-wrapper">
 		<section class="content-header">
-			<div class="box-body"><h2>產品類別區域</h2></div>
+			<div class="box-body"><h2>產品項目</h2></div>
 			<h1>				
 				<small><p class="text-light-blue"></p></small>
 			</h1>
 			<ol class="breadcrumb">
 				<li><a href="<?php echo URL_ADMIN2_ROOT ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-				<li class="active">產品類別區域</li>
+				<li class="active">產品項目</li>
 			</ol>
 		</section>
 		<section class="content">
@@ -41,6 +45,8 @@
 											<th>#</th>
 											<th>編輯</th>
 											<th>名稱</th>
+											<th>所屬類別id</th>
+											<th>所屬類別名稱</th>
 											<th>優先順序</th>
 											<th>描述</th>
 											<th>狀態</th>
@@ -51,12 +57,14 @@
 											foreach($data as $k0 => $v0) {
 												echo '
 													<tr>
+														<td>'.$v0['category_id'].'</td>
+														<td><a href="'.URL_ADMIN2_ROOT.P_CLASS.'/content.php?category_id='.$v0['category_id'].'">編輯</a></td>
+														<td>'.$v0['category_name'].'</td>
 														<td>'.$v0['categoryarea_id'].'</td>
-														<td><a href="'.URL_ADMIN2_ROOT.P_CLASS.'/content.php?categoryarea_id='.$v0['categoryarea_id'].'">編輯</a></td>
-														<td>'.$v0['categoryarea_name'].'</td>
-														<td>'.$v0['categoryarea_priority'].'</td>
-														<td>'.$v0['categoryarea_description'].'</td>
-														<td>'.$v0['categoryarea_status'].'</td>
+														<td style="color:#00b7b0;">'.$v0['categoryarea_name'].'</td>
+														<td>'.$v0['category_priority'].'</td>
+														<td>'.$v0['category_description'].'</td>
+														<td>'.$v0['category_status'].'</td>
 													</tr>
 												';
 											}

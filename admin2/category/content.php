@@ -7,43 +7,51 @@
 	<?php include('../header.php'); ?>
 	<?php include('../navbar.php'); ?>
 	<?php 
-		$id = (!empty($_GET['categoryarea_id'])) ? $_GET['categoryarea_id'] : null;
+		$id = (!empty($_GET['category_id'])) ? $_GET['category_id'] : null;
 		$act = ($id == null) ? 'add' : 'edit';
 
 		switch ($act) {
 			case 'add':
 					$data = [
-						'categoryarea_id' => null,
-						'categoryarea_name' => null,
-						'categoryarea_priority' => 0,
-						'categoryarea_status' => 'close',
-						'categoryarea_description' => null,
-						'categoryarea_insert_time' => null,
-						'categoryarea_modify_time' => null,
+						'category_id' => null,
+						'category_name' => null,
+						'category_priority' => 0,
+						'category_status' => 'close',
+						'category_description' => null,
+						'category_insertime' => null,
+						'category_modify_time' => null,
 					];
 					$cover = null;
 				break;
 			
 			case 'edit':
-					$query = 'select * from `categoryarea` where categoryarea_id = '.$id;
+					$query = 'select category.*, categoryarea.categoryarea_name from `category` left join `categoryarea` using(`categoryarea_id`) where category_id = '.$id;
 					$result = mysql_query($query);
 					while($row = mysql_fetch_assoc($result)){ $data = $row;	}
-					if(empty($data)) js_location(URL_ADMIN2_ROOT.'categoryarea', '[Error]找不到資料');
-					$cover_dir = (!empty($data['categoryarea_cover'])) ?  ADMIN_IMG_UPLOAD.P_CLASS.'/'.$data['categoryarea_cover'] : null ;
-					$cover = (!empty($data['categoryarea_cover'])) ?  $data['categoryarea_cover'] : null ;
+					if(empty($data)) js_location(URL_ADMIN2_ROOT.'category', '[Error]找不到資料');
+					$cover_dir = (!empty($data['category_cover'])) ?  ADMIN_IMG_UPLOAD.P_CLASS.'/'.$data['category_cover'] : null ;
+					$cover = (!empty($data['category_cover'])) ?  $data['category_cover'] : null ;
 				break;
 		}
 
+		$query = 'select * from categoryarea where categoryarea_status = "open";';
+		$query = query_despace($query);
+		$result = mysql_query($query);
+		$categoryarea = array();
+		while($row=mysql_fetch_array($result)){
+			$categoryarea[$row['categoryarea_id']]['categoryarea_id'] = $row['categoryarea_id'];
+			$categoryarea[$row['categoryarea_id']]['categoryarea_name'] = $row['categoryarea_name'];
+		}
 	?>
 	<div class="content-wrapper">
 		<section class="content-header">
-			<div class="box-body"><h2>類別區域管理</h2></div>
+			<div class="box-body"><h2>項目管理</h2></div>
 			<h1>				
 				<small><p class="text-light-blue"></p></small>
 			</h1>
 			<ol class="breadcrumb">
 				<li><a href="<?php echo URL_ADMIN2_ROOT ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-				<li class="active">類別區域管理</li>
+				<li class="active">項目管理</li>
 			</ol>
 		</section>
 		
@@ -55,32 +63,47 @@
 							<div class="box-body box-solid">
 								<div class="box-header with-border">
 									<i class="fa fa-file-text-o"></i>
-									<h3 class="box-title"> <?php echo ($act == 'add') ? '新增產品類別區域' : '編輯產品類別區域 ： '.$data['categoryarea_name'] ?> </h3>
+									<h3 class="box-title"> <?php echo ($act == 'add') ? '新增產品項目' : '編輯產品項目 ： '.$data['category_name'] ?> </h3>
 								</div>
 								<div class="box-body">
 									<dl class="dl-horizontal">
 										<dt>編號:</dt>
-											<dd># <?php echo $data['categoryarea_id'] ?></dd>
+											<dd># <?php echo $data['category_id'] ?></dd>
 										<br>
 										<dt>名稱:</dt>
 											<dd>
-												<input type="text" class="form-control" name="name" placeholder="產品類別名稱" style="width:30%" value="<?php echo $data['categoryarea_name'] ?>">
+												<input type="text" class="form-control" name="name" placeholder="產品類別名稱" style="width:30%" value="<?php echo $data['category_name'] ?>">
+											</dd>
+										<br>
+										<dt>所屬類別:</dt>
+											<dd style="<?php echo ($act == 'edit') ? 'display:none;' : null; ?>">
+							                    <select class="form-control select2" id="categoryarea" style="width: 30%;">
+							                    	<option value="0" selected="selected">請選擇所屬類別</option>
+							                    	<?php 
+							                    		foreach ($categoryarea as $k0 => $v0) {
+							                    			echo '<option value="'.$v0['categoryarea_id'].'">'.$v0['categoryarea_name'].'</option>';
+							                    		}
+							                    	?>
+							                    </select>
+											</dd>
+											<dd style="<?php echo ($act == 'add') ? 'display:none;' : null; ?>">
+												<p style="color:#00b7b0;font-weight: bold;font-size:14px;"><?php echo $data['categoryarea_name'] ?></p>
 											</dd>
 										<br>
 										<dt>排序:</dt>
 											<dd>
-												<input type="number" class="form-control" name="priority" placeholder="1~255" min="0" max="255" style="width:20%" value="<?php echo $data['categoryarea_priority'] ?>">
+												<input type="number" class="form-control" name="priority" placeholder="1~255" min="0" max="255" style="width:20%" value="<?php echo $data['category_priority'] ?>">
 											</dd>
 										<br>
 										<dt>狀態:</dt>
 											<dd>
 												<div class="form-group">
 													<label for="r1">
-														<input id="r1" type="radio" name="status" class="minimal-red" value="open" <?php if($data['categoryarea_status'] == 'open') echo 'checked'; ?>>
+														<input id="r1" type="radio" name="status" class="minimal-red" value="open" <?php if($data['category_status'] == 'open') echo 'checked'; ?>>
 														Open
 													</label>&nbsp;&nbsp;&nbsp;
 													<label for="r2">
-														<input id="r2" type="radio" name="status" class="minimal-red" value="close" <?php if($data['categoryarea_status'] == 'close') echo 'checked'; ?>>
+														<input id="r2" type="radio" name="status" class="minimal-red" value="close" <?php if($data['category_status'] == 'close') echo 'checked'; ?>>
 														Close
 													</label>
 												</div>
@@ -88,7 +111,7 @@
 										<br>
 										<dt>介紹:</dt>
 											<dd>
-												<input type="text" class="form-control" name="description" placeholder="介紹" style="width:80%" value="<?php echo $data['categoryarea_description'] ?>">
+												<input type="text" class="form-control" name="description" placeholder="介紹" style="width:80%" value="<?php echo $data['category_description'] ?>">
 											</dd>
 										<br>
 										<dt>封面:</dt>
@@ -116,12 +139,12 @@
 										<br>
 										<dt>新增時間:</dt>
 											<dd>
-												<p class="text-muted"><?php echo $data['categoryarea_insert_time'] ?></p>
+												<p class="text-muted"><?php echo $data['category_insertime'] ?></p>
 											</dd>
 										<br>
 										<dt>修改時間:</dt>
 											<dd>
-												<p class="text-muted"><?php echo $data['categoryarea_modify_time'] ?></p>
+												<p class="text-muted"><?php echo $data['category_modify_time'] ?></p>
 											</dd>
 										<br>
 									</dl>
@@ -131,7 +154,7 @@
 					</div>
 				</div>
 			</div>
-			<a class="btn btn-app" href="<?php echo URL_ADMIN2_ROOT.'categoryarea' ?>">
+			<a class="btn btn-app" href="<?php echo URL_ADMIN2_ROOT.'category' ?>">
 				<i class="fa fa-angle-double-left"></i> 上一頁
 			</a>
 
@@ -149,6 +172,8 @@
 </div>
 <script>
 $(function () {
+	$(".select2").select2();
+
     'use strict';
     var url = '<?php echo ajax_url(URL_ADMIN2_AJAX,'fileupload','index') ?>';
     $('#fileupload').fileupload({
@@ -192,6 +217,7 @@ $(function () {
 						act : '<?php echo $act ?>',
 						name : $('input[name="name"]').val(),
 						priority : priority.val(),
+						categoryarea_id : $('#categoryarea').val(),
 						status : $('input[name="status"]:checked').val(),
 						description : $('input[name="description"]').val(),
 						cover : $('#cover').attr('alt'),

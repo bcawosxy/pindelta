@@ -12,7 +12,7 @@
 				<a href="<?php echo URL_ADMIN2_ROOT.'categoryarea'; ?>"><i class="fa fa-list"></i> <span>產品類別區域管理</span></a>
 			</li>
 			<li>
-				<a href="javascropt:void(0)"><i class="fa fa-list-ul"></i> <span>產品類別管理</span></a>
+				<a href="<?php echo URL_ADMIN2_ROOT.'category'; ?>"><i class="fa fa-list-ul"></i> <span>產品類別管理</span></a>
 			</li>
 			<li>
 				<a href="javascropt:void(0)"><i class="fa fa-heart"></i> <span>產品管理</span></a>
