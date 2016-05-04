@@ -181,7 +181,7 @@ class inquiry {
 class sociallink{
 	function index($common_css, $common_js){
 		$css = $common_css; $js = $common_js;
-		$css[] = 'css/switch.css';
+		$css[] = 'plugins/icheck/minimal/minimal.css';
 		$js[] = 'plugins/iCheck/icheck.min.js';
 		return array($css, $js);
 	}

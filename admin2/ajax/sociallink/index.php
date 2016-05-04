@@ -10,7 +10,7 @@ if( isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
 	 */
 
 	foreach($data as $k0 => $v0) {
-		$v0[2] = ($data[$k0][2] == 'Switch Off') ? 'open' : 'close';
+		$v0[2] = $data[$k0][2] ;
 		if( !is_url($v0[0]) ) json_encode_return(0, '非法的URL連結 [Error id:'.$v0[0].']', URL_ADMIN2_ROOT.'sociallink');
 		
 		$query = 'update `sociallink` set `url` = "'.$v0[0].'",';

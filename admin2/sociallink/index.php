@@ -15,7 +15,7 @@ include('../head.php');
 		$a_sociallink = array();
 		while($row = mysql_fetch_assoc($result)) { $a_sociallink[] = $row; }
 		foreach($a_sociallink as $k => $v) {
-			$a_sociallink[$k]['status'] = ($a_sociallink[$k]['status'] == 'open') ? 'Off' : 'On' ;
+			$a_sociallink[$k]['status'] = ($a_sociallink[$k]['status'] == 'open') ? 'On' : 'Off' ;
 		}
 		
 		$a_icon = ['fa-google', 'fa-facebook', 'fa-flickr', 'fa-twitter', 'fa-google', 'fa-instagram', 'fa-linkedin', 'fa-pinterest', 'fa-tumblr'];
@@ -37,7 +37,7 @@ include('../head.php');
 		</section>
 		<section class="content">
 			<div class="row">
-				<div class="col-md-8">
+				<div class="col-md-10">
 					<div class="box">
 						<div class="box-header with-border">
 							<h3 class="box-title">社群網站連結清單</h3>
@@ -54,6 +54,8 @@ include('../head.php');
 								</tr>
 								<?php 
 									foreach($a_sociallink as $k => $v) {
+										$status_on = ($v['status'] == 'On') ? 'checked' : null;
+										$status_off = ($v['status'] == 'Off') ? 'checked' : null;
 										echo '<tr class="data">
 												<td>'.$v['id'].'.</td>
 												<td><small class="label label-success">'.ucfirst ($v['name'] ).'</small></td>
@@ -73,10 +75,14 @@ include('../head.php');
 													</div>
 												</td>
 												<td>
-													<div id="switch_'.$k.'" class="Switch '.$v['status'].'">
-														<div class="Toggle"></div>
-														<span class="On">ON</span>
-														<span class="Off">OFF</span>
+													<div class="form-group">
+														<label>
+															<input type="radio" name="status_'.$k.'" value="open" class="minimal" '.$status_on.'> On
+														</label>
+														&nbsp;&nbsp;&nbsp;&nbsp;
+														<label>
+															<input type="radio" name="status_'.$k.'" value="close" class="minimal" '.$status_off.'> Off
+														</label>
 													</div>
 												</td>
 												<td>'.$v['modifytime'].'</td>
@@ -103,12 +109,12 @@ $(function () {
 	$('#save').on('click', function(){
 		var data = new Array();
 		$('tr.data').each(function (k, v){
-			var obj = $(v);
-			var tmp = [
-				$(obj).find(':input[name="url"]').val(),
-				$(obj).find('[name="sort"] option:selected').val(),
-				$(obj).find('div[id^="switch_"]').attr('class'),
-			];
+			var obj = $(v),
+				tmp = [
+					$(obj).find(':input[name="url"]').val(),
+					$(obj).find('[name="sort"] option:selected').val(),
+					$(obj).find('input[name="status_'+k+'"]:checked').val(),				
+				];
 			data.push(tmp);
 		});
 	
@@ -124,11 +130,11 @@ $(function () {
 		});
 	});
 	
-	// Switch toggle
-	$('.Switch').click(function() {
-		$(this).toggleClass('On').toggleClass('Off');
-	});
-
+    // iCheck for checkbox and radio inputs
+    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+      checkboxClass: 'icheckbox_minimal-blue',
+      radioClass: 'iradio_minimal-blue'
+    });
 });
 </script>
 </body>
