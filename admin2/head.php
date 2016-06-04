@@ -35,7 +35,6 @@
 			'adminlte/js/demo.js',
 			'../../lib/jbox/jBox.js',
 		);		
-
 		//Display css&js html tag
 		list($css_file, $js_file) = $obj::$p_function($common_css, $common_js);
 		admin_set_css($css_file);
@@ -64,7 +63,6 @@ class about{
 		return array($css, $js);
 	}
 }
-
 class category{
 	function index($common_css, $common_js){
 		$css = $common_css; $js = $common_js;
@@ -75,13 +73,11 @@ class category{
 		$js[] = 'plugins/datatables/dataTables.bootstrap.min.js';
 		return array($css, $js);
 	}
-
 	function content($common_css, $common_js){
 		$css = $common_css; $js = $common_js;
 		$css[] = 'plugins/icheck/minimal/minimal.css';
 		$css[] = 'plugins/select2/select2.min.css';
 		$css[] = 'js/jquery-file-upload/css/jquery.fileupload.css';
-
 		$js[] = 'plugins/icheck/icheck.min.js';	
 		$js[] = 'plugins/select2/select2.full.min.js';	
 		$js[] = 'js/jquery-file-upload/js/jquery.ui.widget.js';
@@ -90,7 +86,6 @@ class category{
 		return array($css, $js);
 	}
 }
-
 class categoryarea{
 	function index($common_css, $common_js){
 		$css = $common_css; $js = $common_js;
@@ -101,12 +96,10 @@ class categoryarea{
 		$js[] = 'plugins/datatables/dataTables.bootstrap.min.js';
 		return array($css, $js);
 	}
-
 	function content($common_css, $common_js){
 		$css = $common_css; $js = $common_js;
 		$css[] = 'plugins/icheck/minimal/minimal.css';
 		$css[] = 'js/jquery-file-upload/css/jquery.fileupload.css';
-
 		$js[] = 'plugins/icheck/icheck.min.js';	
 		$js[] = 'js/jquery-file-upload/js/jquery.ui.widget.js';
 		$js[] = 'js/jquery-file-upload/js/jquery.iframe-transport.js';
@@ -114,7 +107,6 @@ class categoryarea{
 		return array($css, $js);
 	}
 }
-
 class charts {
 	function index($common_css, $common_js){
 		$css = $common_css; $js = $common_js;
@@ -124,7 +116,6 @@ class charts {
 		return array($css, $js);
 	}
 }
-
 class contact {
 	function index($common_css, $common_js){
 		$css = $common_css; $js = $common_js;
@@ -148,7 +139,6 @@ class contact {
 		return array($css, $js);
 	}
 }
-
 class index{
 	function login($common_css, $common_js){
 		$css = $common_css; $js = $common_js;
@@ -162,7 +152,6 @@ class index{
 		return array($css, $js);
 	}
 }
-
 class inquiry {
 	function index($common_css, $common_js){
 		$css = $common_css; $js = $common_js;
@@ -185,35 +174,7 @@ class inquiry {
 		$js[] = 'plugins/fastclick/fastclick.min.js';
 		return array($css, $js);
 	}
-
 }
-
-class product{
-	function index($common_css, $common_js){
-		$css = $common_css; $js = $common_js;
-		$css[] = 'plugins/datatables/dataTables.bootstrap.css';
-		
-		
-		$js[] = 'plugins/datatables/jquery.dataTables.min.js';
-		$js[] = 'plugins/datatables/dataTables.bootstrap.min.js';
-		return array($css, $js);
-	}
-
-	function content($common_css, $common_js){
-		$css = $common_css; $js = $common_js;
-		$css[] = 'plugins/icheck/minimal/minimal.css';
-		$css[] = 'plugins/select2/select2.min.css';
-		$css[] = 'js/jquery-file-upload/css/jquery.fileupload.css';
-
-		$js[] = 'plugins/icheck/icheck.min.js';	
-		$js[] = 'plugins/select2/select2.full.min.js';	
-		$js[] = 'js/jquery-file-upload/js/jquery.ui.widget.js';
-		$js[] = 'js/jquery-file-upload/js/jquery.iframe-transport.js';
-		$js[] = 'js/jquery-file-upload/js/jquery.fileupload.js';
-		return array($css, $js);
-	}
-}
-
 class sociallink{
 	function index($common_css, $common_js){
 		$css = $common_css; $js = $common_js;
@@ -222,7 +183,6 @@ class sociallink{
 		return array($css, $js);
 	}
 }
-
 class system{
 	function index($common_css, $common_js){
 		$css = $common_css; $js = $common_js;
@@ -230,7 +190,6 @@ class system{
 		$js[] = 'plugins/iCheck/icheck.min.js';
 		return array($css, $js);
 	}
-
 	function admin($common_css, $common_js){
 		$css = $common_css; $js = $common_js;
 		$js[] = 'plugins/fastclick/fastclick.min.js';
@@ -238,6 +197,4 @@ class system{
 		return array($css, $js);
 	}
 }
-
-
 ?>
