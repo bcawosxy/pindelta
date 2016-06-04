@@ -1,9 +1,15 @@
 <aside class="main-sidebar">
 	<section class="sidebar">
 		<ul class="sidebar-menu">
+			<li class="header">後台首頁</li>
+			<li>
+				<a href="<?php echo URL_ADMIN2_ROOT.'charts'; ?>"><i class="fa fa-area-chart"></i> <span>首頁資訊</span></a>
+			</li>
+		</ul>
+		<ul class="sidebar-menu">
 			<li class="header">關於品利興</li>
 			<li>
-				<a href="<?php echo URL_ADMIN2_ROOT; ?>"><i class="fa fa-book"></i> <span>關於品利興</span></a>
+				<a href="<?php echo URL_ADMIN2_ROOT.'about'; ?>"><i class="fa fa-book"></i> <span>關於品利興</span></a>
 			</li>
 		</ul>
 		<ul class="sidebar-menu">
@@ -21,7 +27,7 @@
 		<ul class="sidebar-menu">
 			<li class="header">社群網站</li>
 			<li>
-				<a href="<?php echo URL_ADMIN2_ROOT.'sociallink'; ?>"><i class="fa fa-book"></i> <span>社群網站連結</span></a>
+				<a href="<?php echo URL_ADMIN2_ROOT.'sociallink'; ?>"><i class="fa fa-facebook"></i> <span>社群網站連結</span></a>
 			</li>
 		</ul>
 		<ul class="sidebar-menu">

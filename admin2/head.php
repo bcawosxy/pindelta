@@ -115,6 +115,17 @@ class categoryarea{
 	}
 }
 
+class charts {
+	function index($common_css, $common_js){
+		$css = $common_css; $js = $common_js;
+
+		$js[] = 'plugins/highcharts/js/highcharts.js';	
+		$js[] = 'plugins/highcharts/js/exporting.js';	
+		$js[] = 'plugins/highcharts/js/sand-signika.js';	
+		return array($css, $js);
+	}
+}
+
 class contact {
 	function index($common_css, $common_js){
 		$css = $common_css; $js = $common_js;
@@ -175,7 +186,6 @@ class inquiry {
 		$js[] = 'plugins/fastclick/fastclick.min.js';
 		return array($css, $js);
 	}
-
 }
 
 class sociallink{
