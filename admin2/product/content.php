@@ -7,71 +7,43 @@
 	<?php include('../header.php'); ?>
 	<?php include('../navbar.php'); ?>
 	<?php 
-		$id = (!empty($_GET['categoryarea_id'])) ? $_GET['categoryarea_id'] : null;
+		$id = (!empty($_GET['product_id'])) ? $_GET['product_id'] : null;
 		$act = ($id == null) ? 'add' : 'edit';
 		switch ($act) {
 			case 'add':
 					$data = [
-						'categoryarea_id' => null,
-						'categoryarea_name' => null,
-						'categoryarea_priority' => 0,
-						'categoryarea_status' => 'close',
-						'categoryarea_description' => null,
-						'categoryarea_insert_time' => null,
-						'categoryarea_modify_time' => null,
+						'product_id' => null,
+						'product_name' => null,
+						'product_priority' => 0,
+						'product_status' => 'close',
+						'product_description' => null,
+						'product_insert_time' => null,
+						'product_modify_time' => null,
 					];
 					$cover = null;
 				break;
 			
 			case 'edit':
-					$query = 'select * from `categoryarea` where categoryarea_id = '.$id;
+					$query = 'select * from `product` where product_id = '.$id;
 					$result = mysql_query($query);
 					while($row = mysql_fetch_assoc($result)){ $data = $row;	}
-					if(empty($data)) js_location(URL_ADMIN2_ROOT.'categoryarea', '[Error]找不到資料');
-					$cover_dir = (!empty($data['categoryarea_cover'])) ?  ADMIN_IMG_UPLOAD.P_CLASS.'/'.$data['categoryarea_cover'] : null ;
-					$cover = (!empty($data['categoryarea_cover'])) ?  $data['categoryarea_cover'] : null ;
+					if(empty($data)) js_location(URL_ADMIN2_ROOT.'product', '[Error]找不到資料');
+					$cover_dir = (!empty($data['product_cover'])) ?  ADMIN_IMG_UPLOAD.P_CLASS.'/'.$data['product_cover'] : null ;
+					$cover = (!empty($data['product_cover'])) ?  $data['product_cover'] : null ;
 				break;
 		}
 
 	?>
 	<div class="content-wrapper">
 		<section class="content-header">
-			<div class="box-body"><h2>類別區域管理</h2></div>
+			<div class="box-body"><h2>產品管理</h2></div>
 			<h1>				
 				<small><p class="text-light-blue"></p></small>
 			</h1>
 			<ol class="breadcrumb">
 				<li><a href="<?php echo URL_ADMIN2_ROOT ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-				<li class="active">類別區域管理</li>
+				<li class="active">產品管理</li>
 			</ol>
-		</section>
-		
-		<section class="content">
-		
-			<div class="col-md-10">
-				<div class="nav-tabs-custom">
-					<ul class="nav nav-tabs">
-						<li class="active"><a href="#tab_1" data-toggle="tab">產品資料</a></li>
-						<li><a href="#tab_2" data-toggle="tab">產品標籤</a></li>
-						<li><a href="#tab_3" data-toggle="tab">產品其他</a></li>
-					</ul>
-
-					<div class="tab-content">
-						<div class="tab-pane active" id="tab_1">
-							tab1
-						</div>
-						
-						<div class="tab-pane" id="tab_2">
-							tab2
-						</div>
-						
-						<div class="tab-pane" id="tab_3">
-							tab3
-						</div>
-					</div>
-				</div>
-			</div>
-
 		</section>
 
 		<section class="content">
@@ -80,85 +52,107 @@
 					<div class="row">
 						<div class="col-md-10">
 							<div class="box-body box-solid">
-								<div class="box-header with-border">
-									<i class="fa fa-file-text-o"></i>
-									<h3 class="box-title"> <?php echo ($act == 'add') ? '新增產品類別區域' : '編輯產品類別區域 ： '.$data['categoryarea_name'] ?> </h3>
-								</div>
-								<div class="box-body">
-									<dl class="dl-horizontal">
-										<dt>編號:</dt>
-											<dd># <?php echo $data['categoryarea_id'] ?></dd>
-										<br>
-										<dt>名稱:</dt>
-											<dd>
-												<input type="text" class="form-control" name="name" placeholder="產品類別名稱" style="width:30%" value="<?php echo $data['categoryarea_name'] ?>">
-											</dd>
-										<br>
-										<dt>排序:</dt>
-											<dd>
-												<input type="number" class="form-control" name="priority" placeholder="1~255" min="0" max="255" style="width:20%" value="<?php echo $data['categoryarea_priority'] ?>">
-											</dd>
-										<br>
-										<dt>狀態:</dt>
-											<dd>
-												<div class="form-group">
-													<label for="r1">
-														<input id="r1" type="radio" name="status" class="minimal-red" value="open" <?php if($data['categoryarea_status'] == 'open') echo 'checked'; ?>>
-														Open
-													</label>&nbsp;&nbsp;&nbsp;
-													<label for="r2">
-														<input id="r2" type="radio" name="status" class="minimal-red" value="close" <?php if($data['categoryarea_status'] == 'close') echo 'checked'; ?>>
-														Close
-													</label>
-												</div>
-											</dd>
-										<br>
-										<dt>介紹:</dt>
-											<dd>
-												<input type="text" class="form-control" name="description" placeholder="介紹" style="width:80%" value="<?php echo $data['categoryarea_description'] ?>">
-											</dd>
-										<br>
-										<dt>封面:</dt>
-											<dd>
-												<div class="form-group">
-												    <!-- The fileinput-button span is used to style the file input field as button -->
-												    <span class="btn btn-success fileinput-button">
-												        <i class="glyphicon glyphicon-plus"></i>
-												        <span>Select files...</span>
-												        <!-- The file input field used as target for the file upload widget -->
-												        <input id="fileupload" type="file" name="files[]" multiple>
-												    </span>
-												    <br>
-												    <br>
-												    <!-- The global progress bar -->
-												    <div id="progress" class="progress">
-												        <div class="progress-bar progress-bar-success"></div>
-												    </div>
-												    <!-- The container for the uploaded files -->
-												    <div id="files" class="files"></div>
-												    <br>
-												    <img style="width:240px;height: 320px;" id="cover" alt="<?php echo $cover ?>" src="<?php echo $cover_dir ?>" onerror="this.src='<?php echo URL_IMG_ROOT.'input.png' ?>'" data-state="old" class="img-responsive">
-												</div>
-											</dd>
-										<br>
-										<dt>新增時間:</dt>
-											<dd>
-												<p class="text-muted"><?php echo $data['categoryarea_insert_time'] ?></p>
-											</dd>
-										<br>
-										<dt>修改時間:</dt>
-											<dd>
-												<p class="text-muted"><?php echo $data['categoryarea_modify_time'] ?></p>
-											</dd>
-										<br>
-									</dl>
+								
+								<div class="nav-tabs-custom">
+									<ul class="nav nav-tabs">
+										<li class="active"><a href="#tab_1" data-toggle="tab">產品資料</a></li>
+										<li><a href="#tab_2" data-toggle="tab">產品標籤</a></li>
+										<li><a href="#tab_3" data-toggle="tab">產品其他</a></li>
+									</ul>
+									<div class="tab-content">
+										<div class="tab-pane active" id="tab_1">
+											<!--tab1-->
+											<div class="box-header with-border">
+												<i class="fa fa-file-text-o"></i>
+												<h3 class="box-title"> <?php echo ($act == 'add') ? '新增產品類別區域' : '編輯產品類別區域 ： '.$data['product_name'] ?> </h3>
+											</div>
+											<div class="box-body">
+												<dl class="dl-horizontal">
+													<dt>編號:</dt>
+														<dd># <?php echo $data['product_id'] ?></dd>
+													<br>
+													<dt>名稱:</dt>
+														<dd>
+															<input type="text" class="form-control" name="name" placeholder="產品類別名稱" style="width:30%" value="<?php echo $data['product_name'] ?>">
+														</dd>
+													<br>
+													<dt>排序:</dt>
+														<dd>
+															<input type="number" class="form-control" name="priority" placeholder="1~255" min="0" max="255" style="width:20%" value="<?php echo $data['product_priority'] ?>">
+														</dd>
+													<br>
+													<dt>狀態:</dt>
+														<dd>
+															<div class="form-group">
+																<label for="r1">
+																	<input id="r1" type="radio" name="status" class="minimal-red" value="open" <?php if($data['product_status'] == 'open') echo 'checked'; ?>>
+																	Open
+																</label>&nbsp;&nbsp;&nbsp;
+																<label for="r2">
+																	<input id="r2" type="radio" name="status" class="minimal-red" value="close" <?php if($data['product_status'] == 'close') echo 'checked'; ?>>
+																	Close
+																</label>
+															</div>
+														</dd>
+													<br>
+													<dt>介紹:</dt>
+														<dd>
+															<input type="text" class="form-control" name="description" placeholder="介紹" style="width:80%" value="<?php echo $data['product_description'] ?>">
+														</dd>
+													<br>
+													<dt>封面:</dt>
+														<dd>
+															<div class="form-group">
+															    <!-- The fileinput-button span is used to style the file input field as button -->
+															    <span class="btn btn-success fileinput-button">
+															        <i class="glyphicon glyphicon-plus"></i>
+															        <span>Select files...</span>
+															        <!-- The file input field used as target for the file upload widget -->
+															        <input id="fileupload" type="file" name="files[]" multiple>
+															    </span>
+															    <br>
+															    <br>
+															    <!-- The global progress bar -->
+															    <div id="progress" class="progress">
+															        <div class="progress-bar progress-bar-success"></div>
+															    </div>
+															    <!-- The container for the uploaded files -->
+															    <div id="files" class="files"></div>
+															    <br>
+															    <img style="width:240px;height: 320px;" id="cover" alt="<?php echo $cover ?>" src="<?php echo $cover_dir ?>" onerror="this.src='<?php echo URL_IMG_ROOT.'input.png' ?>'" data-state="old" class="img-responsive">
+															</div>
+														</dd>
+													<br>
+													<dt>新增時間:</dt>
+														<dd>
+															<p class="text-muted"><?php echo $data['product_inserttime'] ?></p>
+														</dd>
+													<br>
+													<dt>修改時間:</dt>
+														<dd>
+															<p class="text-muted"><?php echo $data['product_modify_time'] ?></p>
+														</dd>
+													<br>
+												</dl>
+											</div>							
+										<!--end tab1-->
+										</div>
+										
+										<div class="tab-pane" id="tab_2">
+											tab2
+										</div>
+										
+										<div class="tab-pane" id="tab_3">
+											tab3
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<a class="btn btn-app" href="<?php echo URL_ADMIN2_ROOT.'categoryarea' ?>">
+			<a class="btn btn-app" href="<?php echo URL_ADMIN2_ROOT.'product' ?>">
 				<i class="fa fa-angle-double-left"></i> 上一頁
 			</a>
 

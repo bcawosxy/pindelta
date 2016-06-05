@@ -15,17 +15,17 @@
 		
 		foreach ($week as $k0 => $v0) {
 			/*Categoryarea*/
-			$query = 'select COUNT(*) as `count` from `categoryarea` where `categoryarea_status` = "open" and `categoryarea_insert_time` < "'.$v0.'";';
+			$query = 'select COUNT(*) as `count` from `categoryarea` where (`categoryarea_status` = "open" and `categoryarea_insert_time` < "'.$v0.'") or (`categoryarea_status` = "close" and `categoryarea_modify_time` > "'.$v0.'");';
 			$result = mysql_query($query);
 			while($row = mysql_fetch_assoc($result)){	$data_categoryarea[] = $row['count'];	}
 
 			/*Category*/
-			$query = 'select COUNT(*) as `count` from `category` where `category_status` = "open" and `category_insertime` < "'.$v0.'";';
+			$query = 'select COUNT(*) as `count` from `category` where (`category_status` = "open" and `category_insertime` < "'.$v0.'") or (`category_status` = "open" and `category_modify_time` > "'.$v0.'");';
 			$result = mysql_query($query);
 			while($row = mysql_fetch_assoc($result)){	$data_category[] = $row['count'];	}
 
 			/*Product*/
-			$query = 'select COUNT(*) as `count` from `product` where `product_status` = "open" and `product_inserttime` < "'.$v0.'";';
+			$query = 'select COUNT(*) as `count` from `product` where (`product_status` = "open" and `product_inserttime` < "'.$v0.'") or (`product_status` = "open" and `product_modify_time` > "'.$v0.'");';
 			$result = mysql_query($query);
 			while($row = mysql_fetch_assoc($result)){	$data_product[] = $row['count'];	}
 
@@ -45,7 +45,7 @@
 				<div class="box-header with-border">
 					<h3 class="box-title">
 					<?php 
-						
+						/*title here*/
 					?>
 					</h3>
 				</div>

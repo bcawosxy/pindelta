@@ -72,19 +72,18 @@ if( isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
 		
 		case 'delete' :
 			function del_categoryarea($categoryarea_id) {
-				$query = 'DELETE FROM categoryarea WHERE categoryarea_id = '.$categoryarea_id.' ;';
-				$query = query_despace($query);
+				$query = 'UPDATE `categoryarea` SET `categoryarea_status` = "delete" WHERE `categoryarea`.`categoryarea_id` = '.$categoryarea_id.' ;';
 				return (mysql_query($query));
 			}
 			
 			function del_category(array $category_id_list) {
-				$query = 'DELETE FROM category WHERE category_id IN ('.implode(',' , $category_id_list).') ;';
+				$query = 'UPDATE `category` SET `category_status` = "delete" WHERE `category`.`category_id` IN ('.implode(',' , $category_id_list).') ;';
 				$query = query_despace($query);
 				return (mysql_query($query));		
 			}
 
 			function del_product(array $product_id_list) {
-				$query = 'DELETE FROM product WHERE product_id IN ('.implode(',' , $product_id_list).') ;';
+				$query = 'UPDATE `product` SET `product_status` = "delete" WHERE `product`.`product_id` IN ('.implode(',' , $product_id_list).') ;';
 				$query = query_despace($query);
 				return (mysql_query($query));		
 			}
@@ -97,7 +96,7 @@ if( isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
 		
 			//取得category_id
 			function get_category_id(array $categoryarea_id) {
-				$query = 'select `category_id` from category where categoryarea_id IN ('.implode(',' ,$categoryarea_id).') ;';
+				$query = 'select `category_id` from category where `category_status` != "delete" and `categoryarea_id` IN ('.implode(',' ,$categoryarea_id).') ;';
 				$query = query_despace($query);
 				$result = mysql_query($query);
 				$category_id_list = array();
@@ -109,7 +108,7 @@ if( isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
 			
 			//取得product_id
 			function get_product_id(array $category_id) {
-				$query = 'select `product_id` from product where product_category_id IN ('.implode(',' ,$category_id).') ;';
+				$query = 'select `product_id` from product where `product_status` != "delete" and `product_category_id` IN ('.implode(',' ,$category_id).') ;';
 				$query = query_despace($query);
 				$result = mysql_query($query);
 				$product_id_list = array();

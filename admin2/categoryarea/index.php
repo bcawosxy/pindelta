@@ -7,7 +7,7 @@
 	<?php include('../header.php'); ?>
 	<?php include('../navbar.php'); ?>
 	<?php 
-		$query = query_despace('select * from `categoryarea` order by `categoryarea_insert_time` desc;');
+		$query = query_despace('select * from `categoryarea` where `categoryarea_status` != "delete" order by `categoryarea_insert_time` desc;');
 		$result = mysql_query($query);
 		$data = array();
 		while($row = mysql_fetch_assoc($result)){ $data[] = $row;	}

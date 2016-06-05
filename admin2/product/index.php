@@ -40,9 +40,10 @@
 											<th>#</th>
 											<th>編輯</th>
 											<th>名稱</th>
-											<th>產品類別名稱</th>
+											<th>產品項目id</th>
+											<th>產品項目名稱</th>
 											<th>優先順序</th>
-											<th>描述</th>
+											<th>產品描述</th>
 											<th>狀態</th>
 										</tr>
 									</thead>
@@ -54,7 +55,8 @@
 														<td>'.$v0['product_id'].'</td>
 														<td><a href="'.URL_ADMIN2_ROOT.P_CLASS.'/content.php?product_id='.$v0['product_id'].'">編輯</a></td>
 														<td>'.$v0['product_name'].'</td>
-														<td>'.$v0['category_name'].'</td>
+														<td>'.$v0['product_category_id'].'</td>
+														<td style="color:#00b7b0;">'.$v0['category_name'].'</td>
 														<td>'.$v0['product_priority'].'</td>
 														<td>'.$v0['product_description'].'</td>
 														<td>'.$v0['product_status'].'</td>

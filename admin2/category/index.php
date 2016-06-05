@@ -10,6 +10,7 @@
 		$query = 'SELECT `category`.*, `categoryarea`.`categoryarea_name`
 			FROM `category`
 			LEFT JOIN `categoryarea` USING(`categoryarea_id`)
+			WHERE `category`.`category_status` != "delete"
 			ORDER BY `category_insertime` DESC;';
 		$query = query_despace($query);
 		$result = mysql_query($query);

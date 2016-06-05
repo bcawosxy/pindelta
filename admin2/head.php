@@ -175,6 +175,32 @@ class inquiry {
 		return array($css, $js);
 	}
 }
+
+class product {
+
+		function index($common_css, $common_js){
+		$css = $common_css; $js = $common_js;
+		$css[] = 'plugins/datatables/dataTables.bootstrap.css';
+		
+		
+		$js[] = 'plugins/datatables/jquery.dataTables.min.js';
+		$js[] = 'plugins/datatables/dataTables.bootstrap.min.js';
+		return array($css, $js);
+	}
+	function content($common_css, $common_js){
+		$css = $common_css; $js = $common_js;
+		$css[] = 'plugins/icheck/minimal/minimal.css';
+		$css[] = 'plugins/select2/select2.min.css';
+		$css[] = 'js/jquery-file-upload/css/jquery.fileupload.css';
+		$js[] = 'plugins/icheck/icheck.min.js';	
+		$js[] = 'plugins/select2/select2.full.min.js';	
+		$js[] = 'js/jquery-file-upload/js/jquery.ui.widget.js';
+		$js[] = 'js/jquery-file-upload/js/jquery.iframe-transport.js';
+		$js[] = 'js/jquery-file-upload/js/jquery.fileupload.js';
+		return array($css, $js);
+	}
+}
+
 class sociallink{
 	function index($common_css, $common_js){
 		$css = $common_css; $js = $common_js;
