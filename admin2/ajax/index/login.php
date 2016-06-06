@@ -29,7 +29,7 @@ if(mysql_num_rows($result) < 1 ){
 		last_login_ip = "'.$ip.'"
 		where id = "'.$_SESSION['admin']['id'].'" limit 1;';
 	$query = query_despace($query);
-	if($result = mysql_query($query)){ json_encode_return(1, '登入成功', URL_ADMIN2_ROOT.'about');	}	
+	if($result = mysql_query($query)){ json_encode_return(1, '登入成功', URL_ADMIN2_ROOT.'charts');	}	
 	
 }
 

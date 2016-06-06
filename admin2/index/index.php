@@ -3,7 +3,7 @@
 <html>
 <body class="hold-transition login-page">
 <?php
-isset( $_SESSION['admin']  )? redirect_php(URL_ADMIN2_ROOT.'about/') : redirect_php(URL_ADMIN2_ROOT.'index/login');
+isset( $_SESSION['admin']  )? redirect_php(URL_ADMIN2_ROOT.'charts/') : redirect_php(URL_ADMIN2_ROOT.'index/login');
 ?>
 </body>
 </html>

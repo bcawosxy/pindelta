@@ -5,7 +5,7 @@
 	<?php 
 		if(isset($_SESSION['admin'])) {
 			unset($_SESSION['admin']) ;
-			js_location(URL_ADMIN2_ROOT.'index/login.php', '"登出完成。"');
+			redirect_php(URL_ADMIN2_ROOT);
 		}
 	?>
 
