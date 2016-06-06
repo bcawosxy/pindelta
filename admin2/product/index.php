@@ -7,7 +7,7 @@
 	<?php include('../header.php'); ?>
 	<?php include('../navbar.php'); ?>
 	<?php 
-		$query = query_despace('select `product`.* , `category`.`category_name` from `product` left JOIN `category` on product.product_category_id = category.category_id order by `product_modify_time` desc');
+		$query = query_despace('select `product`.* , `category`.`category_name` from `product` left JOIN `category` on product.product_category_id = category.category_id where `product`.`product_status` != "delete" order by `product_modify_time` desc');
 		$result = mysql_query($query);
 		$data = array();
 		while($row = mysql_fetch_assoc($result)){ $data[] = $row;	}

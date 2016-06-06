@@ -24,7 +24,7 @@
 				break;
 			
 			case 'edit':
-					$query = 'select * from `product` where product_id = '.$id;
+					$query = 'select * from `product` where `product_status` != "delete" and product_id = '.$id;
 					$result = mysql_query($query);
 					while($row = mysql_fetch_assoc($result)){ $data = $row;	}
 					if(empty($data)) js_location(URL_ADMIN2_ROOT.'product', '[Error]找不到資料');
@@ -64,7 +64,7 @@
 											<!--tab1-->
 											<div class="box-header with-border">
 												<i class="fa fa-file-text-o"></i>
-												<h3 class="box-title"> <?php echo ($act == 'add') ? '新增產品類別區域' : '編輯產品類別區域 ： '.$data['product_name'] ?> </h3>
+												<h3 class="box-title"> <?php echo ($act == 'add') ? '新增產品' : '編輯產品 ： '.$data['product_name'] ?> </h3>
 											</div>
 											<div class="box-body">
 												<dl class="dl-horizontal">
@@ -73,12 +73,52 @@
 													<br>
 													<dt>名稱:</dt>
 														<dd>
-															<input type="text" class="form-control" name="name" placeholder="產品類別名稱" style="width:30%" value="<?php echo $data['product_name'] ?>">
+															<input type="text" class="form-control" name="name" placeholder="產品名稱" style="width:30%" value="<?php echo $data['product_name'] ?>">
+														</dd>
+													<br>
+													<dt>所屬類別:</dt>
+														<dd style="<?php echo ($act == 'edit') ? 'display:none;' : null; ?>">
+										                    <select class="form-control select2" id="categoryarea" style="width: 30%;">
+										                    	<option value="0" selected="selected">請選擇所屬類別</option>
+										                    	<?php 
+										                    		// foreach ($categoryarea as $k0 => $v0) {
+										                    			// echo '<option value="'.$v0['categoryarea_id'].'">'.$v0['categoryarea_name'].'</option>';
+										                    		// }
+										                    	?>
+										                    </select>
+														</dd>
+														<dd style="<?php echo ($act == 'add') ? 'display:none;' : null; ?>">
+															<p style="color:#00b7b0;font-weight: bold;font-size:14px;"><?php //echo $data['categoryarea_name'] ?></p>
 														</dd>
 													<br>
 													<dt>排序:</dt>
 														<dd>
 															<input type="number" class="form-control" name="priority" placeholder="1~255" min="0" max="255" style="width:20%" value="<?php echo $data['product_priority'] ?>">
+														</dd>
+													<br>
+													<dt>型號:</dt>
+														<dd>
+															<input type="text" class="form-control" name="model" placeholder="產品型號" style="width:30%" value="<?php echo $data['product_model'] ?>">
+														</dd>
+													<br>
+													<dt>規格:</dt>
+														<dd>
+															<input type="text" class="form-control" name="standard" placeholder="產品規格" style="width:30%" value="<?php echo $data['product_standard'] ?>">
+														</dd>
+													<br>
+													<dt>材質:</dt>
+														<dd>
+															<input type="text" class="form-control" name="material" placeholder="產品材質" style="width:30%" value="<?php echo $data['product_material'] ?>">
+														</dd>
+													<br>
+													<dt>生產所需時間:</dt>
+														<dd>
+															<input type="text" class="form-control" name="produce_time" placeholder="產品生產時間" style="width:30%" value="<?php echo $data['product_produce_time'] ?>">
+														</dd>
+													<br>
+													<dt>最低訂購量:</dt>
+														<dd>
+															<input type="text" class="form-control" name="lowest" placeholder="最低訂購量" style="width:30%" value="<?php echo $data['product_lowest'] ?>">
 														</dd>
 													<br>
 													<dt>狀態:</dt>
@@ -100,6 +140,21 @@
 															<input type="text" class="form-control" name="description" placeholder="介紹" style="width:80%" value="<?php echo $data['product_description'] ?>">
 														</dd>
 													<br>
+													<dt>備註:</dt>
+														<dd>
+															<textarea class="form-control" name="memo" rows="3" placeholder="Enter ..."><?php echo $data['product_memo'] ?></textarea>
+														</dd>
+													<br>
+													<dt>內文:</dt>
+														<dd>
+															<textarea rows="10" cols="30" name="product_content" class="ckeditor" id="product_content"><?php echo $data['product_content']; ?></textarea>
+															<script type="text/javascript">CKEDITOR.replace('product_content',
+																{
+																	toolbar : 'Full'
+																});
+															</script>  
+														</dd>
+													<br>
 													<dt>封面:</dt>
 														<dd>
 															<div class="form-group">
@@ -110,8 +165,7 @@
 															        <!-- The file input field used as target for the file upload widget -->
 															        <input id="fileupload" type="file" name="files[]" multiple>
 															    </span>
-															    <br>
-															    <br>
+															    <br><br>
 															    <!-- The global progress bar -->
 															    <div id="progress" class="progress">
 															        <div class="progress-bar progress-bar-success"></div>
@@ -209,12 +263,20 @@ $(function () {
 				height: 50,
 				onOpen : function(){	
 					$.post('<?php echo ajax_url(URL_ADMIN2_AJAX,P_CLASS,P_FUNCTION) ?>' , {
-						id : '<?php echo $id ?>',
+						id : '<?php echo $data['product_id'] ?>',
 						act : '<?php echo $act ?>',
 						name : $('input[name="name"]').val(),
 						priority : priority.val(),
-						status : $('input[name="status"]:checked').val(),
+						model : $('input[name="model"]').val(),
+						standard :  $('input[name="standard"]').val(),
+						material :  $('input[name="material"]').val(),
+						produce_time :  $('input[name="produce_time"]').val(),
+						lowest :  $('input[name="lowest"]').val(),
+						category_id : <?php echo $data['product_category_id'] ?>,
 						description : $('input[name="description"]').val(),
+						content : CKEDITOR.instances['product_content'].getData(),
+						memo : $('textarea[name="memo"]').val(),
+						status : $('input[name="status"]:checked').val(),
 						cover : $('#cover').attr('alt'),
 						cover_state : $('#cover').data('state'),
 					},function(r){

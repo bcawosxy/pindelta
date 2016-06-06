@@ -178,7 +178,7 @@ class inquiry {
 
 class product {
 
-		function index($common_css, $common_js){
+	function index($common_css, $common_js){
 		$css = $common_css; $js = $common_js;
 		$css[] = 'plugins/datatables/dataTables.bootstrap.css';
 		
@@ -187,6 +187,7 @@ class product {
 		$js[] = 'plugins/datatables/dataTables.bootstrap.min.js';
 		return array($css, $js);
 	}
+
 	function content($common_css, $common_js){
 		$css = $common_css; $js = $common_js;
 		$css[] = 'plugins/icheck/minimal/minimal.css';
@@ -197,6 +198,8 @@ class product {
 		$js[] = 'js/jquery-file-upload/js/jquery.ui.widget.js';
 		$js[] = 'js/jquery-file-upload/js/jquery.iframe-transport.js';
 		$js[] = 'js/jquery-file-upload/js/jquery.fileupload.js';
+		$js[] = '../../lib/ckeditor/ckeditor.js';
+		$js[] = '../../lib/ckeditor/adapters/jquery.js';
 		return array($css, $js);
 	}
 }

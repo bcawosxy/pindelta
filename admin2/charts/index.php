@@ -71,19 +71,20 @@
 		}
 	?>
 	
-	<div class="content-wrapper" style="height:<?php echo 1000 + floor(count($series_pie)/5)*500 ?>px;">
+	<div class="content-wrapper" style="height:<?php echo 1500 + floor(count($series_pie)/5)*500 ?>px;">
 		<section class="content col-lg-11">
 			<div class="box">
 				<div class="box-header with-border">
-					<h3 class="box-title">
+					<h3>
 						類別 / 項目 / 產品 逐周統計
 					</h3>
 				</div>
 				<div class="box-body">
 					<div id="container" style="height: auto; margin: 0 auto"></div>
 				</div>
+				<hr>
 				<div class="box-header with-border">
-					<h3 class="box-title">
+					<h3>
 						各類別下的項目 / 產品數量
 					</h3>
 				</div>
