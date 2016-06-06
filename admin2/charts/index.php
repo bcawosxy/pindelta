@@ -19,17 +19,17 @@
 		
 		foreach ($week as $k0 => $v0) {
 			/*Categoryarea*/
-			$query = 'select COUNT(*) as `count` from `categoryarea` where (`categoryarea_status` = "open" and `categoryarea_insert_time` < "'.$v0.'") or (`categoryarea_status` = "delete" and `categoryarea_modify_time` > "'.$v0.'");';
+			$query = 'select COUNT(*) as `count` from `categoryarea` where (`categoryarea_status` != "delete" and `categoryarea_insert_time` < "'.$v0.'") or (`categoryarea_status` = "delete" and `categoryarea_modify_time` > "'.$v0.'");';
 			$result = mysql_query($query);
 			while($row = mysql_fetch_assoc($result)){	$data_categoryarea[] = $row['count'];	}
 
 			/*Category*/
-			$query = 'select COUNT(*) as `count` from `category` where (`category_status` = "open" and `category_insertime` < "'.$v0.'") or (`category_status` = "delete" and `category_modify_time` > "'.$v0.'");';
+			$query = 'select COUNT(*) as `count` from `category` where (`category_status` != "delete" and `category_insertime` < "'.$v0.'") or (`category_status` = "delete" and `category_modify_time` > "'.$v0.'");';
 			$result = mysql_query($query);
 			while($row = mysql_fetch_assoc($result)){	$data_category[] = $row['count'];	}
 
 			/*Product*/
-			$query = 'select COUNT(*) as `count` from `product` where (`product_status` = "open" and `product_inserttime` < "'.$v0.'") or (`product_status` = "delete" and `product_modify_time` > "'.$v0.'");';
+			$query = 'select COUNT(*) as `count` from `product` where (`product_status` != "delete" and `product_inserttime` < "'.$v0.'") or (`product_status` = "delete" and `product_modify_time` > "'.$v0.'");';
 			$result = mysql_query($query);
 			while($row = mysql_fetch_assoc($result)){	$data_product[] = $row['count'];	}
 
@@ -53,7 +53,7 @@
 		//所有的categoryarea_id
 		foreach ($categoryarea_id as $k0 => $v0) {
 			$pie_data = [];$category_num=0;$prodcut_num=0;
-			$query_2 = 'SELECT `category_name` as name , COUNT(`category_id`) as y FROM `category` LEFT JOIN `product` ON `product`.`product_category_id` = `category`.category_id WHERE `category`.categoryarea_id = "'.$v0['categoryarea_id'].'" AND `product_id` != "" GROUP BY `category_id`';
+			$query_2 = 'SELECT `category_name` as name , COUNT(`category_id`) as y FROM `category` LEFT JOIN `product` ON `product`.`product_category_id` = `category`.category_id WHERE `category`.`category_status` != "delete" AND `product`.`product_status` != "delete" AND `category`.categoryarea_id = "'.$v0['categoryarea_id'].'" AND `product_id` != "" GROUP BY `category_id`';
 			$result = mysql_query($query_2);
 			while($row = mysql_fetch_assoc($result)){
 				$pie_data[] = '{name:"'.$row['name'].'", y:'.$row['y'].'},';
