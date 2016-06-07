@@ -14,16 +14,29 @@ if( isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
 	$memo = !empty($_POST['memo']) ? $_POST['memo'] : null ;
 	$description = !empty($_POST['description']) ? $_POST['description'] : null ;
 	$cover = !empty($_POST['cover']) ? $_POST['cover'] : null ;
+	$status = !empty($_POST['status']) ? $_POST['status'] : null ;
 	$cover_state = !empty($_POST['cover_state']) ? $_POST['cover_state'] : null ;
-	$categoryarea_id = !empty($_POST['categoryarea_id']) ? $_POST['categoryarea_id'] : null ;
 
-	json_encode_return(0, 'back');
+	$a_check_value = [
+		'name' => $name,
+		'priority' => $priority,
+		'model' => $model,
+		'material' => $material,
+		'produce_time' => $produce_time,
+		'category_id' => $category_id,
+		'cover'=> $cover,
+		'status' => $status,
+	];
 
-	if(empty($name) || empty($priority) || empty($model) || empty($material) || empty($produce_time) || empty($lowest) || empty($category_id) || $category_id == 0 || empty($cover) || empty($status)) {
-		json_encode_return($URL_ADMIN_ROOT, '資料不完全,請重新輸入');
-		exit;
+	//檢查必填欄位
+	foreach ($a_check_value as $k0 => $v0) {
+		if(empty($v0)) json_encode_return(0, '資料不完全,請重新輸入', null, ucfirst($k0));
 	}
-	if($act == 'add' && $categoryarea_id == 0) json_encode_return(0, '請選擇所屬類別');
+
+	if( !is_numeric($a_check_value['category_id'])) json_encode_return(0, 'ID錯誤', null, ucfirst('Category'));
+
+
+	if($act == 'add' && $category_id == 0) json_encode_return(0, '所選項目錯誤', null, 'Category');
 
 	switch ($cover_state) {
 		case 'new':
@@ -31,10 +44,10 @@ if( isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
 			$file = $file_dir.$cover;
 			$file_info = pathinfo($file);
 			$new_file_name = uniqid().'.'.$file_info['extension'];
-			$target = PATH_ROOT.'/upload/admin/images/category/';
+			$target = PATH_ROOT.'/upload/admin/images/product/';
 			$new_file = $target.$new_file_name;
 
-			if(!rename($file, $new_file)) json_encode_return(0, '圖片檔案處理失敗, 請重新操作',URL_ADMIN2_ROOT.'category/content.php?category_id='.$id);
+			if(!rename($file, $new_file)) json_encode_return(0, '圖片檔案處理失敗, 請重新操作',URL_ADMIN2_ROOT.'product/content.php?product_id='.$id);
 			
 			break;
 		
@@ -66,18 +79,27 @@ if( isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
 		break;
 
 		case 'edit':
-			$query = 'UPDATE `category` SET  
-				`category_name` = "'.$name.'",
-				`category_priority` = "'.$priority.'",
-				`category_status` = "'.$status.'",
-				`category_description` = "'.$description.'",
-				`category_cover` = "'.$new_file_name.'",
-				`category_modify_name` = "'.$_SESSION['admin']['name'].'" ,
-				`category_modify_time` = NOW() WHERE  `category`.`category_id` = "'.$id.'" LIMIT 1 ; ';
+			$query = 'update `product` set 
+				product_category_id = "'.$category_id.'" ,
+				product_name = "'.htmlspecialchars($name).'" , 
+				product_cover = "'.$new_file_name.'" , 
+				product_status = "'.$status.'" , 
+				product_priority = "'.$priority.'" ,  
+				product_description = "'.htmlspecialchars($description).'" , 
+				product_content = "'.htmlspecialchars($content).'" , 
+				product_model = "'.htmlspecialchars($model).'" , 
+				product_standard = "'.htmlspecialchars($standard).'" , 
+				product_material = "'.htmlspecialchars($material).'" , 
+				product_produce_time = "'.htmlspecialchars($produce_time).'" , 
+				product_lowest = "'.htmlspecialchars($lowest).'" , 
+				product_memo = "'.htmlspecialchars($memo).'" , 
+				product_modify_time = NOW(), 
+				product_modify_name = "'.$_SESSION['admin']['name'].'"
+				where product_id = "'.$id.'" limit 1;';
 			
 			$query = query_despace($query);
 			$result = mysql_query($query);
-			(!$result) ? json_encode_return(0, '修改失敗，請確認您輸入的資料是否有誤', URL_ADMIN2_ROOT.'category/content.php?category_id='.$id) : json_encode_return(1, '修改成功', URL_ADMIN2_ROOT.'category/content.php?category_id='.$id);
+			(!$result) ? json_encode_return(0, '修改失敗，請確認您輸入的資料是否有誤', URL_ADMIN2_ROOT.'product/content.php?product_id='.$id) : json_encode_return(1, '修改成功', URL_ADMIN2_ROOT.'product/content.php?product_id='.$id);
 
 			break;
 		

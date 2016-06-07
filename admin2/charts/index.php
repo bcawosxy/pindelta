@@ -71,16 +71,18 @@
 		}
 	?>
 	
-	<div class="content-wrapper" style="height:<?php echo 1500 + floor(count($series_pie)/5)*500 ?>px;">
+	<div class="content-wrapper" style="height: auto;">
 		<section class="content col-lg-11">
 			<div class="box">
 				<div class="box-header with-border">
 					<h3>
-						類別 / 項目 / 產品 逐周統計
+						類別 / 項目 / 產品 逐周統計數量
 					</h3>
 				</div>
 				<div class="box-body">
-					<div id="container" style="height: auto; margin: 0 auto"></div>
+					<div class="row">
+						<div id="container" style="height: auto; margin: 0 auto;width:95%;"></div>
+					</div>
 				</div>
 				<hr>
 				<div class="box-header with-border">
@@ -93,7 +95,7 @@
 					<?php 
 						foreach ($series_pie as $k0 => $v0) {
 							echo '<div class="col-md-2" style="margin:10px 0;" >
-									<div id="container_'.$v0['categoryarea_id'].'" style="height: 350px; margin: 0 auto"></div>
+									<div id="container_'.$v0['categoryarea_id'].'" style="height: 300px; margin: 0 auto"></div>
 								</div>';
 						}
 					?>
@@ -181,6 +183,8 @@ $(function () {
 		    });';
 		};
 	?>
+
+	$('.content-wrapper').css('min-height', <?php echo  600 + floor(count($series_pie)/6)*600 ?>);
 });
 
 

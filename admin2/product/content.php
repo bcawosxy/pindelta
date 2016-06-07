@@ -64,7 +64,7 @@
 											<!--tab1-->
 											<div class="box-header with-border">
 												<i class="fa fa-file-text-o"></i>
-												<h3 class="box-title"> <?php echo ($act == 'add') ? '新增產品' : '編輯產品 ： '.$data['product_name'] ?> </h3>
+												<h3 class="box-title"> <?php echo ($act == 'add') ? '新增產品' : '編輯產品 ： <span style="color:#3c8dbc;font-weight:bold">'.$data['product_name'] ?></span> </h>
 											</div>
 											<div class="box-body">
 												<dl class="dl-horizontal">

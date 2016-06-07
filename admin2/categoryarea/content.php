@@ -37,13 +37,13 @@
 	?>
 	<div class="content-wrapper">
 		<section class="content-header">
-			<div class="box-body"><h2>類別區域管理</h2></div>
+			<div class="box-body"><h2>產品類別管理</h2></div>
 			<h1>				
 				<small><p class="text-light-blue"></p></small>
 			</h1>
 			<ol class="breadcrumb">
 				<li><a href="<?php echo URL_ADMIN2_ROOT ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-				<li class="active">類別區域管理</li>
+				<li class="active">產品類別管理</li>
 			</ol>
 		</section>
 		
@@ -55,7 +55,7 @@
 							<div class="box-body box-solid">
 								<div class="box-header with-border">
 									<i class="fa fa-file-text-o"></i>
-									<h3 class="box-title"> <?php echo ($act == 'add') ? '新增產品類別區域' : '編輯產品類別區域 ： '.$data['categoryarea_name'] ?> </h3>
+									<h3 class="box-title"> <?php echo ($act == 'add') ? '新增產品類別' : '編輯產品類別 ： '.$data['categoryarea_name'] ?> </h3>
 								</div>
 								<div class="box-body">
 									<dl class="dl-horizontal">
