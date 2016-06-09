@@ -184,7 +184,7 @@ $(function () {
 		};
 	?>
 
-	$('.content-wrapper').css('min-height', <?php echo  600 + floor(count($series_pie)/6)*600 ?>);
+	$('.content-wrapper').css('min-height', <?php echo  1000 + floor(count($series_pie)/6)*600 ?>);
 });
 
 

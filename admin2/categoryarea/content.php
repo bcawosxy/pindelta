@@ -21,7 +21,7 @@
 						'categoryarea_insert_time' => null,
 						'categoryarea_modify_time' => null,
 					];
-					$cover = null;
+					$cover = null; $cover_dir = URL_IMG_ROOT."default_bg.png";
 				break;
 			
 			case 'edit':
@@ -110,7 +110,7 @@
 												    <!-- The container for the uploaded files -->
 												    <div id="files" class="files"></div>
 												    <br>
-												    <img style="width:240px;height: 320px;" id="cover" alt="<?php echo $cover ?>" src="<?php echo $cover_dir ?>" onerror="this.src='<?php echo URL_IMG_ROOT.'input.png' ?>'" data-state="old" class="img-responsive">
+												    <img style="width:240px;height: 320px;" id="cover" alt="<?php echo $cover ?>" src="<?php echo $cover_dir ?>" onerror="this.src='<?php echo URL_IMG_ROOT.'default_bg.png' ?>'" data-state="old" class="img-responsive">
 												</div>
 											</dd>
 										<br>
@@ -177,8 +177,7 @@ $(function () {
 		var priority = $('input[name=priority]');
 
 		if (!/^\d+$/.test(priority.val())) {
-			seqence.val(/^\d+/.exec(seqence.val()));
-			r = {'message': '排序須輸入正整數。'};
+			var r = {'message': '排序須輸入正整數。'};
 			_jbox(r, 'error');
 		} else {
 			var processingBox = new jBox('Modal', {

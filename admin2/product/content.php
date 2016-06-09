@@ -14,13 +14,26 @@
 					$data = [
 						'product_id' => null,
 						'product_name' => null,
+						'product_category_id' => null,
 						'product_priority' => 0,
+						'product_model' => null,
+						'product_standard' => null,
+						'product_material' => null,
+						'product_produce_time' => null,
+						'product_lowest' => null,
+						'product_memo' => null,
+						'product_content' => null,
 						'product_status' => 'close',
 						'product_description' => null,
-						'product_insert_time' => null,
+						'product_inserttime' => null,
 						'product_modify_time' => null,
 					];
-					$cover = null;
+					$cover = null; $cover_dir = URL_IMG_ROOT."default_bg.png";
+
+					$a_category = null;
+					$query = 'select * from `category` where `category`.`category_status` != "delete"';
+					$result = mysql_query($query);
+					while($row = mysql_fetch_assoc($result)){ $a_category[] = $row;	}
 				break;
 			
 			case 'edit':
@@ -30,6 +43,12 @@
 					if(empty($data)) js_location(URL_ADMIN2_ROOT.'product', '[Error]找不到資料');
 					$cover_dir = (!empty($data['product_cover'])) ?  ADMIN_IMG_UPLOAD.P_CLASS.'/'.$data['product_cover'] : null ;
 					$cover = (!empty($data['product_cover'])) ?  $data['product_cover'] : null ;
+
+					$category_name = null;
+					$query = 'select category_name from `category` where `category`.`category_id` = "'.$data['product_category_id'].'" and `category`.`category_status` != "delete"';
+					$result = mysql_query($query);
+					while($row = mysql_fetch_assoc($result)){ $category_name = $row['category_name'];	}
+
 				break;
 		}
 
@@ -76,19 +95,19 @@
 															<input type="text" class="form-control" name="name" placeholder="產品名稱" style="width:30%" value="<?php echo $data['product_name'] ?>">
 														</dd>
 													<br>
-													<dt>所屬類別:</dt>
+													<dt>所屬項目:</dt>
 														<dd style="<?php echo ($act == 'edit') ? 'display:none;' : null; ?>">
-										                    <select class="form-control select2" id="categoryarea" style="width: 30%;">
-										                    	<option value="0" selected="selected">請選擇所屬類別</option>
+										                    <select class="form-control select2" id="category_id" style="width: 30%;">
+										                    	<option value="0" selected="selected">請選擇所屬項目</option>
 										                    	<?php 
-										                    		// foreach ($categoryarea as $k0 => $v0) {
-										                    			// echo '<option value="'.$v0['categoryarea_id'].'">'.$v0['categoryarea_name'].'</option>';
-										                    		// }
+										                    		foreach ($a_category as $k0 => $v0) {
+										                    			echo '<option value="'.$v0['category_id'].'">'.$v0['category_name'].'</option>';
+										                    		}
 										                    	?>
 										                    </select>
 														</dd>
 														<dd style="<?php echo ($act == 'add') ? 'display:none;' : null; ?>">
-															<p style="color:#00b7b0;font-weight: bold;font-size:14px;"><?php //echo $data['categoryarea_name'] ?></p>
+															<p style="color:#00b7b0;font-weight: bold;font-size:14px;"><?php echo $category_name ?></p>
 														</dd>
 													<br>
 													<dt>排序:</dt>
@@ -173,7 +192,7 @@
 															    <!-- The container for the uploaded files -->
 															    <div id="files" class="files"></div>
 															    <br>
-															    <img style="width:240px;height: 320px;" id="cover" alt="<?php echo $cover ?>" src="<?php echo $cover_dir ?>" onerror="this.src='<?php echo URL_IMG_ROOT.'input.png' ?>'" data-state="old" class="img-responsive">
+															    <img style="width:240px;height: 320px;" id="cover" alt="<?php echo $cover ?>" src="<?php echo $cover_dir ?>" data-state="old" class="img-responsive">
 															</div>
 														</dd>
 													<br>
@@ -224,6 +243,8 @@
 </div>
 <script>
 $(function () {
+	$("#category_id").select2();
+
     'use strict';
     var url = '<?php echo ajax_url(URL_ADMIN2_AJAX,'fileupload','index') ?>';
     $('#fileupload').fileupload({
@@ -252,8 +273,7 @@ $(function () {
 		var priority = $('input[name=priority]');
 
 		if (!/^\d+$/.test(priority.val())) {
-			seqence.val(/^\d+/.exec(seqence.val()));
-			r = {'message': '排序須輸入正整數。'};
+			var r = {'message': '排序須輸入正整數。'};
 			_jbox(r, 'error');
 		} else {
 			var processingBox = new jBox('Modal', {
@@ -272,7 +292,7 @@ $(function () {
 						material :  $('input[name="material"]').val(),
 						produce_time :  $('input[name="produce_time"]').val(),
 						lowest :  $('input[name="lowest"]').val(),
-						category_id : <?php echo $data['product_category_id'] ?>,
+						category_id : <?php echo ($act =='edit') ? $data['product_category_id'] : '$(\'#category_id option:selected\').val()' ?>,
 						description : $('input[name="description"]').val(),
 						content : CKEDITOR.instances['product_content'].getData(),
 						memo : $('textarea[name="memo"]').val(),
