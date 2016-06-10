@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html>
 <?php include('../head.php'); ?>
+<style>
+dd.tags{
+    margin-bottom: 10px;
+}
+</style>
 <body class="hold-transition skin-blue sidebar-mini">
 <!-- Site wrapper -->
 <div class="wrapper">
@@ -28,7 +33,7 @@
 						'product_inserttime' => null,
 						'product_modify_time' => null,
 					];
-					$cover = null; $cover_dir = URL_IMG_ROOT."default_bg.png";
+					$cover = null; $cover_dir = URL_IMG_ROOT."default_bg.png";$tags = [];
 
 					$a_category = null;
 					$query = 'select * from `category` where `category`.`category_status` != "delete"';
@@ -36,7 +41,8 @@
 					while($row = mysql_fetch_assoc($result)){ $a_category[] = $row;	}
 				break;
 			
-			case 'edit':
+			case 'edit':	
+					/* tab1 */
 					$query = 'select * from `product` where `product_status` != "delete" and product_id = '.$id;
 					$result = mysql_query($query);
 					while($row = mysql_fetch_assoc($result)){ $data = $row;	}
@@ -49,6 +55,9 @@
 					$result = mysql_query($query);
 					while($row = mysql_fetch_assoc($result)){ $category_name = $row['category_name'];	}
 
+					/* tab2 */
+					$tags = json_decode( $data['product_tags'] , true );
+					
 				break;
 		}
 
@@ -71,7 +80,6 @@
 					<div class="row">
 						<div class="col-md-10">
 							<div class="box-body box-solid">
-								
 								<div class="nav-tabs-custom">
 									<ul class="nav nav-tabs">
 										<li class="active"><a href="#tab_1" data-toggle="tab">產品資料</a></li>
@@ -83,7 +91,7 @@
 											<!--tab1-->
 											<div class="box-header with-border">
 												<i class="fa fa-file-text-o"></i>
-												<h3 class="box-title"> <?php echo ($act == 'add') ? '新增產品' : '編輯產品 ： <span style="color:#3c8dbc;font-weight:bold">'.$data['product_name'] ?></span> </h>
+												<h3 class="box-title"> <?php echo ($act == 'add') ? '新增產品' : '編輯產品 ： <span style="color:#3c8dbc;font-weight:bold">'.$data['product_name'] ?></span> </h3>
 											</div>
 											<div class="box-body">
 												<dl class="dl-horizontal">
@@ -212,7 +220,32 @@
 										</div>
 										
 										<div class="tab-pane" id="tab_2">
-											tab2
+											<!-- tab2-->
+											<div class="box-header with-border">
+												<i class="fa fa-file-text-o"></i><h3 class="box-title">產品標籤 </h3>
+											</div>
+											<div class="box-body">
+												<dl class="dl-horizontal tag_list">
+													<dd>
+														<div>
+															<input id="add_tags" type="button" class="btn btn-primary" value="新增欄位"></input>
+														</div>
+													</dd><br>
+													<?php 
+														if(count($tags) > 0 ) {
+															foreach ($tags as $k0 => $v0) {
+																echo '<dd class="tags">
+																		<div>
+																			<input class="form-control" type="text" name="tags_name" style="width:20%;float: left" value="'.$v0.'">
+																			<input class="btn btn-danger delete_tags" type="button" value="刪除"></input>
+																		</div>
+																	</dd>';
+															}
+														}
+													?>
+												</dl>
+											</div>
+											<!-- end tab2-->
 										</div>
 										
 										<div class="tab-pane" id="tab_3">
@@ -241,6 +274,17 @@
 
 	<?php include('../footer.php'); ?>
 </div>
+
+<!-- For Clone -->
+<div style="display:none">
+	<dd class="tags">
+		<div>
+			<input class="form-control" type="text" name="tags_name" style="width:20%;float: left">
+			<input class="btn btn-danger delete_tags" type="button" value="刪除"></input>
+		</div>
+	</dd>
+</div>
+
 <script>
 $(function () {
 	$("#category_id").select2();
@@ -270,12 +314,17 @@ $(function () {
     });
 
 	$('#save').on('click', function(){
-		var priority = $('input[name=priority]');
+		var priority = $('input[name=priority]'), tags = [], tags_name_tmp;
 
 		if (!/^\d+$/.test(priority.val())) {
 			var r = {'message': '排序須輸入正整數。'};
 			_jbox(r, 'error');
 		} else {
+			$('input[name="tags_name"]').each(function(k ,v){
+				tags_name_tmp = $(this).val();
+				if(tags_name_tmp != "") tags.push(tags_name_tmp);
+			})
+
 			var processingBox = new jBox('Modal', {
 				closeOnClick: false,
 				closeButton: 'title',
@@ -299,6 +348,7 @@ $(function () {
 						status : $('input[name="status"]:checked').val(),
 						cover : $('#cover').attr('alt'),
 						cover_state : $('#cover').data('state'),
+						tags : tags,
 					},function(r){
 						processingBox.close();
 						r = $.parseJSON(r);
@@ -338,9 +388,19 @@ $(function () {
 				'確定刪除此筆資料嗎?'+
 			'</div>'
 		).open();
-
 	});
+
+
+	$('#add_tags').on('click', function(){
+		$('dd.tags:last').clone().appendTo('dl.tag_list');
+	});
+
 });
+
+$(document).on('click', '.delete_tags', function(){
+	$(this).parents('dd.tags').remove();
+})
+
 </script>
 </body>
 </html>

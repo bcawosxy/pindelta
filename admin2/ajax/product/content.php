@@ -16,6 +16,7 @@ if( isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
 	$cover = !empty($_POST['cover']) ? $_POST['cover'] : null ;
 	$status = !empty($_POST['status']) ? $_POST['status'] : null ;
 	$cover_state = !empty($_POST['cover_state']) ? $_POST['cover_state'] : null ;
+	$tags = !empty($_POST['tags']) ? $_POST['tags'] : null ;
 
 	$a_check_value = [
 		'name' => $name,
@@ -37,7 +38,6 @@ if( isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
 		}
 
 		if( !is_numeric($a_check_value['category_id'])) json_encode_return(0, 'ID錯誤', null, ucfirst('Category'));
-
 
 		if($act == 'add' && $category_id == 0) json_encode_return(0, '所選項目錯誤', null, 'Category');
 
@@ -69,7 +69,7 @@ if( isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
 			`product_category_id`,`product_name`,`product_cover`,
 			`product_status`,`product_priority`,`product_description`,`product_content`,
 			`product_model`,`product_standard`,`product_material`,`product_produce_time`,
-			`product_lowest`,`product_memo`,`product_inserttime`,
+			`product_lowest`,`product_memo`,`product_tags` ,`product_inserttime`,
 			`product_admin`,`product_modify_name`,`status_record`) 
 			VALUES (
 			"'.$category_id.'","'.htmlspecialchars($name).'",
@@ -77,7 +77,7 @@ if( isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
 			"'.$priority.'","'.htmlspecialchars($description).'","'.htmlspecialchars($content).'","'.htmlspecialchars($model).'",
 			"'.htmlspecialchars($standard).'","'.htmlspecialchars($material).'",
 			"'.htmlspecialchars($produce_time).'","'.htmlspecialchars($lowest).'",
-			"'.htmlspecialchars($memo).'",NOW(),"'.$_SESSION['admin']['name'].'",
+			"'.htmlspecialchars($memo).'", "'.addslashes(json_encode($tags)).'",NOW(),"'.$_SESSION['admin']['name'].'",
 			"'.$_SESSION['admin']['name'].'","close")';
 			$query = query_despace($query);
 			//先新增產品
@@ -118,13 +118,14 @@ if( isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
 				product_produce_time = "'.htmlspecialchars($produce_time).'" , 
 				product_lowest = "'.htmlspecialchars($lowest).'" , 
 				product_memo = "'.htmlspecialchars($memo).'" , 
+				product_tags = "'.addslashes(json_encode($tags)).'" , 
 				product_modify_time = NOW(), 
 				product_modify_name = "'.$_SESSION['admin']['name'].'"
 				where product_id = "'.$id.'" limit 1;';
 			
 			$query = query_despace($query);
 			$result = mysql_query($query);
-			(!$result) ? json_encode_return(0, '修改失敗，請確認您輸入的資料是否有誤', URL_ADMIN2_ROOT.'product/content.php?product_id='.$id) : json_encode_return(1, '修改成功', URL_ADMIN2_ROOT.'product/content.php?product_id='.$id);
+			(!$result) ? json_encode_return(0, '修改失敗，請確認您輸入的資料是否有誤', null) : json_encode_return(1, '修改成功', URL_ADMIN2_ROOT.'product/content.php?product_id='.$id);
 
 			break;
 		

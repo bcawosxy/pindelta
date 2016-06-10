@@ -24,7 +24,7 @@
 
 	if(!empty($g_items)){
 		//內頁
-		$query = 'select `product_name`,`product_cover`,`product_description`,`product_memo` from `product` where `product_id` = '.$g_items.';';
+		$query = 'select `product_name`,`product_cover`,`product_description`,`product_memo` from `product` where `product`.`product_status` and `product_id` = '.$g_items.';';
 		$result = mysql_query($query);
 		if($result) $row = mysql_fetch_assoc($result);
 		
@@ -34,7 +34,7 @@
 		$_this_cover = (empty($row['product_cover'])) ? null : $row['product_cover'] ;
 	}elseif(!empty($g_category)){
 		//第二層
-		$query = 'select `category_name`,`category_description`,`category_cover` from `category` where `category_id` = '.$g_category.';';
+		$query = 'select `category_name`,`category_description`,`category_cover` from `category` where `category`.`category_status` and `category_id` = '.$g_category.';';
 		$result = mysql_query($query);
 		if($result) $row = mysql_fetch_assoc($result);
 		
@@ -43,7 +43,7 @@
 		$_this_cover = (empty($row['category_cover'])) ? null : $row['category_cover'] ;
 	}elseif(!empty($g_goods)){
 		//主層
-		$query = 'select `categoryarea_name`,`categoryarea_description`,`categoryarea_cover` from `categoryarea` where `categoryarea_id` = '.$g_goods.';';
+		$query = 'select `categoryarea_name`,`categoryarea_description`,`categoryarea_cover` from `categoryarea` where `categoryarea`.`categoryarea_status` and `categoryarea_id` = '.$g_goods.';';
 		$result = mysql_query($query);
 		if($result) $row = mysql_fetch_assoc($result);
 		
