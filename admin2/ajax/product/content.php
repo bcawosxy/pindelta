@@ -17,6 +17,7 @@ if( isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
 	$status = !empty($_POST['status']) ? $_POST['status'] : null ;
 	$cover_state = !empty($_POST['cover_state']) ? $_POST['cover_state'] : null ;
 	$tags = !empty($_POST['tags']) ? $_POST['tags'] : null ;
+	$meta = !empty($_POST['meta']) ? $_POST['meta'] : null ;
 
 	$a_check_value = [
 		'name' => $name,
@@ -124,6 +125,11 @@ if( isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
 				where product_id = "'.$id.'" limit 1;';
 			
 			$query = query_despace($query);
+			$result = mysql_query($query);
+			if(!$result) json_encode_return(0, '修改失敗，請確認您輸入的資料是否有誤', null) ;
+
+			//修改產品SEO描述
+			$query = 'UPDATE `pindeltanet`.`product_meta` SET `description` = "'.$meta.'" WHERE `product_meta`.`product_id` = "'.$id.'" limit 1;';
 			$result = mysql_query($query);
 			(!$result) ? json_encode_return(0, '修改失敗，請確認您輸入的資料是否有誤', null) : json_encode_return(1, '修改成功', URL_ADMIN2_ROOT.'product/content.php?product_id='.$id);
 

@@ -18,13 +18,13 @@
 	?>
 	<div class="content-wrapper">
 		<section class="content-header">
-			<div class="box-body"><h2>產品類別區域</h2></div>
+			<div class="box-body"><h2>產品類別管理</h2></div>
 			<h1>				
 				<small><p class="text-light-blue"></p></small>
 			</h1>
 			<ol class="breadcrumb">
 				<li><a href="<?php echo URL_ADMIN2_ROOT ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-				<li class="active">產品類別區域</li>
+				<li class="active">產品類別管理</li>
 			</ol>
 		</section>
 		<section class="content">

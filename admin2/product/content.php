@@ -58,6 +58,12 @@ dd.tags{
 					/* tab2 */
 					$tags = json_decode( $data['product_tags'] , true );
 					
+					/* tab3 */
+					$query = 'select * from `product_meta` where product_id = '.$id;
+					$result = mysql_query($query);
+					while($row = mysql_fetch_assoc($result)){ $meta = $row['description'];	}
+					
+					
 				break;
 		}
 
@@ -84,7 +90,7 @@ dd.tags{
 									<ul class="nav nav-tabs">
 										<li class="active"><a href="#tab_1" data-toggle="tab">產品資料</a></li>
 										<li><a href="#tab_2" data-toggle="tab">產品標籤</a></li>
-										<li><a href="#tab_3" data-toggle="tab">產品其他</a></li>
+										<!--隱藏點選標籤 <li><a href="#tab_3" data-toggle="tab">產品SEO描述</a></li> -->
 									</ul>
 									<div class="tab-content">
 										<div class="tab-pane active" id="tab_1">
@@ -249,7 +255,18 @@ dd.tags{
 										</div>
 										
 										<div class="tab-pane" id="tab_3">
-											tab3
+											<!-- tab3-->
+											<div class="box-header with-border">
+												<i class="fa fa-file-text-o"></i><h3 class="box-title">產品SEO描述 </h3>
+											</div>
+											<div class="box-body">
+												<dl class="dl-horizontal tag_list">
+													<dd>
+														<input type="text" class="form-control" name="product_meta" placeholder="產品SEO描述" style="width:60%" value="<?php echo $meta ?>">
+													</dd><br>
+												</dl>
+											</div>
+											<!-- end tab3-->
 										</div>
 									</div>
 								</div>
@@ -325,6 +342,7 @@ $(function () {
 				if(tags_name_tmp != "") tags.push(tags_name_tmp);
 			})
 
+			
 			var processingBox = new jBox('Modal', {
 				closeOnClick: false,
 				closeButton: 'title',
@@ -349,6 +367,7 @@ $(function () {
 						cover : $('#cover').attr('alt'),
 						cover_state : $('#cover').data('state'),
 						tags : tags,
+						meta : $('input[name="product_meta"]').val(),
 					},function(r){
 						processingBox.close();
 						r = $.parseJSON(r);

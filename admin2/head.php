@@ -14,9 +14,6 @@
 		
 		if(P_CLASS == 'system' && P_FUNCTION == 'admin' && $_SESSION['admin']['id'] != 1) js_location(URL_ADMIN2_ROOT.'about/', '您並非最高管理員，目前沒有訪問此頁面的權限');
 		
-		//驗證用字串
-		echo 'P_CLASS:['.$p_class.'] P_FUNCTION:['.$p_function.']<br>';
-		
 		if (P_CLASS != 'index' && P_FUNCTION != 'login' && !isset($_SESSION['admin'])) redirect_php(URL_ADMIN2_ROOT.'index/login.php');
 		
 		$common_css = array(
