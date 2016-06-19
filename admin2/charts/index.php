@@ -158,7 +158,7 @@ $(function () {
                     color: Highcharts.getOptions().colors[0]
                 }
             },
-            tickInterval : 1,
+            tickInterval : 20,
             opposite: true
         }],
         plotOptions: {
