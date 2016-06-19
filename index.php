@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿<?php ob_start() ?>
+<!DOCTYPE html>
 	<?php 
 		include('./config/global.php');
 		include('./config/function.php');
@@ -8,6 +9,25 @@
 		$meta = array('`web_title`', '`web_description`','`social_look`', '`social_skin`');
 		$menu = (!empty($_GET['p'])) ? $_GET['p'] : null ;
 		$meta = get_settings($meta, $menu);
+	?>
+
+	<?php 
+		$tmp0 = md5('pindelta.com');
+		if (!isset($_COOKIE['viewed'])) {
+			$today = '"'.date("Y-m-d").'"';
+			$query = 'select `count` from `viewed` where `date` = '.$today.' limit 1' ;
+			
+			$result = mysql_query($query);
+			while($row = mysql_fetch_assoc($result)){	$viewed = $row['count'];}
+			if(empty($viewed)) {
+				$insert_query = 'INSERT INTO `viewed` (`date`, `count`) VALUES ('.$today.', 1) ;' ;
+				mysql_query($insert_query);
+			}else{
+				$update_query = 'UPDATE `pindeltanet`.`viewed` SET `count` = '.($viewed+1).' WHERE `viewed`.`date` = '.$today.' ;';
+				mysql_query($update_query);
+			}
+			setcookie('viewed', $tmp0, time() + 86400, '/');
+		}
 	?>
 <html lang="en">
 <head>

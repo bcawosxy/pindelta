@@ -21,7 +21,7 @@
 			/*Categoryarea*/
 			$query = 'select COUNT(*) as `count` from `categoryarea` where (`categoryarea_status` != "delete" and `categoryarea_insert_time` < "'.$v0.'") or (`categoryarea_status` = "delete" and `categoryarea_modify_time` > "'.$v0.'");';
 			$result = mysql_query($query);
-			while($row = mysql_fetch_assoc($result)){	$data_categoryarea[] = $row['count'];	}
+			while($row = mysql_fetch_assoc($result)){	$data_categoryarea[] = $row['count'];}
 
 			/*Category*/
 			$query = 'select COUNT(*) as `count` from `category` where (`category_status` != "delete" and `category_insertime` < "'.$v0.'") or (`category_status` = "delete" and `category_modify_time` > "'.$v0.'");';
@@ -32,6 +32,15 @@
 			$query = 'select COUNT(*) as `count` from `product` where (`product_status` != "delete" and `product_inserttime` < "'.$v0.'") or (`product_status` = "delete" and `product_modify_time` > "'.$v0.'");';
 			$result = mysql_query($query);
 			while($row = mysql_fetch_assoc($result)){	$data_product[] = $row['count'];	}
+
+			/*viewed count*/
+			//從上周至本周($v0)的vieded統計,第一周沒有基準參考值,故用data -7 處理
+			$start_day = ($k0 == 0) ? date('Y-m-d', strtotime('-7 day', strtotime($v0))) : date('Y-m-d', strtotime($week[($k0-1)])) ;
+			$end_day = date('Y-m-d',strtotime('-1 day' ,strtotime($v0)));
+
+			$query = 'SELECT SUM(`count`) as total FROM `viewed` WHERE `viewed`.`date` BETWEEN "'.$start_day.'" and "'.$end_day.'"; ' ;
+			$result = mysql_query($query);
+			while($row = mysql_fetch_assoc($result)){	$data_viwed[] = $row['total'];}
 
 			$chart_categories[] = '\'~'.date('m/d', strtotime($v0)).'\'';
 		}
@@ -76,7 +85,7 @@
 			<div class="box">
 				<div class="box-header with-border">
 					<h3>
-						類別 / 項目 / 產品 逐周統計數量
+						類別 / 項目 / 產品 / 瀏覽人數 逐周統計數量
 					</h3>
 				</div>
 				<div class="box-body">
@@ -109,38 +118,81 @@
 </div>
 <script>
 $(function () {
-	 // Build the Line chart
-    $('#container').highcharts({
+ 	$('#container').highcharts({
         chart: {
-            type: 'line'
+            zoomType: 'xy'
         },
         title: {
-            text: 'Product / Category / Categoryarea Info.'
+            text: 'Pindelta.com'
         },
         subtitle: {
-            text: 'Count Of Weekly'
+            text: 'Count by weekly'
         },
-        xAxis: {
-            categories: [<?php echo implode(',', $chart_categories)?>]
-        },
-        yAxis: {
+        xAxis: [{
+            categories: [<?php echo implode(',', $chart_categories)?>],
+            crosshair: true
+        }],
+        yAxis: [{
+            labels: {
+                format: '{value}',
+                style: {
+                    color: Highcharts.getOptions().colors[1]
+                }
+            },
             title: {
-                text: 'Num.'
+                text: 'Count',
+                style: {
+                    color: Highcharts.getOptions().colors[1]
+                }
             }
-        },
+        }, {
+            labels: {
+                format: '{value}',
+                style: {
+                    color: Highcharts.getOptions().colors[0]
+                },
+            },
+			title: {
+                text: 'Viewed',
+                style: {
+                    color: Highcharts.getOptions().colors[0]
+                }
+            },
+            tickInterval : 1,
+            opposite: true
+        }],
         plotOptions: {
-            line: {
+            spline: {
                 dataLabels: {
                     enabled: true
                 },
                 enableMouseTracking: true
             }
         },
-        series:[
-        	<?php foreach ($series_line as $k0 => $v0) {
-        		echo '{name:"'.$v0['name'].'", data : ['.$v0['data'].']},' ;
-        	} ?>
-        ]
+        tooltip: {
+            shared: true
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'left',
+            x: 120,
+            verticalAlign: 'top',
+            y: 100,
+            floating: true,
+            backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+        },
+        series: [{
+            name: 'Viewed',
+            type: 'column',
+            yAxis: 1,
+            data: [<?php echo implode(',' ,$data_viwed); ?>],
+        },
+        <?php 
+        	foreach ($series_line as $k0 => $v0) {
+        		echo '{name:"'.$v0['name'].'", data : ['.$v0['data'].'], type : \'spline\'},' ;
+        	} 
+        ?>
+		]
     });
 
     // Build the Pie chart

@@ -27,9 +27,11 @@
 			<div class="box">
 				<div class="box-body">
 					<form method="post">
-						<textarea rows="10" cols="50" id="about_value" name="about_value" class="ckeditor"><?php echo $data['value']; ?></textarea>
+						<textarea  id="about_value" name="about_value" class="ckeditor"><?php echo $data['value']; ?></textarea>
 						<script type="text/javascript">CKEDITOR.replace('about_value',
-						{toolbar : 'Full'});
+						{toolbar : 'Full',
+						 width: '80%',
+						 height: '400px'});
 						</script><br>
 						<a class="btn btn-app " id="save">
 							<i class="fa fa-save"></i> Save

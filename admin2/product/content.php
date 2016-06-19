@@ -183,7 +183,9 @@ dd.tags{
 															<textarea rows="10" cols="30" name="product_content" class="ckeditor" id="product_content"><?php echo $data['product_content']; ?></textarea>
 															<script type="text/javascript">CKEDITOR.replace('product_content',
 																{
-																	toolbar : 'Full'
+																	toolbar : 'Full',
+																	width: '100%',
+																	height: '300px'
 																});
 															</script>  
 														</dd>
