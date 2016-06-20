@@ -175,9 +175,9 @@ $(function () {
         legend: {
             layout: 'vertical',
             align: 'left',
-            x: 120,
+            x: 80,
             verticalAlign: 'top',
-            y: 100,
+            y: 0,
             floating: true,
             backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
         },
