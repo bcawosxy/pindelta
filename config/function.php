@@ -93,6 +93,26 @@ function remade_str($str, $length=25){
 	return $str ;
 }
   
+function set_ip_log() {
+	$ip = get_remote_ip();
+	$url = $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+
+	$query = 'select `num` from access where `ip` = "'.$ip.'"';
+	$result = mysql_query($query);
+
+	while ($row = mysql_fetch_assoc($result)) {
+		$num = $row['num'];
+	}
+
+	if(!empty($num)) {
+		$edit_query = 'UPDATE `access` SET `num` = "'.($num+1).'" , `url` = "'.$url.'" WHERE `ip` = "'.$ip.'" ;' ;
+		mysql_query($edit_query);
+	} else {
+		$add_query = 'INSERT INTO `pindeltanet`.`access` (`ip`, `num`, `url`) VALUES ("'.$ip.'", "1", "'.$url.'");';
+		mysql_query($add_query);
+	}
+}
+
 class info_bar{
 	function update_result_show($statu,$code){
 

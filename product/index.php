@@ -118,7 +118,7 @@ include('../site/content/product/data.php');
 	</div>
     <div id="footer">
       <div class="footer_content">
-	    Copyright @ 2015 Memorable Supplier. All Rights Reserved
+	    Copyright &copy; 2015 Memorable Supplier. All Rights Reserved
 	  </div>
     </div>	
 	

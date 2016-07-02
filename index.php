@@ -12,8 +12,11 @@
 	?>
 
 	<?php 
+		// 2016-07-02 記錄IP
+		set_ip_log();
 		$tmp0 = md5('pindelta.com');
 		if (!isset($_COOKIE['viewed'])) {
+
 			$today = '"'.date("Y-m-d").'"';
 			$query = 'select `count` from `viewed` where `date` = '.$today.' limit 1' ;
 			
@@ -86,7 +89,7 @@
 	<div class="back_top"></div>
     <div id="footer">
       <div class="footer_content">
-	    Copyright @ 2015 Memorable Supplier. All Rights Reserved
+	    Copyright &copy; 2015 Memorable Supplier. All Rights Reserved
 	  </div>
     </div>	
 	
