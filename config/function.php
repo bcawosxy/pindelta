@@ -110,8 +110,8 @@ function set_ip_log() {
 		mysql_query($edit_query);
 	} else {
 		echo 'add';
-		$add_query = 'INSERT INTO `pindeltanet`.`access` (`ip`, `num`, `url`) VALUES ("'.$ip.'", "1", "'.$url.'");';
-		mysql_query($add_query);
+		$add_query = 'INSERT INTO `access` (`ip`, `num`, `url`) VALUES ("'.$ip.'", "1", "'.$url.'");';
+		if(!mysql_query($add_query)) echo mysql_error();
 	}
 }
 
