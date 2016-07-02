@@ -105,9 +105,11 @@ function set_ip_log() {
 	}
 
 	if(!empty($num)) {
+		echo 'edit';
 		$edit_query = 'UPDATE `access` SET `num` = "'.($num+1).'" , `url` = "'.$url.'" WHERE `ip` = "'.$ip.'" ;' ;
 		mysql_query($edit_query);
 	} else {
+		echo 'add';
 		$add_query = 'INSERT INTO `pindeltanet`.`access` (`ip`, `num`, `url`) VALUES ("'.$ip.'", "1", "'.$url.'");';
 		mysql_query($add_query);
 	}
