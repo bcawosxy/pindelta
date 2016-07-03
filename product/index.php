@@ -136,6 +136,8 @@ $('.social-likes').socialLikes({
 
 
 $('.social-likes').on('popup_closed.social-likes', function(event, service) {
+    console.log(service);
+    console.log(event);
     // Request new counters
     $(event.currentTarget).socialLikes({forceUpdate: true});
 
