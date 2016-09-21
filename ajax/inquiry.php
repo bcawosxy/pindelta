@@ -17,6 +17,8 @@
 			$logo = (!empty($_POST['logo'])) ? $_POST['logo'] : null ;
 			$memo = (!empty($_POST['memo'])) ? $_POST['memo'] : null ;
 			$code = (!empty($_POST['code'])) ? $_POST['code'] : null ;
+			$product_name = (!empty($_POST['product_name'])) ? $_POST['product_name'] : null ;
+			$product_url = (!empty($_POST['product_url'])) ? $_POST['product_url'] : null ;
 			
 			//空值
 			if($product_id == null || $first_name == null || $last_name == null || $email == null || $quantity == null || $country == null){
@@ -74,18 +76,20 @@
 				$return = array(
 					'result' => 1,
 					'data' => '<form name="myform" method="post" action="http://www.pumo.com.tw/www/f2m?id=26881">
-								姓 : <input type="text" name="1.姓" value="'.$first_name.'">
-								名 : <input type="text" name="2.名" value="'.$last_name.'"> 
-								信箱 : <input type="text" name="3.信箱" value="'.$email.'"> 
-								數量 : <input type="text" name="4.數量" value="'.$quantity.'"> 
-								國家 : <input type="text" name="5.國家" value="'.$country.'"> 
-								公司 : <input type="text" name="6.公司" value="'.$company.'"> 
-								網站 : <input type="text" name="7.網站" value="'.$website.'"> 
-								Logo需求 : <input type="text" name="8.Logo需求" value="'.$logo_str.'"> 
-								備註 : <input type="text" name="9.備註" value="'.$memo.'"> 
-								
-								<input type="hidden" name="charset" value="UTF-8">  
-								<input id="inquiry_btn" type="submit">
+									姓 : <input type="text" name="1.姓" value="'.$first_name.'">
+									名 : <input type="text" name="2.名" value="'.$last_name.'"> 
+									信箱 : <input type="text" name="3.信箱" value="'.$email.'"> 
+									數量 : <input type="text" name="4.數量" value="'.$quantity.'"> 
+									國家 : <input type="text" name="5.國家" value="'.$country.'"> 
+									公司 : <input type="text" name="6.公司" value="'.$company.'"> 
+									網站 : <input type="text" name="7.網站" value="'.$website.'"> 
+									Logo需求 : <input type="text" name="8.Logo需求" value="'.$logo_str.'"> 
+									備註 : <input type="text" name="9.備註" value="'.$memo.'"> 
+									產品名稱 : <input type="text" name="10.產品名稱" value="'.$product_name.'"> 
+									產品連結 : <input type="text" name="11.產品連結" value="'.$product_url.'"> 
+									
+									<input type="hidden" name="charset" value="UTF-8">  
+									<input id="inquiry_btn" type="submit">
 								</form>',
 				);
 				echo json_encode($return);

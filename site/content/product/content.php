@@ -262,7 +262,8 @@ function send_contact(){
 		logo : obj.find('input[name=logo]:checked').val(),	
 		memo : obj.find('[name=memo]').val(),
 		code : obj.find('input[name=captcha_code]').val(),
-
+		product_name : '<?php echo $product['product_name'] ?>',
+		product_url : '<?php echo 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; ?>',
 	}, function(r) {
 		r = JSON.parse(r);
 		if(r.result == 1){
