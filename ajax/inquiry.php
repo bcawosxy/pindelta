@@ -76,15 +76,15 @@
 				$return = array(
 					'result' => 1,
 					'data' => '<form name="myform" method="post" action="http://www.pumo.com.tw/www/f2m?id=26881">
-									姓 : <input type="text" name="1.姓" value="'.$first_name.'">
-									名 : <input type="text" name="2.名" value="'.$last_name.'"> 
-									信箱 : <input type="text" name="3.信箱" value="'.$email.'"> 
-									數量 : <input type="text" name="4.數量" value="'.$quantity.'"> 
-									國家 : <input type="text" name="5.國家" value="'.$country.'"> 
-									公司 : <input type="text" name="6.公司" value="'.$company.'"> 
-									網站 : <input type="text" name="7.網站" value="'.$website.'"> 
-									Logo需求 : <input type="text" name="8.Logo需求" value="'.$logo_str.'"> 
-									備註 : <input type="text" name="9.備註" value="'.$memo.'"> 
+									姓 : <input type="text" name="01.姓" value="'.$first_name.'">
+									名 : <input type="text" name="02.名" value="'.$last_name.'"> 
+									信箱 : <input type="text" name="03.信箱" value="'.$email.'"> 
+									數量 : <input type="text" name="04.數量" value="'.$quantity.'"> 
+									國家 : <input type="text" name="05.國家" value="'.$country.'"> 
+									公司 : <input type="text" name="06.公司" value="'.$company.'"> 
+									網站 : <input type="text" name="07.網站" value="'.$website.'"> 
+									Logo需求 : <input type="text" name="08.Logo需求" value="'.$logo_str.'"> 
+									備註 : <input type="text" name="09.備註" value="'.$memo.'"> 
 									產品名稱 : <input type="text" name="10.產品名稱" value="'.$product_name.'"> 
 									產品連結 : <input type="text" name="11.產品連結" value="'.$product_url.'"> 
 									
@@ -100,14 +100,7 @@
 				);
 				echo json_encode($return);
 			}
-		
-		
-		
-		
-		
-		
-		
-		
+				
 		break;
 		
 		case 'archive': //from admin
