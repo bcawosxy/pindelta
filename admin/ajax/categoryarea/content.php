@@ -17,7 +17,7 @@ if( isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
 
 	switch ($cover_state) {
 		case 'new':
-			$file_dir = PATH_ROOT.'/admin2/files/';
+			$file_dir = PATH_ROOT.'/admin/files/';
 			$file = $file_dir.$cover;
 			$file_info = pathinfo($file);
 			$new_file_name = uniqid().'.'.$file_info['extension'];
@@ -32,7 +32,7 @@ if( isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
 			$new_file_name = $cover;
 			break;
 		
-		default:			
+		default:
 			break;
 	}
 

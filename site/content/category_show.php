@@ -1,6 +1,6 @@
 <?php 
 $page = (!empty($_GET['page'])) ? $_GET['page'] : 1 ;
-$num = 10;
+$num = 20;
 $start_page = ($page-1)*$num;
 
 //只取有`category`的area且ID不重複
